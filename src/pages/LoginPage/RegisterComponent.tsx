@@ -24,15 +24,8 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
         content: 'Passwords do not match.',
         duration: 3,
       });
+      return;
     }
-    console.log(
-      `[doRegister] formInfo: ${JSON.stringify({
-        username: registerUsername,
-        email: registerEmail,
-        password: registerPassword,
-        passwordConfirm: registerPasswordConfirm,
-      })}`,
-    );
     // setShowModal(true);
     const response = await UserApis.registerUser({
       username: registerUsername,
@@ -55,7 +48,7 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
         position: 'top',
         title: 'Error',
         content: response.message,
-        duration: 3,
+        duration: 10,
       });
     }
   }
