@@ -9,6 +9,7 @@ import { UserApis } from '../../service/UserApis.ts';
 import { setToken } from '../../common/common.ts';
 import styles from './LoginOrRegisterPage.module.scss';
 import { useState } from 'react';
+import logo from '../../assets/image/logo.svg';
 
 export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   const [loginUsername, setLoginUsername] = useState('');
@@ -61,12 +62,7 @@ export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
           {/* Header */}
           <div className={styles.header}>
             <div className={styles.logo}>
-              <img
-                width={100}
-                height={100}
-                src="../../assets/image/logo.svg"
-                alt={'FCT logo'}
-              />
+              <img width={100} height={100} src={logo} alt={'FCT logo'} />
             </div>
             <div className={styles.titles}>
               <div className={styles.title}>{localeData.welcome}</div>
