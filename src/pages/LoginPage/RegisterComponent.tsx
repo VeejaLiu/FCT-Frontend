@@ -8,6 +8,7 @@ import {
 import { UserApis } from '../../service/UserApis.ts';
 import { useState } from 'react';
 import styles from './LoginOrRegisterPage.module.scss';
+import logo from '../../assets/image/logo.svg';
 
 export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   const [registerUsername, setRegisterUsername] = useState('');
@@ -83,12 +84,7 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
         <Space vertical className={styles.loginOrRegister}>
           <div className={styles.header}>
             <div className={styles.logo}>
-              <img
-                width={100}
-                height={100}
-                src="../../assets/image/logo.svg"
-                alt={'FCT logo'}
-              />
+              <img width={100} height={100} src={logo} alt={'FCT logo'} />
             </div>
             <div className={styles.titles}>
               <div className={styles.title}>{localeData.title}</div>
