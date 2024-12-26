@@ -37,10 +37,6 @@
         min-width: 163px;
         vertical-align: middle;
         flex-shrink: 0;
-
-        .text {
-          font-family: Inter;
-        }
       }
     }
   }
@@ -60,6 +56,11 @@
       flex-shrink: 0;
       row-gap: 24px;
       align-self: stretch;
+    }
+
+    .errorMessage {
+      color: red;
+      font-size: 14px;
     }
 
     .button {

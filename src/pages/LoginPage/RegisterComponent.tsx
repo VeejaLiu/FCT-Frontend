@@ -15,18 +15,43 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState('');
+  const [errorMessage, setErrorMessage] = useState(' ');
 
-  async function doRegister() {
-    if (registerPassword !== registerPasswordConfirm) {
-      Notification.error({
-        position: 'top',
-        title: 'Error',
-        content: 'Passwords do not match.',
-        duration: 3,
-      });
+  async function doRegister(localeData: any) {
+    // Check if username is valid
+    const validPattern = /^[a-zA-Z][a-zA-Z0-9_.]{5,19}$/;
+    if (!validPattern.test(registerUsername)) {
+      setErrorMessage(localeData.invalidUsername);
       return;
     }
-    // setShowModal(true);
+
+    // Check if email is valid
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(registerEmail)) {
+      setErrorMessage(localeData.invalidEmail);
+      return;
+    }
+
+    // Check if password and confirm password match
+    if (registerPassword !== registerPasswordConfirm) {
+      setErrorMessage(localeData.passwordNotMatch);
+      return;
+    }
+
+    // Check if password meets criteria
+    const hasUpperCase = /[A-Z]/.test(registerPassword);
+    const hasLowerCase = /[a-z]/.test(registerPassword);
+    const hasNumber = /\d/.test(registerPassword);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(registerPassword);
+    const lengthValid = registerPassword.length >= 6;
+    const criteriaMet =
+      [hasUpperCase, hasLowerCase, hasNumber, hasSpecialChar].filter(Boolean)
+        .length >= 3;
+    if (!lengthValid || !criteriaMet) {
+      setErrorMessage(localeData.passwordError);
+      return;
+    }
+
     const response = await UserApis.registerUser({
       username: registerUsername,
       email: registerEmail,
@@ -37,7 +62,7 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
       Notification.success({
         position: 'top',
         title: 'Welcome!!!',
-        content: 'Register success! Will redirect to login page in 3 seconds',
+        content: localeData.registerSuccess,
         duration: 3,
       });
       // 3 seconds later, redirect to login page
@@ -73,6 +98,14 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 placeholder={localeData.usernamePlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
                 onChange={(e) => setRegisterUsername(e)}
+                onBlur={() => {
+                  const validPattern = /^[a-zA-Z][a-zA-Z0-9_.]{5,19}$/;
+                  if (!validPattern.test(registerUsername)) {
+                    setErrorMessage(localeData.invalidUsername);
+                  } else {
+                    setErrorMessage(' ');
+                  }
+                }}
               />
               <Form.Input
                 label={{ text: localeData.email }}
@@ -80,6 +113,14 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 placeholder={localeData.emailPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
                 onChange={(e) => setRegisterEmail(e)}
+                onBlur={() => {
+                  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                  if (!emailPattern.test(registerEmail)) {
+                    setErrorMessage(localeData.invalidEmail);
+                  } else {
+                    setErrorMessage(' ');
+                  }
+                }}
               />
               <Form.Input
                 mode={'password'}
@@ -88,6 +129,30 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 placeholder={localeData.passwordPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
                 onChange={(e) => setRegisterPassword(e)}
+                // 失去焦点时，校验密码是否符合规则
+                onBlur={() => {
+                  const hasUpperCase = /[A-Z]/.test(registerPassword);
+                  const hasLowerCase = /[a-z]/.test(registerPassword);
+                  const hasNumber = /\d/.test(registerPassword);
+                  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(
+                    registerPassword,
+                  );
+                  const lengthValid = registerPassword.length >= 6;
+
+                  const criteriaMet =
+                    [
+                      hasUpperCase,
+                      hasLowerCase,
+                      hasNumber,
+                      hasSpecialChar,
+                    ].filter(Boolean).length >= 3;
+
+                  if (!lengthValid || !criteriaMet) {
+                    setErrorMessage(localeData.passwordError);
+                  } else {
+                    setErrorMessage(' ');
+                  }
+                }}
               />
               <Form.Input
                 mode={'password'}
@@ -96,12 +161,24 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 placeholder={localeData.confirmPasswordPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
                 onChange={(e) => setRegisterPasswordConfirm(e)}
+                onBlur={() => {
+                  if (registerPassword !== registerPasswordConfirm) {
+                    setErrorMessage(localeData.passwordMismatch);
+                  } else {
+                    setErrorMessage(' ');
+                  }
+                }}
               />
             </Form>
+            <div className={styles.errorMessage}>
+              <p>{errorMessage}</p>
+            </div>
             <Button
               theme="solid"
               className={styles.button}
-              onClick={doRegister}
+              onClick={(e) => {
+                doRegister(localeData);
+              }}
             >
               {localeData.register}
             </Button>

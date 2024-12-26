@@ -21,6 +21,19 @@ export default {
     confirmPasswordPlaceholder: 'confirm your password',
     register: 'Register',
     loginPrompt: 'Already have an account? Login',
+
+    invalidUsername:
+      'Username must start with a letter, be 6 to 20 characters long, and only allow letters, numbers, underscores, and dots.',
+
+    invalidEmail: 'Please enter a valid email address.',
+
+    passwordError:
+      'Password must contain at least three of the following: uppercase letters, lowercase letters, numbers, or special characters, and must be at least 6 characters long.',
+    passwordMismatch:
+      'The passwords do not match. Please make sure both entries are the same.',
+
+    registerSuccess:
+      'Register success! Will redirect to login page in 3 seconds',
   },
   WebsiteLogoComponent: {
     title: 'Career.Top',

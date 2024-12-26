@@ -53,7 +53,7 @@ export class UserApis {
       console.error('e.response.status: ', errorStatus);
 
       if (errorStatus === 400) {
-        const { errors } = e?.response?.data;
+        const { errors } = e?.response?.data || {};
         if (errors && errors.length > 0) {
           const errorMessages: string[] = errors.map((error: any) => error.msg);
           return {
