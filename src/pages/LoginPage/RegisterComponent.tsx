@@ -86,7 +86,7 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
               <img
                 width={100}
                 height={100}
-                src="public/logo.svg"
+                src="../../assets/image/logo.svg"
                 alt={'FCT logo'}
               />
             </div>
