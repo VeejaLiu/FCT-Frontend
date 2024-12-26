@@ -5,35 +5,52 @@ import {
   Notification,
   Space,
 } from '@douyinfe/semi-ui';
-import { getContactUs } from './LoginPage.tsx';
 import { UserApis } from '../../service/UserApis.ts';
 import { useState } from 'react';
-import styles from './RegisterComponent.module.scss';
+import styles from './LoginOrRegisterPage.module.scss';
 
 export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState('');
+  const [errorMessage, setErrorMessage] = useState(' ');
 
-  async function doRegister() {
-    if (registerPassword !== registerPasswordConfirm) {
-      Notification.error({
-        position: 'top',
-        title: 'Error',
-        content: 'Passwords do not match.',
-        duration: 3,
-      });
+  async function doRegister(localeData: any) {
+    // Check if username is valid
+    const validPattern = /^[a-zA-Z][a-zA-Z0-9_.]{5,19}$/;
+    if (!validPattern.test(registerUsername)) {
+      setErrorMessage(localeData.invalidUsername);
+      return;
     }
-    console.log(
-      `[doRegister] formInfo: ${JSON.stringify({
-        username: registerUsername,
-        email: registerEmail,
-        password: registerPassword,
-        passwordConfirm: registerPasswordConfirm,
-      })}`,
-    );
-    // setShowModal(true);
+
+    // Check if email is valid
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(registerEmail)) {
+      setErrorMessage(localeData.invalidEmail);
+      return;
+    }
+
+    // Check if password and confirm password match
+    if (registerPassword !== registerPasswordConfirm) {
+      setErrorMessage(localeData.passwordNotMatch);
+      return;
+    }
+
+    // Check if password meets criteria
+    const hasUpperCase = /[A-Z]/.test(registerPassword);
+    const hasLowerCase = /[a-z]/.test(registerPassword);
+    const hasNumber = /\d/.test(registerPassword);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(registerPassword);
+    const lengthValid = registerPassword.length >= 6;
+    const criteriaMet =
+      [hasUpperCase, hasLowerCase, hasNumber, hasSpecialChar].filter(Boolean)
+        .length >= 3;
+    if (!lengthValid || !criteriaMet) {
+      setErrorMessage(localeData.passwordError);
+      return;
+    }
+
     const response = await UserApis.registerUser({
       username: registerUsername,
       email: registerEmail,
@@ -44,7 +61,7 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
       Notification.success({
         position: 'top',
         title: 'Welcome!!!',
-        content: 'Register success! Will redirect to login page in 3 seconds',
+        content: localeData.registerSuccess,
         duration: 3,
       });
       // 3 seconds later, redirect to login page
@@ -55,7 +72,7 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
         position: 'top',
         title: 'Error',
         content: response.message,
-        duration: 3,
+        duration: 10,
       });
     }
   }
@@ -63,13 +80,19 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   return (
     <LocaleConsumer componentName={'RegisterComponent'}>
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
-        <Space vertical className={styles.register}>
-          <div className={styles.component66}>
-            <div className={styles.header}>
-              <p className={styles.title}>{localeData.title}</p>
-              <p className={styles.text}>
-                <span className={styles.text1}>{localeData.text}</span>
-              </p>
+        <Space vertical className={styles.loginOrRegister}>
+          <div className={styles.header}>
+            <div className={styles.logo}>
+              <img
+                width={100}
+                height={100}
+                src="public/logo.svg"
+                alt={'FCT logo'}
+              />
+            </div>
+            <div className={styles.titles}>
+              <div className={styles.title}>{localeData.title}</div>
+              <div className={styles.subtitle}>{localeData.text}</div>
             </div>
           </div>
           <div className={styles.form}>
@@ -80,6 +103,14 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 placeholder={localeData.usernamePlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
                 onChange={(e) => setRegisterUsername(e)}
+                onBlur={() => {
+                  const validPattern = /^[a-zA-Z][a-zA-Z0-9_.]{5,19}$/;
+                  if (!validPattern.test(registerUsername)) {
+                    setErrorMessage(localeData.invalidUsername);
+                  } else {
+                    setErrorMessage(' ');
+                  }
+                }}
               />
               <Form.Input
                 label={{ text: localeData.email }}
@@ -87,6 +118,14 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 placeholder={localeData.emailPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
                 onChange={(e) => setRegisterEmail(e)}
+                onBlur={() => {
+                  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                  if (!emailPattern.test(registerEmail)) {
+                    setErrorMessage(localeData.invalidEmail);
+                  } else {
+                    setErrorMessage(' ');
+                  }
+                }}
               />
               <Form.Input
                 mode={'password'}
@@ -95,6 +134,30 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 placeholder={localeData.passwordPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
                 onChange={(e) => setRegisterPassword(e)}
+                // 失去焦点时，校验密码是否符合规则
+                onBlur={() => {
+                  const hasUpperCase = /[A-Z]/.test(registerPassword);
+                  const hasLowerCase = /[a-z]/.test(registerPassword);
+                  const hasNumber = /\d/.test(registerPassword);
+                  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(
+                    registerPassword,
+                  );
+                  const lengthValid = registerPassword.length >= 6;
+
+                  const criteriaMet =
+                    [
+                      hasUpperCase,
+                      hasLowerCase,
+                      hasNumber,
+                      hasSpecialChar,
+                    ].filter(Boolean).length >= 3;
+
+                  if (!lengthValid || !criteriaMet) {
+                    setErrorMessage(localeData.passwordError);
+                  } else {
+                    setErrorMessage(' ');
+                  }
+                }}
               />
               <Form.Input
                 mode={'password'}
@@ -103,12 +166,24 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 placeholder={localeData.confirmPasswordPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
                 onChange={(e) => setRegisterPasswordConfirm(e)}
+                onBlur={() => {
+                  if (registerPassword !== registerPasswordConfirm) {
+                    setErrorMessage(localeData.passwordMismatch);
+                  } else {
+                    setErrorMessage(' ');
+                  }
+                }}
               />
             </Form>
+            <div className={styles.errorMessage}>
+              <p>{errorMessage}</p>
+            </div>
             <Button
               theme="solid"
               className={styles.button}
-              onClick={doRegister}
+              onClick={(e) => {
+                doRegister(localeData);
+              }}
             >
               {localeData.register}
             </Button>
@@ -122,7 +197,6 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
               {localeData.loginPrompt}
             </Button>
           </div>
-          {getContactUs()}
         </Space>
       )}
     </LocaleConsumer>

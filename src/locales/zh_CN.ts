@@ -10,7 +10,7 @@ export default {
   },
   RegisterComponent: {
     title: '开始您的伟大旅程',
-    text: '免费使用, 永远',
+    text: '永久免费使用',
     username: '用户名',
     usernamePlaceholder: '您的用户名',
     email: '电子邮件',
@@ -21,6 +21,17 @@ export default {
     confirmPasswordPlaceholder: '确认您的密码',
     register: '注册',
     loginPrompt: '已经有账号？ 登录',
+
+    invalidUsername:
+      '用户名必须以字母开头，长度为6到20位，仅允许字母、数字、下划线和点。',
+
+    invalidEmail: '请输入有效的电子邮件地址。',
+
+    passwordError:
+      '密码必须包含大小写字母、数字或特殊符号中的三种，并且不少于6位。',
+    passwordMismatch: '密码不匹配。请确保两次输入的密码一致。',
+
+    registerSuccess: '注册成功！将在3秒后重定向到登录页面',
   },
   WebsiteLogoComponent: {
     title: 'Career.Top',

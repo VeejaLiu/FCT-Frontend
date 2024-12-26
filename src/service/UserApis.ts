@@ -26,6 +26,7 @@ export class UserApis {
         password,
         confirmPassword,
       });
+
       if (response.status !== 200) {
         return {
           success: false,
@@ -33,8 +34,35 @@ export class UserApis {
         };
       }
       return response.data;
-    } catch (e) {
+    } catch (e: any) {
       console.log(`[registerUser] error: ${e}`);
+
+      const errorStatus = e?.response?.status;
+      // 400
+      // {
+      // 	"errors": [
+      // 		{
+      // 			"type": "field",
+      // 			"value": "221231231232",
+      // 			"msg": "Email must be a valid email",
+      // 			"path": "email",
+      // 			"location": "body"
+      // 		}
+      // 	]
+      // }
+      console.error('e.response.status: ', errorStatus);
+
+      if (errorStatus === 400) {
+        const { errors } = e?.response?.data || {};
+        if (errors && errors.length > 0) {
+          const errorMessages: string[] = errors.map((error: any) => error.msg);
+          return {
+            success: false,
+            message: errorMessages.join(', '),
+          };
+        }
+      }
+
       return {
         success: false,
         message: 'Something went wrong, please try again',

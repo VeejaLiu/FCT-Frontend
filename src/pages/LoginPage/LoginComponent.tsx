@@ -5,10 +5,9 @@ import {
   Notification,
   Space,
 } from '@douyinfe/semi-ui';
-import { getContactUs } from './LoginPage.tsx';
 import { UserApis } from '../../service/UserApis.ts';
 import { setToken } from '../../common/common.ts';
-import styles from './LoginComponent.module.scss';
+import styles from './LoginOrRegisterPage.module.scss';
 import { useState } from 'react';
 
 export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
@@ -58,18 +57,24 @@ export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   return (
     <LocaleConsumer componentName={'LoginComponent'}>
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
-        <Space vertical className={styles.login}>
-          <div className={styles.component66}>
-            <div className={styles.header}>
-              <p className={styles.title}>
-                {/*Welcome to back*/}
-                {localeData.welcome}
-              </p>
-              <p className={styles.text}>
-                <span className={styles.text1}> FC-Career-Dashboard </span>
-              </p>
+        <Space vertical className={styles.loginOrRegister}>
+          {/* Header */}
+          <div className={styles.header}>
+            <div className={styles.logo}>
+              <img
+                width={100}
+                height={100}
+                src="public/logo.svg"
+                alt={'FCT logo'}
+              />
+            </div>
+            <div className={styles.titles}>
+              <div className={styles.title}>{localeData.welcome}</div>
+              <div className={styles.subtitle}>{'fccareer.top'}</div>
             </div>
           </div>
+
+          {/* Form */}
           <div className={styles.form}>
             <Form className={styles.inputs}>
               <Form.Input
@@ -102,7 +107,6 @@ export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
               {localeData.registerPrompt}
             </Button>
           </div>
-          {getContactUs()}
         </Space>
       )}
     </LocaleConsumer>

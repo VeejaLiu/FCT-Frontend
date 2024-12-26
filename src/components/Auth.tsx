@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import App from '../App.tsx';
 import { UserApis } from '../service/UserApis.ts';
 import { LocaleProvider, Spin } from '@douyinfe/semi-ui';
-import LoginPage from '../pages/LoginPage/LoginPage.tsx';
+import LoginOrRegisterPage from '../pages/LoginPage/LoginOrRegisterPage.tsx';
 
 import zh_CN from '@douyinfe/semi-ui/lib/es/locale/source/zh_CN';
 import en_GB from '@douyinfe/semi-ui/lib/es/locale/source/en_GB';
@@ -97,7 +97,7 @@ export const Auth = () => {
       ) : isAuthenticated ? (
         <App />
       ) : (
-        <LoginPage />
+        <LoginOrRegisterPage />
       )}
     </LocaleProvider>
   );
