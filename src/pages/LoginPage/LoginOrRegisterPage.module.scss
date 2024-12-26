@@ -4,17 +4,25 @@
   max-width: 550px;
 
   .header {
-    .title {
-      color: var(--semi-color-text-0);
-      font-size: 32px;
-      font-weight: bolder;
-    }
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
 
-    .subtitle {
-      //background-color: red;
-      color: var(--semi-color-text-2);
-      font-size: 16px;
-      text-align: center;
+    .titles {
+      margin-left: 20px;
+
+      .title {
+        color: var(--semi-color-text-0);
+        font-size: 20px;
+        font-weight: bolder;
+      }
+
+      .subtitle {
+        //background-color: red;
+        color: var(--semi-color-text-2);
+        font-size: 12px;
+        text-align: center;
+      }
     }
   }
 

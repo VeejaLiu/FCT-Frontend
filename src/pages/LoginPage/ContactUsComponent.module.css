@@ -1,0 +1,25 @@
+.contactContainer {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+}
+
+.contactLabel {
+  font-weight: bold;
+  min-width: 80px;
+  display: inline-block;
+  /*text-align: right;*/
+  margin-right: 10px;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

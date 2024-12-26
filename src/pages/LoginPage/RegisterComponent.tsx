@@ -5,10 +5,9 @@ import {
   Notification,
   Space,
 } from '@douyinfe/semi-ui';
-import { getContactUs } from './LoginOrRegisterPage.tsx';
 import { UserApis } from '../../service/UserApis.ts';
 import { useState } from 'react';
-import styles from './loginOrRegister.module.scss';
+import styles from './LoginOrRegisterPage.module.scss';
 
 export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   const [registerUsername, setRegisterUsername] = useState('');
@@ -83,8 +82,18 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
         <Space vertical className={styles.loginOrRegister}>
           <div className={styles.header}>
-            <div className={styles.title}>{localeData.title}</div>
-            <div className={styles.subtitle}>{localeData.text}</div>
+            <div className={styles.logo}>
+              <img
+                width={100}
+                height={100}
+                src="public/logo.svg"
+                alt={'FCT logo'}
+              />
+            </div>
+            <div className={styles.titles}>
+              <div className={styles.title}>{localeData.title}</div>
+              <div className={styles.subtitle}>{localeData.text}</div>
+            </div>
           </div>
           <div className={styles.form}>
             <Form className={styles.inputs}>
@@ -188,7 +197,6 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
               {localeData.loginPrompt}
             </Button>
           </div>
-          {getContactUs()}
         </Space>
       )}
     </LocaleConsumer>

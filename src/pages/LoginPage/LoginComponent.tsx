@@ -5,10 +5,9 @@ import {
   Notification,
   Space,
 } from '@douyinfe/semi-ui';
-import { getContactUs } from './LoginOrRegisterPage.tsx';
 import { UserApis } from '../../service/UserApis.ts';
 import { setToken } from '../../common/common.ts';
-import styles from './loginOrRegister.module.scss';
+import styles from './LoginOrRegisterPage.module.scss';
 import { useState } from 'react';
 
 export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
@@ -61,8 +60,18 @@ export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
         <Space vertical className={styles.loginOrRegister}>
           {/* Header */}
           <div className={styles.header}>
-            <div className={styles.title}>{localeData.welcome}</div>
-            <div className={styles.subtitle}>{'fccareer.top'}</div>
+            <div className={styles.logo}>
+              <img
+                width={100}
+                height={100}
+                src="public/logo.svg"
+                alt={'FCT logo'}
+              />
+            </div>
+            <div className={styles.titles}>
+              <div className={styles.title}>{localeData.welcome}</div>
+              <div className={styles.subtitle}>{'fccareer.top'}</div>
+            </div>
           </div>
 
           {/* Form */}
@@ -98,7 +107,6 @@ export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
               {localeData.registerPrompt}
             </Button>
           </div>
-          {getContactUs()}
         </Space>
       )}
     </LocaleConsumer>
