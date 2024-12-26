@@ -10,7 +10,7 @@ export default {
   },
   RegisterComponent: {
     title: '开始您的伟大旅程',
-    text: '免费使用, 永远',
+    text: '永久免费使用',
     username: '用户名',
     usernamePlaceholder: '您的用户名',
     email: '电子邮件',

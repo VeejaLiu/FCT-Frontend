@@ -5,10 +5,10 @@ import {
   Notification,
   Space,
 } from '@douyinfe/semi-ui';
-import { getContactUs } from './LoginPage.tsx';
+import { getContactUs } from './LoginOrRegisterPage.tsx';
 import { UserApis } from '../../service/UserApis.ts';
 import { useState } from 'react';
-import styles from './RegisterComponent.module.scss';
+import styles from './loginOrRegister.module.scss';
 
 export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   const [registerUsername, setRegisterUsername] = useState('');
@@ -81,14 +81,10 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   return (
     <LocaleConsumer componentName={'RegisterComponent'}>
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
-        <Space vertical className={styles.register}>
-          <div className={styles.component66}>
-            <div className={styles.header}>
-              <p className={styles.title}>{localeData.title}</p>
-              <p className={styles.text}>
-                <span className={styles.text1}>{localeData.text}</span>
-              </p>
-            </div>
+        <Space vertical className={styles.loginOrRegister}>
+          <div className={styles.header}>
+            <div className={styles.title}>{localeData.title}</div>
+            <div className={styles.subtitle}>{localeData.text}</div>
           </div>
           <div className={styles.form}>
             <Form className={styles.inputs}>
