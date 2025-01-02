@@ -1,8 +1,8 @@
-import { Button, Input, Notification, Popover, Space } from '@douyinfe/semi-ui';
 import { IconCopy, IconRefresh2 } from '@douyinfe/semi-icons';
+import { Button, Input, Notification, Popover } from '@douyinfe/semi-ui';
 import * as React from 'react';
-import { UserApis } from '../../service/UserApis.ts';
 import { useEffect } from 'react';
+import { UserApis } from '../../service/UserApis.ts';
 
 export interface ApiSecretKeyComponentProps {
   localeData: any;
@@ -40,19 +40,9 @@ function ApiSecretKeyComponent({
 
   return (
     <>
-      <h3>{localeData?.Settings}</h3>
-      <Space
-        vertical
-        align={'start'}
-        style={{
-          width: '100%',
-          padding: '10px',
-          border: '1px solid #e8e8e8',
-          borderRadius: '5px',
-        }}
-      >
-        <h5>{localeData?.APISecretKey}</h5>
-        <Space>
+      <div className="w-full p-4 border border-gray-200 rounded-md">
+        <div className={'font-bold mb-2'}>{localeData?.APISecretKey}</div>
+        <div className="flex">
           <div style={{ width: '300px' }}>{localeData?.APISecretKey}:</div>
           <Input
             // mode="password"
@@ -103,21 +93,12 @@ function ApiSecretKeyComponent({
               <IconRefresh2 />
             </Button>
           </Popover>
-        </Space>
-        <Space>
-          <span
-            style={{
-              color: 'red',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              marginTop: '5px',
-              display: 'block',
-            }}
-          >
-            {localeData?.DoNotShareSecretKey}
-          </span>
-        </Space>
-      </Space>
+        </div>
+
+        <div className="text-red-500 text-xs font-bold mt-2 w-full">
+          {localeData?.DoNotShareSecretKey}
+        </div>
+      </div>
     </>
   );
 }

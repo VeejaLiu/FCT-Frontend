@@ -63,7 +63,7 @@ function ChangePasswordComponent({
           alignItems: 'center',
         }}
       >
-        <span style={{ width: '200px', fontWeight: 'bold' }}>
+        <span style={{ width: '300px', fontWeight: 'bold' }}>
           {localeData.OldPassword}
         </span>
         <Input
@@ -79,23 +79,15 @@ function ChangePasswordComponent({
           alignItems: 'center',
         }}
       >
-        <span style={{ width: '200px', fontWeight: 'bold' }}>
-          {localeData.NewPassword}
-        </span>
+        <span className="font-bold w-[300px]">{localeData.NewPassword}</span>
         <Input
           mode="password"
           autoComplete={'off'}
           onChange={(e: string) => setNewPassword(e)}
         />
       </div>
-      <div
-        style={{
-          display: 'flex',
-          marginTop: '8px',
-          alignItems: 'center',
-        }}
-      >
-        <span style={{ width: '200px', fontWeight: 'bold' }}>
+      <div className="flex items-center mt-2">
+        <span className="font-bold w-[300px]">
           {localeData.ConfirmNewPassword}
         </span>
         <Input
@@ -104,7 +96,7 @@ function ChangePasswordComponent({
           onChange={(e: string) => setCofirmNewPassword(e)}
         />
       </div>
-      <div style={{ marginTop: '16px', margin: 'auto' }}>
+      <div className="font-bold w-[300px] ">
         <Button style={{ marginTop: '10px' }} onClick={() => changePassword()}>
           {localeData.ChangePassword}
         </Button>
