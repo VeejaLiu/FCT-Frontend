@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import ChangePasswordComponent from './ChangePassword.tsx';
+import { UserApis } from '../../service/UserApis.ts';
 
 export interface ApiSecretKeyComponentProps {
   localeData: any;
@@ -11,9 +12,23 @@ function AccountSettingComponent({
 }: ApiSecretKeyComponentProps): React.ReactElement {
   const [showChangePassword, setShowChangePassword] =
     React.useState<boolean>(false);
+  const [accountInfo, setAccountInfo] = React.useState<{
+    userID?: string;
+    username?: string;
+    email?: string;
+  }>({});
+
+  async function fetchAccountInfo() {
+    const res = await UserApis.getUserInfo();
+    console.log(`[fetchAccountInfo] res: ${JSON.stringify(res)}`);
+    if (!res) {
+      return;
+    }
+    setAccountInfo(res);
+  }
 
   useEffect(() => {
-    // fetchSecretKey().then();
+    fetchAccountInfo().then();
   }, []);
 
   return (
@@ -28,7 +43,9 @@ function AccountSettingComponent({
           <div style={{ width: '300px' }}>
             <h5>{localeData?.AccountUsername}</h5>
           </div>
-          <span style={{ color: 'gray', fontWeight: 500 }}>Veeja Liu</span>
+          <span style={{ color: 'gray', fontWeight: 500 }}>
+            {accountInfo?.username}
+          </span>
         </div>
 
         {/* Account Info - Email */}
@@ -37,7 +54,7 @@ function AccountSettingComponent({
             <h5>{localeData?.AccountEmail}</h5>
           </div>
           <span style={{ color: 'gray', fontWeight: 500 }}>
-            veejaliu@gmail.com
+            {accountInfo?.email}
           </span>
         </div>
 
