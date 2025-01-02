@@ -1,5 +1,5 @@
 import { IconCopy, IconRefresh2 } from '@douyinfe/semi-icons';
-import { Button, Input, Notification, Popover } from '@douyinfe/semi-ui';
+import { Input, Notification, Popover } from '@douyinfe/semi-ui';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { UserApis } from '../../service/UserApis.ts';
@@ -11,7 +11,7 @@ export interface ApiSecretKeyComponentProps {
 function ApiSecretKeyComponent({
   localeData,
 }: ApiSecretKeyComponentProps): React.ReactElement {
-  const [secretKey, setSecretKey] = React.useState('');
+  const [secretKey, setSecretKey] = React.useState('...');
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   async function fetchSecretKey() {
@@ -51,12 +51,17 @@ function ApiSecretKeyComponent({
             defaultValue={secretKey}
             value={secretKey}
           ></Input>
+
+          {/* Copy Button */}
           <Popover
             showArrow
             position={'top'}
             content={<p>{localeData?.ClickToCopy}</p>}
           >
-            <Button
+            <button
+              className={
+                'ml-2 button px-4 rounded bg-gray-200 hover:bg-gray-400 content-center items-center'
+              }
               disabled={isLoading}
               onClick={() => {
                 navigator.clipboard.writeText(secretKey).then(
@@ -78,20 +83,25 @@ function ApiSecretKeyComponent({
               }}
             >
               <IconCopy />
-            </Button>
+            </button>
           </Popover>
+
+          {/* Refresh Button */}
           <Popover
             showArrow
             position={'top'}
             content={<p>{localeData?.ClickToRefresh}</p>}
           >
-            <Button
+            <button
+              className={
+                'ml-2 button px-4 rounded bg-gray-200 hover:bg-gray-400'
+              }
               onClick={async () => {
                 await doRefreshSecretKey();
               }}
             >
               <IconRefresh2 />
-            </Button>
+            </button>
           </Popover>
         </div>
 
