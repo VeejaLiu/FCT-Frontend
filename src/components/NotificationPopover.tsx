@@ -1,4 +1,10 @@
-import { LocaleConsumer, Pagination, Switch, Tooltip } from '@douyinfe/semi-ui';
+import {
+  LocaleConsumer,
+  Pagination,
+  Select,
+  Switch,
+  Tooltip,
+} from '@douyinfe/semi-ui';
 import { IconCheckChoiceStroked } from '@douyinfe/semi-icons';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -247,11 +253,13 @@ export const NotificationPopover = ({
   const [onlyShowUnread, setOnlyShowUnread] = useState(false);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [filterValue, setFilterValue] = useState<string>('all');
 
   const fetchNotificationList = async () => {
     const notificationList = await NotificationApis.getAllNotifications({
       page: currentPage,
       limit: PAGE_SIZE,
+      filter: filterValue,
       onlyUnread: onlyShowUnread,
     });
     console.log('[fetchNotificationList] notificationList:', notificationList);
@@ -264,7 +272,7 @@ export const NotificationPopover = ({
 
   useEffect(() => {
     fetchNotificationList().then();
-  }, [currentPage, onlyShowUnread]);
+  }, [currentPage, onlyShowUnread, filterValue]);
 
   return (
     <LocaleConsumer componentName={'NotificationPopover'}>
@@ -330,6 +338,32 @@ export const NotificationPopover = ({
 
           {/* Content ---- Start */}
           <div style={{ flexGrow: 1, overflowY: 'auto' }}>
+            <Select
+              className="m-1 ml-2 w-[200px]"
+              value={filterValue}
+              onChange={(value) => {
+                setFilterValue(String(value));
+              }}
+            >
+              {/* 'PlayerUpdate.Overall' | 'PlayerUpdate.SkillMove' | 'PlayerUpdate.WeakFoot' | 'all' */}
+              {/* All */}
+              <Select.Option value="all">
+                {localeData.FilterOption.All}
+              </Select.Option>
+              {/* Overall / Potential */}
+              <Select.Option value="PlayerUpdate.Overall">
+                {localeData.FilterOption.Overall}
+              </Select.Option>
+              {/* Skill move */}
+              <Select.Option value="PlayerUpdate.SkillMove">
+                {localeData.FilterOption.SkillMove}
+              </Select.Option>
+              {/* Weak foot */}
+              <Select.Option value="PlayerUpdate.WeakFoot">
+                {localeData.FilterOption.WeakFoot}
+              </Select.Option>
+            </Select>
+
             {notificationList?.items
               ?.filter(
                 (notification) => !onlyShowUnread || !notification.is_read,

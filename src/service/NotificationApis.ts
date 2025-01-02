@@ -72,10 +72,12 @@ export class NotificationApis {
   static async getAllNotifications({
     page,
     limit,
+    filter,
     onlyUnread = false,
   }: {
     page: number;
     limit: number;
+    filter?: string;
     onlyUnread?: boolean;
   }): Promise<{
     total: number;
@@ -89,6 +91,7 @@ export class NotificationApis {
         gameVersion: gameVersion.toString(),
         page: page.toString(),
         limit: limit.toString(),
+        filter: filter || 'all',
         onlyUnread: onlyUnread.toString(),
       });
 

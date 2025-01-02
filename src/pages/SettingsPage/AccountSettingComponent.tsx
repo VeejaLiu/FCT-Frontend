@@ -32,7 +32,7 @@ function AccountSettingComponent({
   }, []);
 
   return (
-    <div>
+    <>
       <div className={'font-bold text-xl mt-6 mb-2'}>
         {localeData?.AccountInfo}
       </div>
@@ -82,7 +82,7 @@ function AccountSettingComponent({
         </div>
         {/* Account Info - Change Password ---- END*/}
       </div>
-    </div>
+    </>
   );
 }
 
