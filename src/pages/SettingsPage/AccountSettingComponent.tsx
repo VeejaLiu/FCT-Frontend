@@ -1,7 +1,7 @@
-import { Space } from '@douyinfe/semi-ui';
 import * as React from 'react';
 import { useEffect } from 'react';
 import ChangePasswordComponent from './ChangePassword.tsx';
+import { UserApis } from '../../service/UserApis.ts';
 
 export interface ApiSecretKeyComponentProps {
   localeData: any;
@@ -12,46 +12,55 @@ function AccountSettingComponent({
 }: ApiSecretKeyComponentProps): React.ReactElement {
   const [showChangePassword, setShowChangePassword] =
     React.useState<boolean>(false);
+  const [accountInfo, setAccountInfo] = React.useState<{
+    userID?: string;
+    username?: string;
+    email?: string;
+  }>({});
+
+  async function fetchAccountInfo() {
+    const res = await UserApis.getUserInfo();
+    console.log(`[fetchAccountInfo] res: ${JSON.stringify(res)}`);
+    if (!res) {
+      return;
+    }
+    setAccountInfo(res);
+  }
 
   useEffect(() => {
-    // fetchSecretKey().then();
+    fetchAccountInfo().then();
   }, []);
 
   return (
-    <>
-      <h3 style={{ marginTop: '20px' }}>{localeData?.AccountInfo}</h3>
+    <div>
+      <div className={'font-bold text-xl mt-6 mb-2'}>
+        {localeData?.AccountInfo}
+      </div>
 
-      <Space
-        vertical
-        align={'start'}
-        style={{
-          width: '100%',
-          padding: '10px',
-          border: '1px solid #e8e8e8',
-          borderRadius: '5px',
-        }}
-      >
+      <div className="w-full p-4 border border-gray-200 rounded-md">
         {/* Account Info - Username */}
-        <div style={{ display: 'flex' }}>
+        <div className="flex">
           <div style={{ width: '300px' }}>
             <h5>{localeData?.AccountUsername}</h5>
           </div>
-          <span style={{ color: 'gray', fontWeight: 500 }}>Veeja Liu</span>
+          <span style={{ color: 'gray', fontWeight: 500 }}>
+            {accountInfo?.username}
+          </span>
         </div>
 
         {/* Account Info - Email */}
-        <div style={{ display: 'flex', marginTop: '8px' }}>
+        <div className="flex mt-2">
           <div style={{ width: '300px' }}>
             <h5>{localeData?.AccountEmail}</h5>
           </div>
           <span style={{ color: 'gray', fontWeight: 500 }}>
-            veejaliu@gmail.com
+            {accountInfo?.email}
           </span>
         </div>
 
         {/* Account Info - Change Password ---- START*/}
-        <div>
-          <div style={{ display: 'flex', marginTop: '8px' }}>
+        <div className="mt-2">
+          <div className="flex">
             <div style={{ width: '300px' }}>
               <h5>{localeData?.AccountChangePassword}</h5>
             </div>
@@ -72,8 +81,8 @@ function AccountSettingComponent({
           )}
         </div>
         {/* Account Info - Change Password ---- END*/}
-      </Space>
-    </>
+      </div>
+    </div>
   );
 }
 

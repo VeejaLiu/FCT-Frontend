@@ -135,6 +135,7 @@ export default {
     FailedToCopyMessage: '无法复制秘钥到剪贴板，请重试',
     DoNotShareSecretKey: '警告: 不要与任何人分享您的秘钥！',
 
+    Notifications: '通知',
     EnableNotifications: '启用通知',
     PlayerOverallPotentialUpdate: '球员 总评/潜力 更新',
     PlayerSkillMoveUpdate: '球员 花式 能力更新',

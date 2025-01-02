@@ -57,23 +57,17 @@ function SettingsPage(): React.ReactElement {
           }}
           align={'start'}
         >
+          {/* Title */}
+          <div className="font-bold text-xl">{localeData?.Settings}</div>
+
           <ApiSecretKeyComponent localeData={localeData} />
 
-          <Space
-            vertical
-            align={'start'}
-            style={{
-              width: '100%',
-              padding: '10px',
-              border: '1px solid #e8e8e8',
-              borderRadius: '5px',
-            }}
-          >
-            <h5>Notifications</h5>
-            <Space>
-              <Space style={{ width: '300px' }}>
-                {localeData?.EnableNotifications}
-              </Space>
+          <div className="w-full p-4 border border-gray-200 rounded-md">
+            <div className="font-bold mb-2">{localeData?.Notifications}</div>
+
+            {/* Enable Notifications */}
+            <div className="flex items-center m-1">
+              <div className="w-[300px]">{localeData?.EnableNotifications}</div>
               <Switch
                 checked={userSetting?.enableNotification}
                 loading={isUserSettingLoading}
@@ -84,13 +78,17 @@ function SettingsPage(): React.ReactElement {
                     value: v,
                   }).then();
                 }}
-                aria-label="a switch for demo"
+                aria-label="a switch for enable notification"
               ></Switch>
-            </Space>
-            <Space>
-              <Space style={{ width: '300px' }}>
+            </div>
+
+            {/* Notification Itemss */}
+
+            {/* Overall Rating and Potential */}
+            <div className="flex items-center m-1">
+              <div className="w-[300px]">
                 {localeData?.PlayerOverallPotentialUpdate}
-              </Space>
+              </div>
               <Switch
                 checked={
                   userSetting?.enableNotification &&
@@ -105,13 +103,15 @@ function SettingsPage(): React.ReactElement {
                     value: v,
                   }).then();
                 }}
-                aria-label="a switch for demo"
+                aria-label="a switch for enable notification of player overall rating and potential"
               ></Switch>
-            </Space>
-            <Space>
-              <Space style={{ width: '300px' }}>
+            </div>
+
+            {/* Skill Move */}
+            <div className="flex items-center m-1">
+              <div className="w-[300px]">
                 {localeData?.PlayerSkillMoveUpdate}
-              </Space>
+              </div>
               <Switch
                 checked={
                   userSetting?.enableNotification &&
@@ -126,13 +126,15 @@ function SettingsPage(): React.ReactElement {
                     value: v,
                   }).then();
                 }}
-                aria-label="a switch for demo"
+                aria-label="a switch for enable notification of player skill move"
               ></Switch>
-            </Space>
-            <Space>
-              <Space style={{ width: '300px' }}>
+            </div>
+
+            {/* Weak Foot */}
+            <div className="flex items-center m-1">
+              <div className="w-[300px]">
                 {localeData?.PlayerWeakFootUpdate}
-              </Space>
+              </div>
               <Switch
                 checked={
                   userSetting?.enableNotification &&
@@ -147,10 +149,10 @@ function SettingsPage(): React.ReactElement {
                     value: v,
                   }).then();
                 }}
-                aria-label="a switch for demo"
+                aria-label="a switch for enable notification of player weak foot"
               ></Switch>
-            </Space>
-          </Space>
+            </div>
+          </div>
 
           {/* Account Setting ---- START */}
           <AccountSettingComponent localeData={localeData} />

@@ -80,8 +80,10 @@ function WebsiteLogoComponent() {
           <p>{getLogoByVersion(defaultGameVersion)}</p>
           <p
             style={{
-              fontSize: '1.2rem',
+              fontSize: '1.7rem',
               fontWeight: 'bold',
+              fontStyle: 'italic',
+              fontFamily: 'Bebas Neue, Arial, sans-serif',
             }}
           >
             {localeData.title}

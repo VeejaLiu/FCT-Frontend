@@ -1,15 +1,7 @@
 import * as React from 'react';
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  // CartesianGrid,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
-import { PlayerApis, PlayerTrendData } from '../../service/PlayerApis.ts';
 import { useEffect } from 'react';
+import { Area, AreaChart, Brush, Tooltip, XAxis, YAxis } from 'recharts';
+import { PlayerApis, PlayerTrendData } from '../../service/PlayerApis.ts';
 import { Popover, Space } from '@douyinfe/semi-ui';
 import './PlayerTrendsPage.css';
 import {
@@ -98,12 +90,7 @@ function PlayerTrendsPage(): React.ReactElement {
   const navigate = useNavigate();
 
   const fetchPlayerTrends = async () => {
-    const res = await PlayerApis.getPlayerTrends();
-    res.forEach((player) => {
-      player.trends.forEach((trend) => {
-        trend.inGameDate = formatDate(trend.inGameDate);
-      });
-    });
+    const res: PlayerTrendData[] = await PlayerApis.getPlayerTrends();
     setData(res);
   };
 
@@ -154,7 +141,7 @@ function PlayerTrendsPage(): React.ReactElement {
             return null;
           }
           return (
-            <div style={{ margin: '10px' }}>
+            <div style={{ padding: '10px' }}>
               <h2 style={{ color: item.color }}>{item.text}</h2>
               <Space wrap align={'start'}>
                 {thisPositionPlayers.map((player) => {
@@ -229,11 +216,10 @@ function PlayerTrendsPage(): React.ReactElement {
                       <AreaChart
                         width={300}
                         height={190}
-                        accessibilityLayer
                         data={player.trends}
                         margin={{ right: 30, left: -20, bottom: -0 }}
                       >
-                        <CartesianGrid vertical={false} />
+                        {/*<CartesianGrid vertical={false} />*/}
                         <XAxis
                           dataKey="inGameDate"
                           type={'category'}
@@ -241,9 +227,10 @@ function PlayerTrendsPage(): React.ReactElement {
                           axisLine={false}
                           tickMargin={8}
                           style={{ fontSize: '0.8rem' }}
+                          tickFormatter={formatDate} // Add this line to format the dates
                         ></XAxis>
                         <YAxis
-                          domain={[50, 95]}
+                          domain={[50, 100]}
                           tickLine={false}
                           axisLine={false}
                           tickMargin={8}
@@ -260,10 +247,19 @@ function PlayerTrendsPage(): React.ReactElement {
                         <Area
                           type="linear"
                           dataKey="overallRating"
-                          fill="#1dc355"
-                          stroke="#1dc355"
-                          fillOpacity={0.4}
+                          fill="#5d7e2f"
+                          stroke="none"
+                          fillOpacity={0.8}
                         ></Area>
+                        <Brush
+                          dataKey="inGameDate"
+                          height={20}
+                          stroke="#82ca9d"
+                          tickFormatter={formatDate}
+                          style={{ fontSize: '0.5rem' }}
+                          startIndex={Math.max(player.trends.length - 52, 0)}
+                          endIndex={player.trends.length - 1}
+                        />
                       </AreaChart>
                     </Space>
                   );
