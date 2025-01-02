@@ -232,5 +232,11 @@ Therefore, what I do is write this data to a file first and then concatenate the
     UnknownMessageType: 'Unknown message type',
     GameDate: 'Game Date',
     MarkAsRead: 'Mark as read',
+    FilterOption: {
+      All: 'All',
+      Overall: 'Ovr/Pot',
+      SkillMove: 'Skill Move',
+      WeakFoot: 'Weak Foot',
+    },
   },
 };
