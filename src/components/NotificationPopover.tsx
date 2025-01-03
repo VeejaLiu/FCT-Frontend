@@ -76,7 +76,7 @@ function getNotificationContent(
           return (
             <div>
               <div className="notification-content">
-                <div className="notification-label">{localeData.Overall}</div>
+                <div className="notification-label">{localeData?.Overall}</div>
                 <div className="notification-values">
                   <div className="notification-value">
                     {notification.old_overall_rating}
@@ -97,7 +97,9 @@ function getNotificationContent(
               </div>
 
               <div className="notification-content">
-                <div className="notification-label">{localeData.Potential}</div>
+                <div className="notification-label">
+                  {localeData?.Potential}
+                </div>
                 <div className="notification-values">
                   <div className="notification-value">
                     {notification.old_potential}
@@ -121,7 +123,7 @@ function getNotificationContent(
         default:
           return (
             <div>
-              {localeData.UnknownMessageType}: {notification.message_subtype}
+              {localeData?.UnknownMessageType}: {notification.message_subtype}
             </div>
           );
       }
@@ -129,7 +131,7 @@ function getNotificationContent(
     default:
       return (
         <div>
-          {localeData.UnknownMessageType}: {notification.message_type}
+          {localeData?.UnknownMessageType}: {notification.message_type}
         </div>
       );
   }
@@ -141,7 +143,7 @@ type NotificationItemProps = {
 
 export const NotificationItem = ({ notification }: NotificationItemProps) => {
   return (
-    <LocaleConsumer componentName={'NotificationPopover'}>
+    <LocaleConsumer componentName={'NotificationItem'}>
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
         <div style={{ display: 'flex' }}>
           <div className="h-12 w-12 mr-2.5">
@@ -171,27 +173,19 @@ export const NotificationItem = ({ notification }: NotificationItemProps) => {
 
             {/* Game date */}
             <div style={{ marginBottom: '3px', display: 'flex' }}>
-              <div style={{ width: '100px' }}>{localeData.GameDate}</div>
+              <div style={{ width: '100px' }}>{localeData?.GameDate}</div>
               <span style={{ color: '#626f86', fontWeight: 'normal' }}>
                 {notification.in_game_date}
               </span>
             </div>
             {getNotificationContent(notification, localeData)}
           </div>
-
-          <div
-            style={{
-              marginLeft: 'auto',
-              fontWeight: 'normal',
-            }}
-          >
+          <div style={{ fontWeight: 'normal' }} className="ml-auto">
             <a
-              style={{
-                cursor: 'pointer',
-                textDecoration: 'underline',
-              }}
+              style={{ textDecoration: 'underline' }}
+              className="cursor-pointer"
             >
-              {notification.is_read ? '' : localeData.MarkAsRead}
+              {notification.is_read ? '' : localeData?.MarkAsRead}
             </a>
 
             {!notification.is_read && (

@@ -1,156 +1,8 @@
 import { useEffect } from 'react';
-import { Image, Notification, Space } from '@douyinfe/semi-ui';
-
-import { getAvatarUrl, getColorByDiff } from '../common/player-helper.ts';
 import { getToken } from '../common/common.ts';
-import { NotificationItem } from './NotificationPopover.tsx';
-import { NotificationBody } from '../service/NotificationApis.ts';
 
 let reconnectInterval = 1000; // Initial reconnect interval
 const maxReconnectInterval = 30000; // Maximum reconnect interval
-
-/**
- * Send notification when player overall rating updated
- * @param payload
- */
-function overratingChangeNotification(payload: any) {
-  // {
-  //     "playerID": 276839,
-  //     "playerName": "Sebastiano Desplanches",
-  //     "oldOverallrating": 1,
-  //     "overallrating": 2,
-  //     "oldPotential": 1,
-  //     "potential": 2
-  // }
-  const {
-    playerID,
-    playerName,
-    oldOverallrating,
-    overallrating,
-    oldPotential,
-    potential,
-  } = payload;
-  const notification: NotificationBody = {
-    in_game_date: '2021-09-01',
-    message_type: 'PlayerUpdate',
-    player_id: playerID,
-    player_name: playerName,
-    old_overall_rating: oldOverallrating,
-    overall_rating: overallrating,
-    old_potential: oldPotential,
-    potential: potential,
-  };
-  Notification.open({
-    // title: 'Ovr/Pot Update',
-    content: (
-      <>
-        <NotificationItem notification={notification} />
-      </>
-    ),
-    duration: 1000,
-  });
-}
-
-function skillMoveChangeNotification(payload: any) {
-  // {
-  //     "playerID": 276839,
-  //     "playerName": "Sebastiano Desplanches",
-  //     "oldSkillMoves": 1,
-  //     "skillmoves": 2
-  // }
-  const { playerID, playerName, oldSkillMoves, skillMoves } = payload;
-  Notification.open({
-    title: 'Skillmoves Update',
-    content: (
-      <Space align={'end'}>
-        <Image
-          width={'80px'}
-          height={'80px'}
-          src={getAvatarUrl(playerID)}
-          alt="player_avatar"
-          preview={false}
-        />
-        <Space vertical align={'start'}>
-          <div>
-            <span style={{ fontWeight: 'bold' }}> {playerName}</span>
-            <span style={{ color: '#999' }}> [ID: {playerID}]</span>
-          </div>
-          <div>
-            <span style={{ marginRight: '8px' }}>Skill Move: </span>
-            <span style={{ marginRight: '8px', color: '#999' }}>
-              {oldSkillMoves}
-            </span>
-            <span style={{ marginRight: '8px' }}>{'->'}</span>
-            <span
-              style={{
-                fontWeight: 'bold',
-                color: getColorByDiff(skillMoves - oldSkillMoves),
-              }}
-            >
-              {skillMoves}
-            </span>
-          </div>
-        </Space>
-      </Space>
-    ),
-    duration: 1000,
-    theme: 'light',
-  });
-}
-
-function weakFootChangeNotification(payload: any) {
-  // {
-  //     "playerID": 276839,
-  //     "playerName": "Sebastiano Desplanches",
-  //     "oldWeakFootAbilityTypeCode": 1,
-  //     "weakFootAbilityTypeCode": 2
-  // }
-  const {
-    playerID,
-    playerName,
-    oldWeakFootAbilityTypeCode,
-    weakFootAbilityTypeCode,
-  } = payload;
-  Notification.open({
-    title: 'Weak Foot',
-    content: (
-      <Space align={'end'}>
-        <Image
-          width={'80px'}
-          height={'80px'}
-          src={getAvatarUrl(playerID)}
-          alt="player_avatar"
-          preview={false}
-        />
-        <Space vertical align={'start'}>
-          <div>
-            <span style={{ fontWeight: 'bold' }}> {playerName}</span>
-            <span style={{ color: '#999' }}> [ID: {playerID}]</span>
-          </div>
-          <div>
-            <span style={{ marginRight: '8px' }}>Weak Foot: </span>
-            <span style={{ marginRight: '8px', color: '#999' }}>
-              {oldWeakFootAbilityTypeCode}
-            </span>
-            <span style={{ marginRight: '8px' }}>{'->'}</span>
-            <span
-              style={{
-                fontWeight: 'bold',
-                color: getColorByDiff(
-                  weakFootAbilityTypeCode - oldWeakFootAbilityTypeCode,
-                ),
-              }}
-            >
-              {weakFootAbilityTypeCode}
-            </span>
-          </div>
-        </Space>
-      </Space>
-    ),
-    duration: 1000,
-    theme: 'light',
-  });
-}
 
 export const WebsocketNotification = () => {
   async function createWebSocketConnection() {
@@ -212,22 +64,29 @@ export const WebsocketNotification = () => {
         return;
       }
       console.log('[WebSocket][onmessage] type:', type, 'payload:', payload);
-      switch (type) {
-        case 'PlayerUpdate.Overall': {
-          overratingChangeNotification(payload);
-          break;
-        }
-        case 'PlayerUpdate.SkillMove': {
-          skillMoveChangeNotification(payload);
-          break;
-        }
-        case 'PlayerUpdate.WeakFoot': {
-          weakFootChangeNotification(payload);
-          break;
-        }
-        default:
-          console.log('Unknown message type:', type);
-      }
+      // const notification: NotificationBody = {
+      //   in_game_date: '2021-09-01',
+      //   message_type: type,
+      //   player_id: payload.playerID,
+      //   player_name: payload.playerName,
+      //   old_overall_rating: payload.oldOverallrating,
+      //   overall_rating: payload.overallrating,
+      //   old_potential: payload.oldPotential,
+      //   potential: payload.potential,
+      //   old_skillmoves: payload.oldSkillMoves,
+      //   skillmoves: payload.skillMoves,
+      //   old_weakfoot: payload.oldWeakFootAbilityTypeCode,
+      //   weakfoot: payload.weakFootAbilityTypeCode,
+      // };
+
+      // Notification.open({
+      //   content: (
+      //     <>
+      //       <NotificationItem notification={notification} />
+      //     </>
+      //   ),
+      //   duration: 1000,
+      // });
     };
 
     // 连接关闭时的处理
@@ -244,32 +103,6 @@ export const WebsocketNotification = () => {
     createWebSocketConnection().then(
       () => {
         console.log('WebSocket connection established');
-
-        /*
-         * Test code
-         */
-        overratingChangeNotification({
-          playerID: 276839,
-          playerName: 'Sebastiano Desplanches',
-          oldOverallrating: 89,
-          overallrating: 90,
-          oldPotential: 91,
-          potential: 91,
-        });
-
-        skillMoveChangeNotification({
-          playerID: 276839,
-          playerName: 'Sebastiano Desplanches',
-          oldSkillMoves: 3,
-          skillMoves: 4,
-        });
-
-        weakFootChangeNotification({
-          playerID: 276839,
-          playerName: 'Sebastiano Desplanches',
-          oldWeakFootAbilityTypeCode: 4,
-          weakFootAbilityTypeCode: 5,
-        });
       },
       (err) => {
         console.error('Failed to establish WebSocket connection', err);
