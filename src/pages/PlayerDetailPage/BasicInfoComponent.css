@@ -17,19 +17,9 @@
 }
 
 .stat-label {
-    width: 80%;
-    font-weight: 200;
+    /*font-weight: lighter;*/
 }
 
 .stat-info-value {
     text-align: right;
-    width: 50%;
-}
-
-.stat-value {
-    padding: 1px 3px;
-    margin: 1px;
-    text-align: right;
-    color: white;
-    border-radius: 2px;
 }

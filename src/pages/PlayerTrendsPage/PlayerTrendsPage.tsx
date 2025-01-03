@@ -13,7 +13,7 @@ import { LoadingComponent, NoDataComponent } from '../../components/Other.tsx';
 import { useNavigate } from 'react-router-dom';
 import player_avatar_placeholder from '../../assets/image/player_avatar_placeholder.svg';
 
-function formatDate(inputDate: string) {
+export function formatDate(inputDate: string) {
   const [, month, day] = inputDate.split('-').map(Number);
 
   const monthNames = [

@@ -9,10 +9,11 @@ import {
   PLAYER_PRIMARY_POS_NAME,
   PLAYER_PRIMARY_POS_TYPE,
 } from '../../constant/player.ts';
-import { Rating, Space } from '@douyinfe/semi-ui';
+import { Space } from '@douyinfe/semi-ui';
 import React, { useEffect, useState } from 'react';
 import { getDefaultGameVersion } from '../../common/common.ts';
 import './BasicInfoComponent.css';
+import { StarIcon } from '../../common/icons.tsx';
 
 interface BasicInfoComponentProps {
   playerInfo: any;
@@ -35,17 +36,17 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
     <div className={'basic-info-container'}>
       <div className={'image-and-name'}>
         {/* Image */}
-        <img
-          width={'116px'}
-          height={'116px'}
-          src={getAvatarUrl(playerInfo?.player_id)}
-          alt="player_avatar"
-          onError={(e) => {
-            e.currentTarget.src = player_avatar_placeholder;
-          }}
-        />
+        <div className="w-32 h-32 m-auto">
+          <img
+            src={getAvatarUrl(playerInfo?.player_id)}
+            alt="player_avatar"
+            onError={(e) => {
+              e.currentTarget.src = player_avatar_placeholder;
+            }}
+          />
+        </div>
         {/* Name */}
-        <div style={{ fontWeight: 'bold' }}>{playerInfo?.player_name}</div>
+        <div className="font-bold">{playerInfo?.player_name}</div>
         {/* Position */}
         <h1
           style={{
@@ -91,26 +92,23 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
       {/*Skills*/}
       <div className="stat">
         <span className="stat-label">{localeData.BasicInfo.Skills}</span>
-        <span className="stat-info-value">
+        <span className="stat-info-value flex">
           {/*{playerInfo?.skillmoves}*/}
-          <Rating
-            disabled
-            size={'small'}
-            count={(playerInfo?.skillmoves || 0) + 1}
-            value={(playerInfo?.skillmoves || 0) + 1}
-          />
+          <span className={`font-bold text-yellow-400`}>
+            {(playerInfo?.skillmoves || 0) + 1}
+          </span>
+          <StarIcon classname={'text-yellow-400'} />
         </span>
       </div>
       {/*Weak Foot*/}
       <div className="stat">
         <span className="stat-label">{localeData.BasicInfo.WeakFoot}:</span>
-        <span className="stat-info-value">
-          <Rating
-            disabled
-            size={'small'}
-            count={playerInfo?.weakfootabilitytypecode}
-            value={playerInfo?.weakfootabilitytypecode}
-          />
+        <span className="stat-info-value flex">
+          {/*{playerInfo?.weakfootabilitytypecode}*/}
+          <span className={`font-bold text-yellow-400`}>
+            {playerInfo?.weakfootabilitytypecode}
+          </span>
+          <StarIcon classname="text-yellow-400" />
         </span>
       </div>
       {/*Foot	Right*/}
@@ -123,12 +121,18 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
       {/*Height	177cm | 5'10"*/}
       <div className="stat">
         <span className="stat-label">{localeData.BasicInfo.Height}:</span>
-        <span className="stat-info-value">{playerInfo?.height} cm</span>
+        <span className="stat-info-value">
+          {playerInfo?.height}cm | {Math.floor(playerInfo?.height / 2.54)}'{' '}
+          {playerInfo?.height % 12}"
+        </span>
       </div>
       {/*Weight	67*/}
       <div className="stat">
         <span className="stat-label">{localeData.BasicInfo.Weight}:</span>
-        <span className="stat-info-value">{playerInfo?.weight} kg</span>
+        <span className="stat-info-value">
+          {playerInfo?.weight}kg | {Math.floor(playerInfo?.weight * 2.20462)}
+          lbs
+        </span>
       </div>
 
       {gameVersion === 24 && (
