@@ -17,6 +17,8 @@ export interface PlayerOverall {
   imageUrl?: string;
   overallRanking?: number;
   potentialRanking?: number;
+  skillMoves?: number;
+  weakFootAbilityTypeCode?: number;
 }
 
 export interface PlayerTrend {

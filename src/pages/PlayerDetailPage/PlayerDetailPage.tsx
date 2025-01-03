@@ -6,6 +6,7 @@ import './PlayerDetailPage.css';
 import {
   Area,
   AreaChart,
+  Brush,
   CartesianGrid,
   ResponsiveContainer,
   Tooltip,
@@ -13,7 +14,10 @@ import {
   YAxis,
 } from 'recharts';
 import { useSearchParams } from 'react-router-dom';
-import { CustomTooltip } from '../PlayerTrendsPage/PlayerTrendsPage.tsx';
+import {
+  CustomTooltip,
+  formatDate,
+} from '../PlayerTrendsPage/PlayerTrendsPage.tsx';
 import { LoadingComponent, NoDataComponent } from '../../components/Other.tsx';
 import PlayerPickerComponent from './PlayerPickerComponent';
 import BasicInfoComponent from './BasicInfoComponent.tsx';
@@ -61,10 +65,10 @@ function PlayerDetailPage(): React.ReactElement {
           <span className={'title'}>{title}</span>
           <Progress percent={average} style={{ height: '8px' }} />
           {attributes.map((attr, index) => (
-            <div className="stat" key={index}>
-              <span className="stat-label">{attr.label}</span>
+            <div className="stat m-0.5" key={index}>
+              <span className="">{attr.label}</span>
               <span
-                className="stat-value"
+                className={`text-center w-7 p-0.25 text-white rounded-sm font-mono`}
                 style={{
                   backgroundColor: getColorByOverallRating(values[index]),
                 }}
@@ -252,7 +256,6 @@ function PlayerDetailPage(): React.ReactElement {
               >
                 <ResponsiveContainer>
                   <AreaChart
-                    accessibilityLayer
                     height={400}
                     data={playerDetail?.trends}
                     margin={{
@@ -269,10 +272,8 @@ function PlayerDetailPage(): React.ReactElement {
                       tickLine={false}
                       axisLine={false}
                       tickMargin={8}
-                      style={{
-                        fontSize: '0.8rem',
-                        fontWeight: 'bold',
-                      }}
+                      style={{ fontSize: '0.8rem' }}
+                      tickFormatter={formatDate}
                     ></XAxis>
                     {/* Y轴 */}
                     <YAxis
@@ -288,15 +289,24 @@ function PlayerDetailPage(): React.ReactElement {
                       dataKey="potential"
                       type="linear"
                       fill="#125427"
-                      fillOpacity={0.4}
                       stroke="#125427"
+                      fillOpacity={0.4}
                     />
                     <Area
                       dataKey="overallRating"
                       type="linear"
-                      fill="#1dc355"
-                      fillOpacity={0.4}
-                      stroke="#1dc355"
+                      fill="#5d7e2f"
+                      stroke="none"
+                      fillOpacity={0.8}
+                    />
+                    <Brush
+                      dataKey="inGameDate"
+                      height={30}
+                      stroke="#82ca9d"
+                      tickFormatter={formatDate}
+                      style={{ fontSize: '0.5rem' }}
+                      startIndex={Math.max(playerDetail.trends.length - 52, 0)}
+                      endIndex={playerDetail.trends.length - 1}
                     />
                   </AreaChart>
                 </ResponsiveContainer>

@@ -4,27 +4,27 @@ import { BACKEND_URL } from '../constant';
 import { Toast } from '@douyinfe/semi-ui';
 
 export interface NotificationBody {
-  id: number;
-  user_id: number;
-  game_version: number;
-  in_game_date: string;
-  message_type: string;
-  message_subtype: string;
-  player_id: number;
-  player_position: string;
-  player_name: string;
-  old_overall_rating: number | null;
-  overall_rating: number | null;
-  old_potential: number | null;
-  potential: number | null;
-  old_skillmoves: number | null;
-  skillmoves: number | null;
-  old_weakfoot: number | null;
-  weakfoot: number | null;
-  is_read: number;
-  is_deleted: number;
-  create_time: string;
-  update_time: string;
+  id?: number;
+  user_id?: number;
+  game_version?: number;
+  in_game_date?: string;
+  message_type?: string;
+  message_subtype?: string;
+  player_id?: number;
+  player_position?: string;
+  player_name?: string;
+  old_overall_rating?: number | null;
+  overall_rating?: number | null;
+  old_potential?: number | null;
+  potential?: number | null;
+  old_skillmoves?: number | null;
+  skillmoves?: number | null;
+  old_weakfoot?: number | null;
+  weakfoot?: number | null;
+  is_read?: number;
+  is_deleted?: number;
+  create_time?: string;
+  update_time?: string;
 }
 
 /**
