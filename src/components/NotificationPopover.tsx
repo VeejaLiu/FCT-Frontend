@@ -7,7 +7,6 @@ import {
 } from '@douyinfe/semi-ui';
 import { IconCheckChoiceStroked } from '@douyinfe/semi-icons';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   NotificationApis,
   NotificationBody,
@@ -136,103 +135,83 @@ function getNotificationContent(
   }
 }
 
-function getNotificationItem(
-  notification: NotificationBody,
-  localeData: any,
-  navigate: any,
-) {
+type NotificationItemProps = {
+  notification: NotificationBody;
+};
+
+export const NotificationItem = ({ notification }: NotificationItemProps) => {
   return (
-    <div style={{ display: 'flex' }}>
-      <div
-        style={{
-          width: '50px',
-          height: '50px',
-          marginRight: '10px',
-        }}
-      >
-        <a
-          onClick={(e) => {
-            e.preventDefault();
-            navigate(`/players-detail/?id=${notification.player_id}`);
-          }}
-        >
-          <img
-            width={50}
-            height={50}
-            style={{
-              borderRadius: '50%',
-              border: '2px solid #FFF',
-            }}
-            src={getAvatarUrl(notification.player_id)}
-            alt={notification.player_name}
-            onError={(e) => {
-              e.currentTarget.src = player_avatar_placeholder;
-            }}
-          />
-        </a>
-      </div>
-      <div>
-        <div style={{ fontWeight: 'bold' }}>
-          <span
-            style={{
-              color: getColorByPositionType(notification.player_position),
-              marginRight: '5px',
-            }}
-          >
-            {notification.player_position}
-          </span>
-          <a
-            onClick={(e) => {
-              e.preventDefault();
-              navigate(`/players-detail/?id=${notification.player_id}`);
-            }}
-            style={{ color: '#333', cursor: 'pointer' }}
-          >
-            {notification.player_name}
-          </a>
-        </div>
+    <LocaleConsumer componentName={'NotificationPopover'}>
+      {(localeData: any, localeCode: string, dateFnsLocale: any) => (
+        <div style={{ display: 'flex' }}>
+          <div className="h-12 w-12 mr-2.5">
+            <img
+              className="h-12 w-12 rounded-full border-2 border-white"
+              src={getAvatarUrl(notification.player_id)}
+              alt={notification.player_name}
+              onError={(e) => {
+                e.currentTarget.src = player_avatar_placeholder;
+              }}
+            />
+          </div>
+          <div>
+            <div className="font-bold">
+              <span
+                style={{
+                  color: getColorByPositionType(
+                    notification.player_position || '',
+                  ),
+                  marginRight: '5px',
+                }}
+              >
+                {notification.player_position}
+              </span>
+              <span style={{ color: '#333' }}>{notification.player_name}</span>
+            </div>
 
-        {/* Game date */}
-        <div style={{ marginBottom: '3px', display: 'flex' }}>
-          <div style={{ width: '100px' }}>{localeData.GameDate}</div>
-          <span style={{ color: '#626f86', fontWeight: 'normal' }}>
-            {notification.in_game_date}
-          </span>
-        </div>
-        {getNotificationContent(notification, localeData)}
-      </div>
+            {/* Game date */}
+            <div style={{ marginBottom: '3px', display: 'flex' }}>
+              <div style={{ width: '100px' }}>{localeData.GameDate}</div>
+              <span style={{ color: '#626f86', fontWeight: 'normal' }}>
+                {notification.in_game_date}
+              </span>
+            </div>
+            {getNotificationContent(notification, localeData)}
+          </div>
 
-      <div
-        style={{
-          marginLeft: 'auto',
-          fontWeight: 'normal',
-        }}
-      >
-        <a
-          style={{
-            cursor: 'pointer',
-            textDecoration: 'underline',
-          }}
-        >
-          {notification.is_read ? '' : localeData.MarkAsRead}
-        </a>
-
-        {!notification.is_read && (
           <div
             style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: 'red',
-              marginTop: '30px',
               marginLeft: 'auto',
+              fontWeight: 'normal',
             }}
-          ></div>
-        )}
-      </div>
-    </div>
+          >
+            <a
+              style={{
+                cursor: 'pointer',
+                textDecoration: 'underline',
+              }}
+            >
+              {notification.is_read ? '' : localeData.MarkAsRead}
+            </a>
+
+            {!notification.is_read && (
+              <div
+                style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  backgroundColor: 'red',
+                  marginTop: '30px',
+                  marginLeft: 'auto',
+                }}
+              ></div>
+            )}
+          </div>
+        </div>
+      )}
+    </LocaleConsumer>
   );
-}
+};
 
 interface NotificationPopoverProps {
   updateUnreadCount: () => void;
@@ -251,7 +230,7 @@ export const NotificationPopover = ({
     items: [],
   });
   const [onlyShowUnread, setOnlyShowUnread] = useState(false);
-  const navigate = useNavigate();
+
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [filterValue, setFilterValue] = useState<string>('all');
 
@@ -381,7 +360,7 @@ export const NotificationPopover = ({
                     }
                   }}
                 >
-                  {getNotificationItem(notification, localeData, navigate)}
+                  <NotificationItem notification={notification} />
                 </div>
               ))}
           </div>
