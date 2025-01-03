@@ -1,13 +1,12 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import {
   Input,
   LocaleConsumer,
   Popover,
   Space,
   Table,
-  Typography,
 } from '@douyinfe/semi-ui';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlayerApis, PlayerOverall } from '../../service/PlayerApis.ts';
 import {
@@ -19,8 +18,7 @@ import {
 import { LoadingComponent, NoDataComponent } from '../../components/Other.tsx';
 import { IconActivity, IconSearch } from '@douyinfe/semi-icons';
 import player_avatar_placeholder from '../../assets/image/player_avatar_placeholder.svg';
-
-const { Text } = Typography;
+import { StarIcon } from '../../common/icons.tsx';
 
 const PlayerListColumn = (
   localeData: any,
@@ -61,7 +59,7 @@ const PlayerListColumn = (
         <Input
           prefix={<IconSearch />}
           placeholder=""
-          style={{ width: 100 }}
+          style={{ width: 150 }}
           onChange={(e: any) => {
             setSearchValue(e);
           }}
@@ -72,25 +70,17 @@ const PlayerListColumn = (
     dataIndex: 'playerName',
     render: (text: string, record: PlayerOverall, index: number) => {
       return (
-        <Space vertical align={'baseline'}>
-          <Text
-            style={{
-              fontSize: '1.1rem',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-            }}
-            underline
-            onClick={() => {
-              navigate(`/players-detail?id=${record.playerID}`);
-            }}
-          >
-            {record.playerName}
-          </Text>
-
-          <span style={{ color: 'grey', fontSize: '0.8rem' }}>
+        <div
+          className="cursor-pointer hover:underline"
+          onClick={() => {
+            navigate(`/players-detail?id=${record.playerID}`);
+          }}
+        >
+          <div className="text-gray-700  font-bold">{record.playerName}</div>
+          <div className={'text-gray-400 text-sm font-mono'}>
             ID: {record.playerID}
-          </span>
-        </Space>
+          </div>
+        </div>
       );
     },
   },
@@ -99,11 +89,7 @@ const PlayerListColumn = (
     dataIndex: 'age',
     sorter: (a: PlayerOverall, b: PlayerOverall) => a.age - b.age,
     render: (text: string, record: PlayerOverall, index: number) => {
-      return (
-        <span style={{ fontWeight: 'bolder', fontSize: '1.2rem' }}>
-          {record.age}
-        </span>
-      );
+      return <span className="font-bold text-lg font-mono">{record.age}</span>;
     },
   },
   {
@@ -127,26 +113,58 @@ const PlayerListColumn = (
     render: (text: string, record: PlayerOverall) => {
       const color = getColorByPositionType(record.positionType);
       return (
+        <div className="h-full w-full">
+          <div style={{ color }} className="text-2xl font-bold">
+            {record.position1}
+          </div>
+          <div>
+            {[record.position2, record.position3, record.position4].map(
+              (position, index) => {
+                if (position) {
+                  return (
+                    <span key={index} className="text-sm mr-2 text-gray-400">
+                      {position}
+                    </span>
+                  );
+                }
+                return null;
+              },
+            )}
+          </div>
+        </div>
+      );
+    },
+  },
+  {
+    title: localeData.SkillMovesAndWeakFoot,
+    dataIndex: 'skillMove',
+    render: (text: string, record: PlayerOverall, index: number) => {
+      const skillMoves = (record?.skillMoves || 0) + 1;
+      const weakFoot = record?.weakFootAbilityTypeCode || 0;
+      return (
         <div>
-          <Space vertical align={'baseline'}>
-            <span style={{ color, fontSize: '1.5rem', fontWeight: 'bolder' }}>
-              {record.position1}
+          <div className={'flex items-center'}>
+            <span
+              className={`font-bold w-3 text-xl text-right text-yellow-400`}
+            >
+              {skillMoves}
             </span>
-            <Space>
-              {[record.position2, record.position3, record.position4].map(
-                (position, index) => {
-                  if (position) {
-                    return (
-                      <span key={index} style={{ color: 'gray' }}>
-                        {position}
-                      </span>
-                    );
-                  }
-                  return null;
-                },
-              )}
-            </Space>
-          </Space>
+            <StarIcon classname={'text-yellow-400 h-6'} />
+            <span className={'text-gray-400  text-sm'}>
+              {localeData.SkillMoves}
+            </span>
+          </div>
+          <div className={'flex items-center'}>
+            <span
+              className={`font-bold w-3 text-xl text-right text-yellow-400`}
+            >
+              {weakFoot}
+            </span>
+            <StarIcon classname="text-yellow-400 h-6" />
+            <span className={'text-gray-400 text-sm'}>
+              {localeData.WeakFoot}
+            </span>
+          </div>
         </div>
       );
     },
@@ -161,11 +179,9 @@ const PlayerListColumn = (
         <Space vertical={false}>
           <span
             style={{
-              width: '50px',
               color: getColorByOverallRating(record.overallRating),
-              fontSize: '2rem',
-              fontWeight: 'bold',
             }}
+            className={'font-mono text-4xl font-bold w-[50px]'}
           >
             {record.overallRating}
           </span>
@@ -218,14 +234,12 @@ const PlayerListColumn = (
         >
           <span
             style={{
-              width: '50px',
               color:
                 record.potential > record.overallRating
                   ? getColorByOverallRating(record.potential)
                   : 'darkgray',
-              fontSize: '2rem',
-              fontWeight: 'bold',
             }}
+            className={'font-mono text-4xl font-bold w-[50px]'}
           >
             {record.potential}
           </span>

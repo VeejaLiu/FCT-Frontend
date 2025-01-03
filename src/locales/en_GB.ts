@@ -61,6 +61,9 @@ export default {
     age: 'Age',
     position: 'Pos',
     overall: 'Ovr',
+    SkillMovesAndWeakFoot: 'SM / WF',
+    SkillMoves: 'Skill moves',
+    WeakFoot: 'Weak foot',
     potential: 'Pot',
     overallRankingTips:
       'The player ranks {ranking} in overall for his position({position}).',
