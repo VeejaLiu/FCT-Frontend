@@ -14,7 +14,7 @@ import {
 import {
   getAvatarUrl,
   getColorByDiff,
-  getColorByPositionType,
+  getColorByPosition,
 } from '../common/player-helper.ts';
 import './NotificationPopover.css';
 import player_avatar_placeholder from '../assets/image/player_avatar_placeholder.svg';
@@ -28,94 +28,90 @@ function getNotificationContent(
       switch (notification.message_subtype) {
         case 'PlayerUpdate.SkillMove':
           return (
-            <div className="notification-content">
-              <div className="notification-label">{localeData.SkillMove}</div>
-              <div className="notification-values">
-                <div className="notification-value">
-                  {notification.old_skillmoves}
-                </div>
-                <div className="notification-arrow">{'->'}</div>
-                <div
-                  className="notification-value"
-                  style={{
-                    color: getColorByDiff(
-                      (notification?.skillmoves || 0) -
-                        (notification?.old_skillmoves || 0),
-                    ),
-                  }}
-                >
-                  {notification.skillmoves}
-                </div>
+            <div className="flex mt-2 font-mono items-center">
+              <div className="w-24 font-bold text-gray-400">
+                {localeData.SkillMove}
+              </div>
+              <div className="w-6 text-center">
+                {notification.old_skillmoves}
+              </div>
+              <div className="w-10 text-center">{'→'}</div>
+              <div
+                className="w-6 font-bold text-center"
+                style={{
+                  color: getColorByDiff(
+                    (notification?.skillmoves || 0) -
+                      (notification?.old_skillmoves || 0),
+                  ),
+                }}
+              >
+                {notification.skillmoves}
               </div>
             </div>
           );
         case 'PlayerUpdate.WeakFoot':
           return (
-            <div className="notification-content">
-              <div className="notification-label">{localeData.WeakFoot}</div>
-              <div className="notification-values">
-                <div className="notification-value">
-                  {notification.old_weakfoot}
-                </div>
-                <div className="notification-arrow">{'->'}</div>
-                <div
-                  className="notification-value"
-                  style={{
-                    color: getColorByDiff(
-                      (notification?.weakfoot || 0) -
-                        (notification?.old_weakfoot || 0),
-                    ),
-                  }}
-                >
-                  {notification.weakfoot}
-                </div>
+            <div className="flex mt-2 font-mono items-center">
+              <div className="w-24 font-bold text-gray-400">
+                {localeData.WeakFoot}
+              </div>
+              <div className="w-6 text-center">{notification.old_weakfoot}</div>
+              <div className="w-10 text-center">{'→'}</div>
+              <div
+                className="w-6 font-bold text-center"
+                style={{
+                  color: getColorByDiff(
+                    (notification?.weakfoot || 0) -
+                      (notification?.old_weakfoot || 0),
+                  ),
+                }}
+              >
+                {notification.weakfoot}
               </div>
             </div>
           );
         case 'PlayerUpdate.Overall':
           return (
             <div>
-              <div className="notification-content">
-                <div className="notification-label">{localeData?.Overall}</div>
-                <div className="notification-values">
-                  <div className="notification-value">
-                    {notification.old_overall_rating}
-                  </div>
-                  <div className="notification-arrow"> {'->'} </div>
-                  <div
-                    className="notification-value"
-                    style={{
-                      color: getColorByDiff(
-                        (notification?.overall_rating || 0) -
-                          (notification?.old_overall_rating || 0),
-                      ),
-                    }}
-                  >
-                    {notification.overall_rating}
-                  </div>
+              <div className="flex mt-2 font-mono items-center">
+                <div className="w-24 font-bold text-gray-400">
+                  {localeData?.Overall}
+                </div>
+                <div className="w-6 text-center">
+                  {notification.old_overall_rating}
+                </div>
+                <div className="w-10 text-center"> {'→'} </div>
+                <div
+                  className="w-6 font-bold text-center"
+                  style={{
+                    color: getColorByDiff(
+                      (notification?.overall_rating || 0) -
+                        (notification?.old_overall_rating || 0),
+                    ),
+                  }}
+                >
+                  {notification.overall_rating}
                 </div>
               </div>
 
-              <div className="notification-content">
-                <div className="notification-label">
+              <div className="flex mt-1 font-mono items-center">
+                <div className="w-24 font-bold text-gray-400">
                   {localeData?.Potential}
                 </div>
-                <div className="notification-values">
-                  <div className="notification-value">
-                    {notification.old_potential}
-                  </div>
-                  <div className="notification-arrow"> {'->'} </div>
-                  <div
-                    className="notification-value"
-                    style={{
-                      color: getColorByDiff(
-                        (notification?.potential || 0) -
-                          (notification?.old_potential || 0),
-                      ),
-                    }}
-                  >
-                    {notification.potential}
-                  </div>
+                <div className="w-6 text-center">
+                  {notification.old_potential}
+                </div>
+                <div className="w-10 text-center">{'→'}</div>
+                <div
+                  className="font-bold w-6 text-center"
+                  style={{
+                    color: getColorByDiff(
+                      (notification?.potential || 0) -
+                        (notification?.old_potential || 0),
+                    ),
+                  }}
+                >
+                  {notification.potential}
                 </div>
               </div>
             </div>
@@ -146,9 +142,9 @@ export const NotificationItem = ({ notification }: NotificationItemProps) => {
     <LocaleConsumer componentName={'NotificationItem'}>
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
         <div style={{ display: 'flex' }}>
-          <div className="h-12 w-12 mr-2.5">
+          <div className="h-16 w-16 mr-2.5 border-white border-2 rounded-full  overflow-hidden">
             <img
-              className="h-12 w-12 rounded-full border-2 border-white"
+              className="h-16 w-16 rounded-full"
               src={getAvatarUrl(notification.player_id)}
               alt={notification.player_name}
               onError={(e) => {
@@ -157,48 +153,33 @@ export const NotificationItem = ({ notification }: NotificationItemProps) => {
             />
           </div>
           <div>
+            {/* Position and name */}
             <div className="font-bold">
               <span
                 style={{
-                  color: getColorByPositionType(
-                    notification.player_position || '',
-                  ),
-                  marginRight: '5px',
+                  color: getColorByPosition(notification.player_position || ''),
                 }}
+                className="mr-1"
               >
                 {notification.player_position}
               </span>
-              <span style={{ color: '#333' }}>{notification.player_name}</span>
+              <span className="text-gray-800">{notification.player_name}</span>
             </div>
 
             {/* Game date */}
-            <div style={{ marginBottom: '3px', display: 'flex' }}>
-              <div style={{ width: '100px' }}>{localeData?.GameDate}</div>
-              <span style={{ color: '#626f86', fontWeight: 'normal' }}>
-                {notification.in_game_date}
-              </span>
+            <div className="mb-1 flex">
+              <div className="w-24">{localeData?.GameDate}</div>
+              <span className="text-gray-800">{notification.in_game_date}</span>
             </div>
             {getNotificationContent(notification, localeData)}
           </div>
-          <div style={{ fontWeight: 'normal' }} className="ml-auto">
-            <a
-              style={{ textDecoration: 'underline' }}
-              className="cursor-pointer"
-            >
+          <div className="ml-auto">
+            <a className="cursor-pointer underline">
               {notification.is_read ? '' : localeData?.MarkAsRead}
             </a>
 
             {!notification.is_read && (
-              <div
-                style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  backgroundColor: 'red',
-                  marginTop: '30px',
-                  marginLeft: 'auto',
-                }}
-              ></div>
+              <div className="w-2 h-2 rounded-full bg-red-600 mt-8 ml-auto"></div>
             )}
           </div>
         </div>
