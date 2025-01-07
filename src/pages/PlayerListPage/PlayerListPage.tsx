@@ -27,32 +27,6 @@ const PlayerListColumn = (
   setSearchValue: React.Dispatch<React.SetStateAction<string>>,
 ) => [
   {
-    title: <div style={{ height: '30px' }}></div>,
-    dataIndex: 'imageUrl',
-    render: (text: string, record: PlayerOverall, index: number) => {
-      return (
-        <Space
-          style={{
-            height: 48,
-            width: 48,
-          }}
-        >
-          <img
-            style={{ width: 48, height: 48 }}
-            src={record.imageUrl}
-            alt="player"
-            onError={(e) => {
-              e.currentTarget.src = player_avatar_placeholder;
-            }}
-            onLoad={(e) => {
-              e.currentTarget.style.display = 'block';
-            }}
-          />
-        </Space>
-      );
-    },
-  },
-  {
     title: (
       <Space>
         {localeData.name}
@@ -70,15 +44,30 @@ const PlayerListColumn = (
     dataIndex: 'playerName',
     render: (text: string, record: PlayerOverall, index: number) => {
       return (
-        <div
-          className="cursor-pointer hover:underline"
-          onClick={() => {
-            navigate(`/players-detail?id=${record.playerID}`);
-          }}
-        >
-          <div className="text-gray-700  font-bold">{record.playerName}</div>
-          <div className={'text-gray-400 text-sm font-mono'}>
-            ID: {record.playerID}
+        <div className="flex items-center">
+          <div className={'w-12 h-12 mr-2'}>
+            <img
+              className={'w-12 h-12'}
+              src={record.imageUrl}
+              alt="player"
+              onError={(e) => {
+                e.currentTarget.src = player_avatar_placeholder;
+              }}
+              onLoad={(e) => {
+                e.currentTarget.style.display = 'block';
+              }}
+            />
+          </div>
+          <div
+            className="cursor-pointer hover:underline"
+            onClick={() => {
+              navigate(`/players-detail?id=${record.playerID}`);
+            }}
+          >
+            <div className="text-gray-700  font-bold">{record.playerName}</div>
+            <div className={'text-gray-400 text-sm font-mono'}>
+              ID: {record.playerID}
+            </div>
           </div>
         </div>
       );
@@ -87,6 +76,7 @@ const PlayerListColumn = (
   {
     title: localeData.age,
     dataIndex: 'age',
+    width: '128px',
     sorter: (a: PlayerOverall, b: PlayerOverall) => a.age - b.age,
     render: (text: string, record: PlayerOverall, index: number) => {
       return <span className="font-bold text-lg font-mono">{record.age}</span>;
@@ -110,6 +100,7 @@ const PlayerListColumn = (
         a.position1.localeCompare(b.position1)
       );
     },
+    width: '128px',
     render: (text: string, record: PlayerOverall) => {
       const color = getColorByPositionType(record.positionType);
       return (
