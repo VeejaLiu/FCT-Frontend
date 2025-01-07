@@ -14,6 +14,31 @@ export function getColorByPositionType(positionType: string) {
   return 'black';
 }
 
+export function getColorByPosition(position: string) {
+  switch (position) {
+    case 'GK':
+      return getColorByPositionType('GK');
+    case 'RB':
+    case 'RWB':
+    case 'CB':
+    case 'LB':
+    case 'LWB':
+      return getColorByPositionType('DEF');
+    case 'CDM':
+    case 'CM':
+    case 'CAM':
+    case 'RM':
+    case 'LM':
+      return getColorByPositionType('MID');
+    case 'RW':
+    case 'LW':
+    case 'CF':
+    case 'ST':
+      return getColorByPositionType('FOR');
+  }
+  return 'black';
+}
+
 export function getColorByOverallRating(overallRating: number) {
   if (overallRating <= 50) {
     // 40 < overallRating <= 50
