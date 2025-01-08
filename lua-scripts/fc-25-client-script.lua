@@ -81,6 +81,7 @@ local attributeNameList = {
     "gkpositioning",
     "gkreflexes",
     -- other
+    'playstyles',
 }
 
 function GetUserSeniorTeamPlayerIDs()
