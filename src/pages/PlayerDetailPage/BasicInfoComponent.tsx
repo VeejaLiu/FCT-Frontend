@@ -15,9 +15,12 @@ import { getDefaultGameVersion } from '../../common/common.ts';
 import './BasicInfoComponent.css';
 import { StarIcon } from '../../common/icons.tsx';
 import { PlayStylesComponent } from './PlayStylesComponent.tsx';
+import { PlayerModel } from '../../service/PlayerApis.ts';
 
 interface BasicInfoComponentProps {
-  playerInfo: any;
+  playerInfo: PlayerModel & {
+    playStylesList: string[];
+  };
   localeData: any;
 }
 
@@ -77,7 +80,6 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
           </span>
         </Space>
       </div>
-
       {/*Player ID*/}
       <div className="stat">
         <span className="stat-label">{localeData.BasicInfo.PlayerID}</span>
@@ -89,7 +91,6 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
         <span className="stat-info-value">{playerInfo?.age}</span>
       </div>
       {/*AcceleRATE	Controlled Explosive*/}
-
       {/*Skills*/}
       <div className="stat">
         <span className="stat-label">{localeData.BasicInfo.Skills}</span>
@@ -135,7 +136,6 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
           lbs
         </span>
       </div>
-
       {gameVersion === 24 && (
         <>
           {/*Att. WR	High*/}
@@ -158,15 +158,16 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
           </div>
         </>
       )}
-
       {/* Play styles */}
-      <div className="w-full bg-gray-500 text-center p-1 rounded-xl">
-        {JSON.parse(playerInfo?.play_styles)?.map(
-          (playStyle: string, index: number) => (
-            <PlayStylesComponent playStyle={playStyle} key={index} />
-          ),
-        )}
-      </div>
+      {playerInfo?.playStylesList?.length && (
+        <div className="w-full bg-gray-500 text-center p-1 rounded-xl">
+          {playerInfo?.playStylesList?.map(
+            (playStyle: string, index: number) => (
+              <PlayStylesComponent playStyle={playStyle} key={index} />
+            ),
+          )}
+        </div>
+      )}
     </div>
   );
 };

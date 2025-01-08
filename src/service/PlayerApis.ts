@@ -99,7 +99,9 @@ export interface PlayerModel {
 }
 
 export interface PlayerDetail {
-  thisPlayer: PlayerModel;
+  thisPlayer: PlayerModel & {
+    playStylesList: string[];
+  };
   trends: PlayerTrend[];
 }
 
