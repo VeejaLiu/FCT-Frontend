@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react';
 import { getDefaultGameVersion } from '../../common/common.ts';
 import './BasicInfoComponent.css';
 import { StarIcon } from '../../common/icons.tsx';
+import { PlayStylesComponent } from './PlayStylesComponent.tsx';
 
 interface BasicInfoComponentProps {
   playerInfo: any;
@@ -157,6 +158,15 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
           </div>
         </>
       )}
+
+      {/* Play styles */}
+      <div className="w-full bg-gray-500 text-center p-1 rounded-xl">
+        {JSON.parse(playerInfo?.play_styles)?.map(
+          (playStyle: string, index: number) => (
+            <PlayStylesComponent playStyle={playStyle} key={index} />
+          ),
+        )}
+      </div>
     </div>
   );
 };

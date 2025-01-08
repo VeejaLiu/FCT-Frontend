@@ -244,6 +244,7 @@ function PlayerDetailPage(): React.ReactElement {
                   </Row>
                 </div>
               </div>
+
               {/* Trends */}
               <Space
                 style={{

@@ -74,7 +74,7 @@ export default {
     BasicInfo: {
       PlayerID: 'ID',
       Age: 'Age',
-      Skills: 'Skills',
+      Skills: 'Skill moves',
       WeakFoot: 'Weak Foot',
       Foot: 'Foot',
       Height: 'Height',

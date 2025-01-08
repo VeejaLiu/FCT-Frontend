@@ -91,6 +91,7 @@ export interface PlayerModel {
   gkkicking: number;
   gkpositioning: number;
   gkreflexes: number;
+  play_styles: number;
   is_archived: number;
   is_deleted: boolean;
   create_time: Date;
