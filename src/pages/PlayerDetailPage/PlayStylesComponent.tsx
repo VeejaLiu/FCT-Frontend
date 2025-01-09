@@ -68,7 +68,7 @@ import ICON_Whipped_Pass from '../../assets/image/player-styles/25/Whipped_Pass.
 import ICON_Whipped_Pass_ from '../../assets/image/player-styles/25/Whipped_Pass_.png';
 import { Popover } from '@douyinfe/semi-ui';
 
-const PlayStylesList: {
+const PLAY_STYLES_LIST: {
   [key: string]: {
     title?: string;
     icon?: any;
@@ -84,6 +84,10 @@ const PlayStylesList: {
    *  - First Touch
    *  - Trickster
    *  - Press Proven
+   *
+   * Test code:
+   * ["Technical", "Rapid", "Flair", "First_Touch", "Trickster", "Press_Proven"]
+   * ["Technical_", "Rapid_", "Flair_", "First_Touch_", "Trickster_", "Press_Proven_"]
    */
   Technical: {
     title: 'Technical',
@@ -177,6 +181,10 @@ const PlayStylesList: {
    *  - Anticipate
    *  - Slide Tackle
    *  - Bruiser
+   *
+   *  Test code:
+   *  ["Jockey", "Block", "Intercept", "Anticipate", "Slide_Tackle", "Bruiser"]
+   *  ["Jockey_", "Block_", "Intercept_", "Anticipate_", "Slide_Tackle_", "Bruiser_"]
    */
   Jockey: {
     title: 'Jockey',
@@ -268,6 +276,10 @@ const PlayStylesList: {
    *  - Power Shot
    *  - Dead Ball
    *  - Power Header
+   *
+   *  Test code:
+   *  ["Finesse_Shot", "Chip_Shot", "Power_Shot", "Dead_Ball", "Power_Header"]
+   *  ["Finesse_Shot_", "Chip_Shot_", "Power_Shot_", "Dead_Ball_", "Power_Header_"]
    */
   Finesse_Shot: {
     title: 'Finesse Shot',
@@ -343,6 +355,10 @@ const PlayStylesList: {
    *  - 1v1 Close Down
    *  - Far Reach
    *  - Deflector
+   *
+   *  Test code:
+   *  ["Far_Throw", "Footwork", "Cross_Claimer", "1v1_Close_Down", "Far_Reach", "Deflector"]
+   *  ["Far_Throw_", "Footwork_", "Cross_Claimer_", "1v1_Close_Down_", "Far_Reach_", "Deflector_"]
    */
   Far_Throw: {
     title: 'Far Throw',
@@ -434,6 +450,10 @@ const PlayStylesList: {
    *  - Long Ball Pass
    *  - Tiki Taka
    *  - Whipped Pass
+   *
+   *  Test code:
+   *  ["Incisive_Pass", "Pinged_Pass", "Long_Ball_Pass", "Tiki_Taka", "Whipped_Pass"]
+   *  ["Incisive_Pass_", "Pinged_Pass_", "Long_Ball_Pass_", "Tiki_Taka_", "Whipped_Pass_"]
    */
   Incisive_Pass: {
     title: 'Incisive Pass',
@@ -514,6 +534,10 @@ const PlayStylesList: {
    *  - Acrobatic
    *  - Long Throw
    *  - Aerial
+   *
+   *  Test code:
+   *  ["Quick_Step", "Relentless", "Trivela", "Acrobatic", "Long_Throw", "Aerial"]
+   *  ["Quick_Step_", "Relentless_", "Trivela_", "Acrobatic_", "Long_Throw_", "Aerial_"]
    */
   Quick_Step: {
     title: 'Quick Step',
@@ -605,23 +629,32 @@ export const PlayStylesComponent = ({ playStyle }: { playStyle: string }) => {
   return (
     <div className="inline-block h-10 w-10 m-1">
       <Popover
-        className="w-80 p-2 rounded-xl"
+        className="w-80 rounded"
         position={'topLeft'}
         content={
-          <>
-            <div className="text-lg font-bold mb-1">
-              {PlayStylesList[playStyle].title}
+          <div className="bg-gray-100 p-2">
+            <div
+              className={`text-lg font-bold mb-1 text-green-400  ${playStyle.endsWith('_') ? 'text-green-700' : ''}`}
+            >
+              {PLAY_STYLES_LIST[playStyle]?.title}
             </div>
-            <div className="text-sm">
-              {PlayStylesList[playStyle].description}
+
+            {/* Info */}
+            <div className="text-sm italic border-l-4 border-gray-400 p-2 text-gray-700">
+              {PLAY_STYLES_LIST[playStyle]?.info}
             </div>
-          </>
+            {/* Description */}
+            <div className="text-sm font-mono mt-2">
+              {PLAY_STYLES_LIST[playStyle]?.description}
+            </div>
+          </div>
         }
       >
         {/*<div>{PlayStylesList[playStyle].title}</div>*/}
+        {!PLAY_STYLES_LIST[playStyle] && <div>{playStyle}</div>}
         <img
           className="h-10 w-10"
-          src={PlayStylesList[playStyle].icon}
+          src={PLAY_STYLES_LIST[playStyle]?.icon}
           alt=""
         />
       </Popover>
