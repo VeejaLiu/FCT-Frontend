@@ -36,13 +36,13 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
   };
 
   return (
-    <div className="player-picker-container">
+    <div className="player-picker-container flex bg-gray-400 flex-wrap sticky top-0 z-20">
       {isLoading ? (
         <LoadingComponent />
       ) : (
         <div className="flex">
           {/* Player list */}
-          <div className="flex">
+          <div className="flex p-1">
             {playerList
               ?.sort((a: PlayerOverall, b: PlayerOverall) => {
                 const positionTypeMap = {
@@ -60,9 +60,9 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
               .map((player: any) => {
                 return (
                   <div
-                    className={`player-item ${
-                      player.playerID === playerID ? 'selected' : ''
-                    } block`}
+                    className={`${
+                      player.playerID === playerID ? 'selected ' : ''
+                    } inline-block m-1 bg-[#eaecec] p-1 rounded cursor-pointer`}
                     key={player.playerID}
                     onClick={() => handlePlayerSelect(player.playerID)}
                   >
@@ -80,9 +80,11 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
               })}
           </div>
           {/* Refresh button */}
-          <div className="w-20 text-center items-center h-full bg-red-300">
+          <div className="text-center items-center p-au">
             <IconRefresh
+              className={`cursor-pointer`}
               style={{ color: 'black' }}
+              size="extra-large"
               onClick={() => {
                 getPlayerList().then();
               }}
