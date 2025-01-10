@@ -84,7 +84,7 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
               getPlayerList().then();
             }}
           >
-            <RefreshIcon classname="h-10 w-10" />
+            <RefreshIcon classname="h-8 w-8" />
           </div>
         </div>
       )}
