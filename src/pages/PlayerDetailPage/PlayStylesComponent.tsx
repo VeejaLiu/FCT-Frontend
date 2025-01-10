@@ -633,9 +633,7 @@ export const PlayStylesComponent = ({ playStyle }: { playStyle: string }) => {
         position={'topLeft'}
         content={
           <div className="bg-gray-100 p-2">
-            <div
-              className={`text-lg font-bold mb-1 text-green-400  ${playStyle.endsWith('_') ? 'text-green-700' : ''}`}
-            >
+            <div className={`text-lg font-bold mb-1 text-green-700`}>
               {PLAY_STYLES_LIST[playStyle]?.title}
             </div>
 
