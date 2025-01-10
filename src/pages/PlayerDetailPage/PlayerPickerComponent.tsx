@@ -64,8 +64,8 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
                      bg-gray-200 hover:bg-[#aaef88]
                      cursor-pointer whitespace-nowrap
                      border rounded-full
-                     font-bold 
-                     ${player.playerID === playerID && 'bg-[#aaef88] border border-black'}
+                     text-gray-500
+                     ${player.playerID === playerID && 'bg-[#aaef88] border border-black text-black'}
                      `}
                     key={player.playerID}
                     onClick={() => handlePlayerSelect(player.playerID)}

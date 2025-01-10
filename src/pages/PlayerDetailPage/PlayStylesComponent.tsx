@@ -627,7 +627,7 @@ const PLAY_STYLES_LIST: {
 
 export const PlayStylesComponent = ({ playStyle }: { playStyle: string }) => {
   return (
-    <div className="inline-block h-10 w-10 m-1">
+    <div className="inline-block h-14 w-14 m-1 rounded-full bg-gray-600 p-2">
       <Popover
         className="w-80 rounded"
         position={'topLeft'}

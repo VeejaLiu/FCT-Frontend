@@ -160,7 +160,7 @@ const BasicInfoComponent: React.FC<BasicInfoComponentProps> = ({
       )}
       {/* Play styles */}
       {playerInfo?.playStylesList?.length && (
-        <div className="w-full bg-gray-600 text-center p-1 rounded-xl mt-2">
+        <div className="w-full text-center p-1 rounded-xl mt-2">
           {playerInfo?.playStylesList?.map(
             (playStyle: string, index: number) => (
               <PlayStylesComponent playStyle={playStyle} key={index} />
