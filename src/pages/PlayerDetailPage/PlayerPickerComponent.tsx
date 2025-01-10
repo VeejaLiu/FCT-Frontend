@@ -59,7 +59,14 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
               .map((player: any) => {
                 return (
                   <div
-                    className={`inline-block bg-[#eaecec] py-1 px-2 rounded-xl cursor-pointer whitespace-nowrap m-1 ${player.playerID === playerID && 'bg-[#aaef88]'}`}
+                    className={`inline-block
+                     py-1 px-2 m-1
+                     bg-gray-200 hover:bg-[#aaef88]
+                     cursor-pointer whitespace-nowrap
+                     border rounded-full
+                     font-bold 
+                     ${player.playerID === playerID && 'bg-[#aaef88] border border-black'}
+                     `}
                     key={player.playerID}
                     onClick={() => handlePlayerSelect(player.playerID)}
                   >
@@ -78,13 +85,13 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
           </div>
           {/* Refresh button */}
           <div
-            className="text-center items-center ml-auto cursor-pointer text-green-900 p-2"
+            className="text-center items-center ml-auto mr-2 cursor-pointer text-green-900 p-2 rounded-full border hover:bg-gray-200"
             title="Click to refresh player list"
             onClick={() => {
               getPlayerList().then();
             }}
           >
-            <RefreshIcon classname="h-8 w-8" />
+            <RefreshIcon classname="h-6 w-6" />
           </div>
         </div>
       )}
