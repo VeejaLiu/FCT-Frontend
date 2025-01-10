@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PlayerApis, PlayerOverall } from '../../service/PlayerApis.ts';
 import { getColorByPositionType } from '../../common/player-helper.ts';
 import { LoadingComponent } from '../../components/Other.tsx';
-import './PlayerPickerComponent.css';
-import { IconRefresh } from '@douyinfe/semi-icons';
+import { RefreshIcon } from '../../common/icons.tsx';
 
 interface PlayerPickerComponentProps {
   playerID: number;
@@ -36,13 +35,13 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
   };
 
   return (
-    <div className="player-picker-container flex bg-gray-400 flex-wrap sticky top-0 z-20">
+    <div className="flex sticky top-0 z-20 items-center min-h-12">
       {isLoading ? (
         <LoadingComponent />
       ) : (
-        <div className="flex">
+        <div className="flex items-center w-full h-full bg-white">
           {/* Player list */}
-          <div className="flex p-1">
+          <div className="flex p-1 flex-wrap flex-grow">
             {playerList
               ?.sort((a: PlayerOverall, b: PlayerOverall) => {
                 const positionTypeMap = {
@@ -60,14 +59,12 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
               .map((player: any) => {
                 return (
                   <div
-                    className={`${
-                      player.playerID === playerID ? 'selected ' : ''
-                    } inline-block m-1 bg-[#eaecec] p-1 rounded cursor-pointer`}
+                    className={`inline-block bg-[#eaecec] py-1 px-2 rounded-xl cursor-pointer whitespace-nowrap m-1 ${player.playerID === playerID && 'bg-[#aaef88]'}`}
                     key={player.playerID}
                     onClick={() => handlePlayerSelect(player.playerID)}
                   >
                     <span
-                      className="player-position"
+                      className="player-position font-bold mr-1"
                       style={{
                         color: getColorByPositionType(player.positionType),
                       }}
@@ -80,15 +77,14 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
               })}
           </div>
           {/* Refresh button */}
-          <div className="text-center items-center p-au">
-            <IconRefresh
-              className={`cursor-pointer`}
-              style={{ color: 'black' }}
-              size="extra-large"
-              onClick={() => {
-                getPlayerList().then();
-              }}
-            />
+          <div
+            className="text-center items-center ml-auto cursor-pointer text-green-900 p-2"
+            title="Click to refresh player list"
+            onClick={() => {
+              getPlayerList().then();
+            }}
+          >
+            <RefreshIcon classname="h-10 w-10" />
           </div>
         </div>
       )}
