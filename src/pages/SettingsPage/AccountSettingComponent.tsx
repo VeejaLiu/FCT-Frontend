@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import ChangePasswordComponent from './ChangePassword.tsx';
 import { UserApis } from '../../service/UserApis.ts';
+import { Tooltip } from '@douyinfe/semi-ui';
 
 export interface ApiSecretKeyComponentProps {
   localeData: any;
@@ -16,8 +17,8 @@ function AccountSettingComponent({
     userID?: string;
     username?: string;
     email?: string;
+    isEmailVerified?: boolean;
   }>({});
-
   async function fetchAccountInfo() {
     const res = await UserApis.getUserInfo();
     console.log(`[fetchAccountInfo] res: ${JSON.stringify(res)}`);
@@ -55,6 +56,35 @@ function AccountSettingComponent({
           </div>
           <span style={{ color: 'gray', fontWeight: 500 }}>
             {accountInfo?.email}
+          </span>
+
+          {/* If the email is not verified, show the "Verify" button */}
+          {accountInfo?.isEmailVerified ? (
+            <span>
+              <span className="ml-2 bg-green-300 p-1 rounded">
+                {localeData?.AccountEmailVerified}
+              </span>
+            </span>
+          ) : (
+            <span>
+              <Tooltip content={localeData?.AccountEmailUnverifiedTooltip}>
+                <span
+                  className="ml-2 bg-yellow-200 p-1 cursor-pointer rounded underline"
+                  onClick={async () => {
+                    await UserApis.sendVerificationEmail();
+                  }}
+                >
+                  {localeData?.AccountEmailUnverified}
+                </span>
+              </Tooltip>
+            </span>
+          )}
+
+          {/* Account Info - Change email */}
+          <span>
+            <a className={'ml-2 underline cursor-pointer'}>
+              {localeData.AccountChangeEmail}
+            </a>
           </span>
         </div>
 

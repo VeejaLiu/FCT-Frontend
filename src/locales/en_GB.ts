@@ -156,6 +156,12 @@ export default {
     AccountInfo: 'Account Info',
     AccountUsername: 'Username',
     AccountEmail: 'Email',
+    AccountEmailVerified: 'Verified',
+    AccountEmailUnverified: 'Unverified',
+    AccountEmailUnverifiedTooltip:
+      'Email is not verified, Click to send an email. We will send you a verification email including a link to verify your email address.',
+    AccountChangeEmail: 'Change',
+
     AccountChangePassword: 'Change Password',
     AccountClickToChange: 'Click to change',
 

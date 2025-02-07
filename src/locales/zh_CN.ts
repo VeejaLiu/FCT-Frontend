@@ -147,6 +147,12 @@ export default {
     AccountInfo: '账户信息',
     AccountUsername: '用户名',
     AccountEmail: '邮箱',
+    AccountEmailVerified: '已验证',
+    AccountEmailUnverified: '未验证',
+    AccountEmailUnverifiedTooltip:
+      '邮箱未验证，点击发送验证邮件。我们将发送一封验证邮件，其中包含验证您电子邮件地址的链接。',
+    AccountChangeEmail: '修改',
+
     AccountChangePassword: '修改密码',
     AccountClickToChange: '点击修改',
 
