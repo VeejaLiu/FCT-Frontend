@@ -311,6 +311,7 @@ export class UserApis {
     username: string;
     email: string;
     isEmailVerified: boolean;
+    lastSendEmailTime: number;
   } | null> {
     try {
       const token = getToken();

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import ChangePasswordComponent from './ChangePassword.tsx';
 import { UserApis } from '../../service/UserApis.ts';
-import { Tooltip } from '@douyinfe/semi-ui';
+import { Banner, Toast, Tooltip } from '@douyinfe/semi-ui';
 
 export interface ApiSecretKeyComponentProps {
   localeData: any;
@@ -18,6 +18,7 @@ function AccountSettingComponent({
     username?: string;
     email?: string;
     isEmailVerified?: boolean;
+    lastSendEmailTime?: number;
   }>({});
   async function fetchAccountInfo() {
     const res = await UserApis.getUserInfo();
@@ -37,6 +38,14 @@ function AccountSettingComponent({
       <div className={'font-bold text-xl mt-6 mb-2'}>
         {localeData?.AccountInfo}
       </div>
+
+      {/* Warning Banner */}
+      {!accountInfo.isEmailVerified && (
+        <Banner
+          type="warning"
+          description={localeData?.AccountUnverifiedWarningBanner}
+        />
+      )}
 
       <div className="w-full p-4 border border-gray-200 rounded-md">
         {/* Account Info - Username */}
@@ -71,7 +80,31 @@ function AccountSettingComponent({
                 <span
                   className="ml-2 bg-yellow-200 p-1 cursor-pointer rounded underline"
                   onClick={async () => {
-                    await UserApis.sendVerificationEmail();
+                    // 10 minutes interval
+                    const tenMinutes = 10 * 60 * 1000; // 10 minutes in milliseconds
+                    const currentTime = new Date().valueOf();
+
+                    if (
+                      accountInfo.lastSendEmailTime &&
+                      currentTime - accountInfo.lastSendEmailTime < tenMinutes
+                    ) {
+                      const waitTime = Math.ceil(
+                        (tenMinutes -
+                          (currentTime - accountInfo.lastSendEmailTime)) /
+                          1000,
+                      ); // Calculate remaining wait time in seconds
+                      Toast.warning(
+                        localeData.AccountEmailSendTooFrequently.replace(
+                          '{waitSeconds}',
+                          waitTime.toString(),
+                        ),
+                      );
+                      return;
+                    } else {
+                      await UserApis.sendVerificationEmail();
+                      Toast.success(localeData.AccountEmailSendToast);
+                      fetchAccountInfo().then();
+                    }
                   }}
                 >
                   {localeData?.AccountEmailUnverified}

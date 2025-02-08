@@ -145,12 +145,16 @@ export default {
     PlayerWeakFootUpdate: '球员 逆足 能力更新',
 
     AccountInfo: '账户信息',
+    AccountUnverifiedWarningBanner:
+      '您的电子邮件地址尚未验证。请点击下方按钮验证您的电子邮件地址，以便我们确认您的身份。',
     AccountUsername: '用户名',
     AccountEmail: '邮箱',
     AccountEmailVerified: '已验证',
     AccountEmailUnverified: '未验证',
     AccountEmailUnverifiedTooltip:
       '邮箱未验证，点击发送验证邮件。我们将发送一封验证邮件，其中包含验证您电子邮件地址的链接。',
+    AccountEmailSendTooFrequently: '邮件发送太频繁，请等待 {waitSeconds} 秒',
+    AccountEmailSendToast: '验证邮件已发送，请检查您的邮箱。',
     AccountChangeEmail: '修改',
 
     AccountChangePassword: '修改密码',

@@ -154,12 +154,17 @@ export default {
     PlayerWeakFootUpdate: 'Player Weak Foot Update',
 
     AccountInfo: 'Account Info',
+    AccountUnverifiedWarningBanner:
+      'Your email address is not verified. Please click the button below to verify your email address so we can confirm your identity.',
     AccountUsername: 'Username',
     AccountEmail: 'Email',
     AccountEmailVerified: 'Verified',
     AccountEmailUnverified: 'Unverified',
     AccountEmailUnverifiedTooltip:
       'Email is not verified, Click to send an email. We will send you a verification email including a link to verify your email address.',
+    AccountEmailSendTooFrequently:
+      'Email sent too frequently, please wait {waitSeconds} seconds',
+    AccountEmailSendToast: 'Verification email sent, please check your email.',
     AccountChangeEmail: 'Change',
 
     AccountChangePassword: 'Change Password',
