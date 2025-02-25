@@ -400,4 +400,34 @@ export class UserApis {
       };
     }
   }
+
+  /**
+   * Change email
+   *
+   * @param newEmail new email
+   */
+  static async changeEmail({ newEmail }: { newEmail: string }) {
+    try {
+      const token = getToken();
+      // console.log(`[getPlayerList] token: ${token}`);
+      const response = await axios.post(
+        `${BACKEND_URL}/api/v1/user/email/change`,
+        { newEmail: newEmail },
+        {
+          headers: {
+            Accept: '*/*',
+            token: token,
+          },
+        },
+      );
+      console.log(`[changeEmail] response: ${JSON.stringify(response)}`);
+      return response.data;
+    } catch (e) {
+      console.log(`[changeEmail] error: ${e}`);
+      return {
+        success: false,
+        message: 'Failed to change email',
+      };
+    }
+  }
 }

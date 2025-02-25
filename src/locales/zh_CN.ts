@@ -167,6 +167,10 @@ export default {
 
     Logout: '登出',
     ClickToLogout: '点击登出',
+
+    NewEmailInputPlaceholder: '输入你的新邮箱地址',
+    ChangeEmail: '修改邮箱',
+    NeedVerifyEmail: '在更新完你的邮箱之后，你需要重新验证你的邮箱地址。',
   },
   GetStartedPage: {
     GET_STARTED_TEXT: `

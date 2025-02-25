@@ -26,3 +26,20 @@ export function RefreshIcon({ classname }: IconProps) {
     </svg>
   );
 }
+
+export function EditIcon({ classname }: IconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 20 20"
+      className={`${classname} fill-current`}
+    >
+      <path
+        fill="currentColor"
+        d="M13.586 3.586a2 2 0 1 1 2.828 2.828l-.793.793l-2.828-2.828zm-2.207 2.207L3 14.172V17h2.828l8.38-8.379z"
+      />
+    </svg>
+  );
+}

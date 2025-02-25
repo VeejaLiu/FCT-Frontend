@@ -173,10 +173,15 @@ export default {
     OldPassword: 'Old Password',
     NewPassword: 'New Password',
     ConfirmNewPassword: 'Confirm New Password',
+    ChangePassword: 'Save',
 
     Logout: 'Logout',
     ClickToLogout: 'Click here to logout',
-    ChangePassword: 'Save',
+
+    NewEmailInputPlaceholder: 'Enter your new email',
+    ChangeEmail: 'Change Email',
+    NeedVerifyEmail:
+      'You need to verify your new email address after changing it.',
   },
 
   GetStartedPage: {

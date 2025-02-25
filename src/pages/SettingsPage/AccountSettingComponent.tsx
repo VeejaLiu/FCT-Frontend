@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import ChangePasswordComponent from './ChangePassword.tsx';
 import { UserApis } from '../../service/UserApis.ts';
 import { Banner, Toast, Tooltip } from '@douyinfe/semi-ui';
+import ChangeEmailComponent from './ChangeEmail.tsx';
 
 export interface ApiSecretKeyComponentProps {
   localeData: any;
@@ -11,8 +12,10 @@ export interface ApiSecretKeyComponentProps {
 function AccountSettingComponent({
   localeData,
 }: ApiSecretKeyComponentProps): React.ReactElement {
+  const [showChangeEmail, setShowChangeEmail] = React.useState<boolean>(false);
   const [showChangePassword, setShowChangePassword] =
     React.useState<boolean>(false);
+
   const [accountInfo, setAccountInfo] = React.useState<{
     userID?: string;
     username?: string;
@@ -20,6 +23,7 @@ function AccountSettingComponent({
     isEmailVerified?: boolean;
     lastSendEmailTime?: number;
   }>({});
+
   async function fetchAccountInfo() {
     const res = await UserApis.getUserInfo();
     console.log(`[fetchAccountInfo] res: ${JSON.stringify(res)}`);
@@ -70,7 +74,7 @@ function AccountSettingComponent({
           {/* If the email is not verified, show the "Verify" button */}
           {accountInfo?.isEmailVerified ? (
             <span>
-              <span className="ml-2 bg-green-300 p-1 rounded">
+              <span className="ml-2 bg-green-300 p-1 px-2 rounded-full whitespace-nowrap">
                 {localeData?.AccountEmailVerified}
               </span>
             </span>
@@ -115,11 +119,22 @@ function AccountSettingComponent({
 
           {/* Account Info - Change email */}
           <span>
-            <a className={'ml-2 underline cursor-pointer'}>
+            <span
+              className="ml-2 p-1 px-2 rounded-full bg-gray-100 cursor-pointer hover:bg-gray-200 hover:text-black whitespace-nowrap"
+              title="Click to change email"
+              onClick={() => setShowChangeEmail(!showChangeEmail)}
+            >
               {localeData.AccountChangeEmail}
-            </a>
+            </span>
           </span>
         </div>
+
+        {showChangeEmail && (
+          <ChangeEmailComponent
+            localeData={localeData}
+            changeEmailDone={fetchAccountInfo}
+          />
+        )}
 
         {/* Account Info - Change Password ---- START*/}
         <div className="mt-2">

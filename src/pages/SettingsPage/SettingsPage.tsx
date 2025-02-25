@@ -51,8 +51,8 @@ function SettingsPage(): React.ReactElement {
         <Space
           vertical
           style={{
-            width: '50vw',
-            minWidth: '600px',
+            width: '60vw',
+            minWidth: '700px',
             padding: '20px',
           }}
           align={'start'}
