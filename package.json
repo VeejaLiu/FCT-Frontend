@@ -22,7 +22,7 @@
     "@douyinfe/semi-icons": "^2.63.1",
     "@douyinfe/semi-icons-lab": "^2.63.1",
     "@douyinfe/semi-ui": "^2.63.1",
-    "axios": "1.7.8",
+    "axios": "1.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.0",
