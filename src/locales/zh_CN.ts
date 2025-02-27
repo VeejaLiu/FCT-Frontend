@@ -165,6 +165,23 @@ export default {
     ConfirmNewPassword: '确认新密码',
     ChangePassword: '保存',
 
+    ChangePasswordNotification: {
+      ErrorTitle: '错误',
+      INVALID_PASSWORD: '请填写所有字段',
+      PASSWORD_MISMATCH: '新密码与确认密码不匹配',
+      INCORRECT_OLD_PASSWORD: '旧密码不正确',
+      USER_NOT_FOUND: '用户不存在',
+
+      PASSWORD_SAME_AS_OLD: '新密码与旧密码相同，请尝试另一个密码。',
+
+      SUCCESS: '成功',
+      SUCCESS_MESSAGE: '密码修改成功',
+
+      UnknownErrorTitle: '未知错误',
+      UnknownErrorDescription:
+        '修改密码失败，请重试。如果问题仍然存在，请联系我们。',
+    },
+
     Logout: '登出',
     ClickToLogout: '点击登出',
 

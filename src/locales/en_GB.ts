@@ -174,6 +174,23 @@ export default {
     NewPassword: 'New Password',
     ConfirmNewPassword: 'Confirm New Password',
     ChangePassword: 'Save',
+    ChangePasswordNotification: {
+      ErrorTitle: 'Error',
+      INVALID_PASSWORD: 'Please fill in all fields',
+      PASSWORD_MISMATCH: 'New password and confirm password do not match',
+      INCORRECT_OLD_PASSWORD: 'The old password is incorrect',
+      USER_NOT_FOUND: 'User not found',
+
+      PASSWORD_SAME_AS_OLD:
+        'The new password is the same as the old one. Please try another one.',
+
+      SUCCESS: 'Success',
+      SUCCESS_MESSAGE: 'Password changed successfully',
+
+      UnknownErrorTitle: 'Unknown Error',
+      UnknownErrorDescription:
+        'Failed to change password. Please try again. If the problem persists, please contact us.',
+    },
 
     Logout: 'Logout',
     ClickToLogout: 'Click here to logout',
