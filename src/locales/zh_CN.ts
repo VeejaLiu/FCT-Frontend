@@ -171,6 +171,22 @@ export default {
     NewEmailInputPlaceholder: '输入你的新邮箱地址',
     ChangeEmail: '修改邮箱',
     NeedVerifyEmail: '在更新完你的邮箱之后，你需要重新验证你的邮箱地址。',
+    ChangeEmailNotification: {
+      ErrorTitle: '错误',
+      INVALID_EMAIL: '请输入有效的电子邮件地址。',
+
+      SUCCESS: '成功',
+      SUCCESS_MESSAGE: '邮箱地址已成功更改, 请验证您的邮箱。',
+
+      EMAIL_DUPLICATE:
+        '新邮箱地址已被使用, 请重新输入。如果这个邮箱地址是您的，请联系我们。',
+
+      EMAIL_SAME_AS_OLD: '新邮箱地址与旧邮箱地址相同, 请重新输入。',
+
+      UnknownErrorTitle: '未知错误',
+      UnknownErrorDescription:
+        '更改邮箱失败，请重试。如果问题仍然存在，请联系我们。',
+    },
   },
   GetStartedPage: {
     GET_STARTED_TEXT: `

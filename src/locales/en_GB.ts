@@ -182,6 +182,23 @@ export default {
     ChangeEmail: 'Change Email',
     NeedVerifyEmail:
       'You need to verify your new email address after changing it.',
+    ChangeEmailNotification: {
+      ErrorTitle: 'Error',
+      INVALID_EMAIL: 'Please enter a valid email address.',
+
+      SUCCESS: 'Success',
+      SUCCESS_MESSAGE: 'Email changed successfully. Please verify your email.',
+
+      EMAIL_DUPLICATE:
+        'The new email address is already in use. Please try another one. If the email belongs to you, please contact us.',
+
+      EMAIL_SAME_AS_OLD:
+        'The new email address is the same as the old one. Please try another one.',
+
+      UnknownErrorTitle: 'Unknown Error',
+      UnknownErrorDescription:
+        'Failed to change email. Please try again. If the problem persists, please contact us.',
+    },
   },
 
   GetStartedPage: {

@@ -11,14 +11,14 @@ function ChangeEmailComponent({
 }): React.ReactElement {
   const [newEmail, setNewEmail] = React.useState<string>('');
 
-  const changeEmail = async () => {
+  const changeEmail = async (localeData: any) => {
     console.log(`New Email: ${newEmail}`);
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!newEmail || newEmail === '' || !emailPattern.test(newEmail)) {
-      Notification.error({
-        title: 'Error',
-        content: <div>Please enter a valid email address.</div>,
+      Notification.warning({
+        title: localeData.ChangeEmailNotification.ErrorTitle,
+        content: <div>{localeData.ChangeEmailNotification.INVALID_EMAIL}</div>,
         duration: 3,
         position: 'top',
       });
@@ -30,19 +30,40 @@ function ChangeEmailComponent({
     console.log(`[changeEmail] res: ${JSON.stringify(res)}`);
     if (res.success) {
       Notification.success({
-        title: 'Success',
-        content: 'Email changed successfully',
+        title: localeData.ChangeEmailNotification.SUCCESS,
+        content: localeData.ChangeEmailNotification.SUCCESS_MESSAGE,
         duration: 3,
         position: 'top',
       });
       changeEmailDone();
     } else {
-      Notification.error({
-        title: 'Error',
-        content: res.message,
-        duration: 3,
-        position: 'top',
-      });
+      switch (res?.code) {
+        case 'EMAIL_UPDATE_DUPLICATE':
+          Notification.error({
+            title: localeData.ChangeEmailNotification.ErrorTitle,
+            content: localeData.ChangeEmailNotification.EMAIL_DUPLICATE,
+            duration: 3,
+            position: 'top',
+          });
+          break;
+
+        case 'EMAIL_UPDATE_REDUNDANT_VALUE':
+          Notification.error({
+            title: localeData.ChangeEmailNotification.ErrorTitle,
+            content: localeData.ChangeEmailNotification.EMAIL_SAME_AS_OLD,
+            duration: 3,
+            position: 'top',
+          });
+          break;
+
+        default:
+          Notification.error({
+            title: localeData.ChangeEmailNotification.UnknownErrorTitle,
+            content: localeData.ChangeEmailNotification.UnknownErrorDescription,
+            duration: 3,
+            position: 'top',
+          });
+      }
     }
   };
 
@@ -59,7 +80,7 @@ function ChangeEmailComponent({
         />
         <button
           className="flex whitespace-nowrap border border-[#d1d9e0] rounded-md px-4 py-1 ml-2 bg-[#f6f8fa] hover:bg-[#f0f2f5]"
-          onClick={() => changeEmail()}
+          onClick={() => changeEmail(localeData)}
         >
           {localeData.ChangeEmail}
         </button>
