@@ -219,17 +219,31 @@ export default {
   },
 
   GetStartedPage: {
+    Title: 'Quick Start',
+    STEP_1: {
+      Title: '1. Open the FC24/FC25 with Live Editor.',
+      DownloadLink: 'Download link:',
+    },
+    STEP_2: {
+      Title: '2. Enter career mode.',
+      Description: 'Please enter FC24/FC25 career mode first.',
+    },
+    STEP_3: {
+      Title: '3. Open Lua script',
+      Description:
+        'Wake up the Live editor in career mode and enter the Lua script function.',
+    },
+    STEP_4: {
+      Title: '4. Paste the code snippet below',
+      Description:
+        'Copy the code below, paste it into the Lua script of the LIVE Editor, and click the execute button.',
+    },
+
     GET_STARTED_TEXT: `
 # Get Started
 ## 1. Dependencies
 - Latest **[xAranaktu/FC-24-Live-Editor](https://www.patreon.com/collection/96422?view=expanded)** or **[xArnatu/FC-25-Live-Editor](https://www.patreon.com/collection/779838?view=expanded)**.
 - **Secret API key**. (You can manage it from [Setting Page](/settings), BUT you don't really need it because I have put it in the code snippet below for you)
-      
-## 2. Installation
-1. Open the FC24/FC25 with Live Editor.
-2. Enter career mode.
-3. Go to the \`Lua script\` tab in the live editor.
-4. Paste the code snippet below.
       `,
     SUCCESS: 'Success',
     SUCCESS_MESSAGE: 'Copied to clipboard',

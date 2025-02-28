@@ -206,6 +206,25 @@ export default {
     },
   },
   GetStartedPage: {
+    Title: '快速开始',
+    STEP_1: {
+      Title: '1. 使用 Live Editor 打开 FC24/FC25',
+      DownloadLink: '下载链接:',
+    },
+    STEP_2: {
+      Title: '2. 进入职业模式',
+      Description: '请先进入 FC24/FC25 职业模式。',
+    },
+    STEP_3: {
+      Title: '3. 打开 Lua 脚本',
+      Description: '在职业模式中唤醒 Live Editor 并进入 Lua 脚本功能。',
+    },
+    STEP_4: {
+      Title: '4. 粘贴以下代码片段',
+      Description:
+        '复制下面的代码，将其粘贴到 LIVE Editor 的 Lua 脚本中，然后点击执行按钮。',
+    },
+
     GET_STARTED_TEXT: `
 # 开始
 ## 1. 依赖
@@ -225,7 +244,7 @@ export default {
     HIDE_ALL_CODE: '隐藏所有代码',
     SHOW_ALL_CODE: '显示所有代码',
     CODE_NOT_SHARE_WARNING:
-      '警告：这些代码包含您的秘密密钥。请勿与他人分享这些代码。',
+      '这些代码包含您的秘钥。请不要与任何人分享这些代码哦~',
     IMPORTANT_TIPS: `
 # 重要提示 
 
