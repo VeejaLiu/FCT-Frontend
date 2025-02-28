@@ -60,7 +60,7 @@ function SettingsPage(): React.ReactElement {
             <div className="font-bold mb-2">{localeData?.Notifications}</div>
 
             {/* Enable Notifications */}
-            <div className="flex items-center m-1">
+            <div className="flex items-center mt-3 p-1 hover:bg-[#f0f2f5]">
               <div className="w-[300px]">{localeData?.EnableNotifications}</div>
               <Switch
                 checked={userSetting?.enableNotification}
@@ -79,7 +79,7 @@ function SettingsPage(): React.ReactElement {
             {/* Notification Itemss */}
 
             {/* Overall Rating and Potential */}
-            <div className="flex items-center m-1">
+            <div className="flex items-center p-1 hover:bg-[#f0f2f5]">
               <div className="w-[300px]">
                 {localeData?.PlayerOverallPotentialUpdate}
               </div>
@@ -102,7 +102,7 @@ function SettingsPage(): React.ReactElement {
             </div>
 
             {/* Skill Move */}
-            <div className="flex items-center m-1">
+            <div className="flex items-center p-1 hover:bg-[#f0f2f5]">
               <div className="w-[300px]">
                 {localeData?.PlayerSkillMoveUpdate}
               </div>
@@ -125,7 +125,7 @@ function SettingsPage(): React.ReactElement {
             </div>
 
             {/* Weak Foot */}
-            <div className="flex items-center m-1">
+            <div className="flex items-center p-1 hover:bg-[#f0f2f5]">
               <div className="w-[300px]">
                 {localeData?.PlayerWeakFootUpdate}
               </div>

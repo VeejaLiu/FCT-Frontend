@@ -140,8 +140,10 @@ export default {
 
     APISecretKey: 'API Secret Key',
     ClickToCopy: 'Click to copy your API secret key',
+    Copy: 'Copy',
     ClickToRefresh:
       'Click to refresh your API secret key, this will invalidate your old key',
+    Refresh: 'Refresh',
     CopySuccessMessage: 'Secret key copied to clipboard',
     FailedToCopyMessage:
       'Failed to copy secret key to clipboard, please try again',

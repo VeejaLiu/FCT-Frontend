@@ -30,16 +30,16 @@ export function RefreshIcon({ classname }: IconProps) {
 export function EditIcon({ classname }: IconProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      viewBox="0 0 20 20"
+      // fill="none"
+      viewBox="-4 -4 24 24"
       className={`${classname} fill-current`}
     >
       <path
-        fill="currentColor"
-        d="M13.586 3.586a2 2 0 1 1 2.828 2.828l-.793.793l-2.828-2.828zm-2.207 2.207L3 14.172V17h2.828l8.38-8.379z"
-      />
+        stroke="currentcolor"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M6 1.751H3c-.69 0-1.25.56-1.25 1.25v10c0 .69.56 1.25 1.25 1.25h10c.69 0 1.25-.56 1.25-1.25V10m-.75-5 1.116-1.116a1.25 1.25 0 0 0 0-1.768l-.732-.732a1.25 1.25 0 0 0-1.768 0L11 2.5M13.5 5 9.479 9.021c-.15.15-.336.26-.54.318l-3.189.911.911-3.189a1.25 1.25 0 0 1 .318-.54L11 2.5M13.5 5 11 2.5"
+      ></path>
     </svg>
   );
 }

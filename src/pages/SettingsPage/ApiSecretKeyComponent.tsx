@@ -39,77 +39,79 @@ function ApiSecretKeyComponent({
   }, []);
 
   return (
-    <>
-      <div className="w-full p-4 border border-gray-200 rounded-md">
-        <div className={'font-bold mb-2'}>{localeData?.APISecretKey}</div>
-        <div className="flex">
-          <div style={{ width: '300px' }}>{localeData?.APISecretKey}:</div>
-          <Input
-            // mode="password"
-            disabled={true}
-            // contentEditable="false"
-            defaultValue={secretKey}
-            value={secretKey}
-          ></Input>
+    <div className="w-full p-4 border border-gray-200 rounded-md">
+      <div className={'font-bold'}>{localeData?.APISecretKey}</div>
+      <div className="flex mt-4">
+        <div style={{ width: '300px' }}>{localeData?.APISecretKey}:</div>
+        <Input
+          // mode="password"
+          disabled={true}
+          // contentEditable="false"
+          defaultValue={secretKey}
+          value={secretKey}
+        ></Input>
 
-          {/* Copy Button */}
-          <Popover
-            showArrow
-            position={'top'}
-            content={<p>{localeData?.ClickToCopy}</p>}
+        {/* Copy Button */}
+        <Popover
+          mouseEnterDelay={500}
+          showArrow
+          position={'top'}
+          content={<p>{localeData?.ClickToCopy}</p>}
+        >
+          <button
+            className={
+              'ml-2 button px-2 rounded bg-gray-200 hover:bg-gray-300 content-center items-center flex whitespace-nowrap'
+            }
+            disabled={isLoading}
+            onClick={() => {
+              navigator.clipboard.writeText(secretKey).then(
+                () => {
+                  Notification.success({
+                    title: 'Success',
+                    content: localeData?.CopySuccessMessage,
+                    duration: 3,
+                  });
+                },
+                (err) => {
+                  Notification.error({
+                    title: 'Error',
+                    content: localeData?.FailedToCopyMessage,
+                    duration: 3,
+                  });
+                },
+              );
+            }}
           >
-            <button
-              className={
-                'ml-2 button px-4 rounded bg-gray-200 hover:bg-gray-400 content-center items-center'
-              }
-              disabled={isLoading}
-              onClick={() => {
-                navigator.clipboard.writeText(secretKey).then(
-                  () => {
-                    Notification.success({
-                      title: 'Success',
-                      content: localeData?.CopySuccessMessage,
-                      duration: 3,
-                    });
-                  },
-                  (err) => {
-                    Notification.error({
-                      title: 'Error',
-                      content: localeData?.FailedToCopyMessage,
-                      duration: 3,
-                    });
-                  },
-                );
-              }}
-            >
-              <IconCopy />
-            </button>
-          </Popover>
+            <IconCopy />
+            <span className="ml-2">{localeData?.Copy}</span>
+          </button>
+        </Popover>
 
-          {/* Refresh Button */}
-          <Popover
-            showArrow
-            position={'top'}
-            content={<p>{localeData?.ClickToRefresh}</p>}
+        {/* Refresh Button */}
+        <Popover
+          mouseEnterDelay={500}
+          showArrow
+          position={'top'}
+          content={<p>{localeData?.ClickToRefresh}</p>}
+        >
+          <button
+            className={
+              'ml-2 button px-2 rounded bg-gray-200 hover:bg-gray-300 content-center items-center flex whitespace-nowrap'
+            }
+            onClick={async () => {
+              await doRefreshSecretKey();
+            }}
           >
-            <button
-              className={
-                'ml-2 button px-4 rounded bg-gray-200 hover:bg-gray-400'
-              }
-              onClick={async () => {
-                await doRefreshSecretKey();
-              }}
-            >
-              <IconRefresh2 />
-            </button>
-          </Popover>
-        </div>
-
-        <div className="text-red-500 text-xs font-bold mt-2 w-full">
-          {localeData?.DoNotShareSecretKey}
-        </div>
+            <IconRefresh2 />
+            <span className="ml-2">{localeData?.Refresh}</span>
+          </button>
+        </Popover>
       </div>
-    </>
+
+      <div className="text-red-500 text-xs font-bold mt-2 w-full">
+        {localeData?.DoNotShareSecretKey}
+      </div>
+    </div>
   );
 }
 

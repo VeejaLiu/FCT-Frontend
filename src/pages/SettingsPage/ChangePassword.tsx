@@ -103,15 +103,7 @@ function ChangePasswordComponent({
   };
 
   return (
-    <div
-      style={{
-        marginTop: '10px',
-        border: '1px solid #e8e8e8',
-        padding: '20px',
-        borderRadius: '5px',
-        backgroundColor: '#f9f9f9',
-      }}
-    >
+    <div className="mt-2 p-4 border border-gray-900 rounded-md">
       <div
         style={{
           display: 'flex',
@@ -124,7 +116,7 @@ function ChangePasswordComponent({
         </span>
         <Input
           mode="password"
-          autoComplete={'off'}
+          autoComplete={'current-password'}
           onChange={(e: string) => setOldPassword(e)}
         />
       </div>
@@ -138,7 +130,7 @@ function ChangePasswordComponent({
         <span className="font-bold w-[300px]">{localeData.NewPassword}</span>
         <Input
           mode="password"
-          autoComplete={'off'}
+          autoComplete={'new-password'}
           onChange={(e: string) => setNewPassword(e)}
         />
       </div>
@@ -148,13 +140,13 @@ function ChangePasswordComponent({
         </span>
         <Input
           mode="password"
-          autoComplete={'off'}
+          autoComplete={'new-password'}
           onChange={(e: string) => setCofirmNewPassword(e)}
         />
       </div>
-      <div className="font-bold w-[300px] ">
+      <div className="flex justify-end">
         <button
-          className="flex whitespace-nowrap border border-[#d1d9e0] mt-4 rounded-md px-4 py-1 bg-[#f6f8fa] hover:bg-[#f0f2f5]"
+          className="flex whitespace-nowrap border border-[#d1d9e0] mt-4 rounded-md px-8 py-1 bg-[#f6f8fa] hover:bg-[#f0f2f5]"
           onClick={() => changePassword(localeData)}
         >
           {localeData.ChangePassword}

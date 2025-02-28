@@ -142,7 +142,7 @@ function AccountSettingComponent({
             <div style={{ width: '300px' }}>
               <h5>{localeData?.AccountChangePassword}</h5>
             </div>
-            <span style={{ fontWeight: 200 }}>
+            <span>
               <a
                 style={{
                   cursor: 'pointer',

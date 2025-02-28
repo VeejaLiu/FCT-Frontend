@@ -133,7 +133,9 @@ export default {
 
     APISecretKey: 'API 秘钥',
     ClickToCopy: '点击复制你的API秘钥',
+    Copy: '复制',
     ClickToRefresh: '点击刷新你的API秘钥，这将会使你的旧秘钥失效',
+    Refresh: '刷新',
     CopySuccessMessage: '秘钥已复制到剪贴板',
     FailedToCopyMessage: '无法复制秘钥到剪贴板，请重试',
     DoNotShareSecretKey: '警告: 不要与任何人分享您的秘钥！',
