@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "engines": {
-    "node": "22.13.1",
-    "npm": "10.9.2",
-    "pnpm": "10.5.0"
+    "node": "^22.13.1",
+    "npm": "^10.9.2",
+    "pnpm": "^10.5.0"
   },
   "scripts": {
     "dev": "vite",
