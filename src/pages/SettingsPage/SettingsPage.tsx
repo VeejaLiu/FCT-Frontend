@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import {
-  Button,
-  LocaleConsumer,
-  Notification,
-  Space,
-  Switch,
-} from '@douyinfe/semi-ui';
+import { LocaleConsumer, Notification, Space, Switch } from '@douyinfe/semi-ui';
 import { UserApis } from '../../service/UserApis.ts';
 import ApiSecretKeyComponent from './ApiSecretKeyComponent.tsx';
 import AccountSettingComponent from './AccountSettingComponent.tsx';
