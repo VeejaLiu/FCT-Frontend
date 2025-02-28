@@ -4,8 +4,8 @@ import { getAvatarUrl, getColorByDiff } from '../common/player-helper.ts';
 import { Notification } from '@douyinfe/semi-ui';
 import { StarIcon } from '../common/icons.tsx';
 
-let reconnectInterval = 1000; // Initial reconnect interval
-const maxReconnectInterval = 30000; // Maximum reconnect interval
+let reconnectInterval = 1000; // Initial reconnect interval, 1 second
+const maxReconnectInterval = 10 * 1000; // Maximum reconnect interval, 10 seconds
 
 /**
  * Send notification when player overall rating updated

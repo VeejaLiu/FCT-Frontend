@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PlayerApis, PlayerOverall } from '../../service/PlayerApis.ts';
 import { getColorByPositionType } from '../../common/player-helper.ts';
 import { LoadingComponent } from '../../components/Other.tsx';
-import './PlayerPickerComponent.css';
-import { IconRefresh } from '@douyinfe/semi-icons';
-import { Button } from '@douyinfe/semi-ui';
+import { RefreshIcon } from '../../common/icons.tsx';
 
 interface PlayerPickerComponentProps {
   playerID: number;
@@ -37,58 +35,65 @@ const PlayerPickerComponent: React.FC<PlayerPickerComponentProps> = ({
   };
 
   return (
-    <div className="player-picker-container">
+    <div className="flex sticky top-0 z-20 items-center min-h-12">
       {isLoading ? (
         <LoadingComponent />
       ) : (
-        <>
-          {playerList
-            ?.sort((a: PlayerOverall, b: PlayerOverall) => {
-              const positionTypeMap = {
-                GK: 1,
-                DEF: 2,
-                MID: 3,
-                FOR: 4,
-              };
-              return (
-                positionTypeMap[a.positionType] -
-                  positionTypeMap[b.positionType] ||
-                a.position1.localeCompare(b.position1)
-              );
-            })
-            .map((player: any) => {
-              return (
-                <div
-                  className={`player-item ${
-                    player.playerID === playerID ? 'selected' : ''
-                  }`}
-                  key={player.playerID}
-                  onClick={() => handlePlayerSelect(player.playerID)}
-                >
-                  <span
-                    className="player-position"
-                    style={{
-                      color: getColorByPositionType(player.positionType),
-                    }}
+        <div className="flex items-center w-full h-full bg-white">
+          {/* Player list */}
+          <div className="flex p-1 flex-wrap flex-grow">
+            {playerList
+              ?.sort((a: PlayerOverall, b: PlayerOverall) => {
+                const positionTypeMap = {
+                  GK: 1,
+                  DEF: 2,
+                  MID: 3,
+                  FOR: 4,
+                };
+                return (
+                  positionTypeMap[a.positionType] -
+                    positionTypeMap[b.positionType] ||
+                  a.position1.localeCompare(b.position1)
+                );
+              })
+              .map((player: any) => {
+                return (
+                  <div
+                    className={`inline-block
+                     py-1 px-2 m-1
+                     bg-gray-200 hover:bg-[#aaef88]
+                     cursor-pointer whitespace-nowrap
+                     border rounded-full
+                     text-gray-500
+                     ${player.playerID === playerID && 'bg-[#aaef88] border border-black text-black'}
+                     `}
+                    key={player.playerID}
+                    onClick={() => handlePlayerSelect(player.playerID)}
                   >
-                    {player.position1}
-                  </span>
-                  <span>{player.playerName}</span>
-                </div>
-              );
-            })}
-          <Button
-            style={{
-              marginLeft: 'auto',
-              marginRight: '10px',
-            }}
+                    <span
+                      className="player-position font-bold mr-1"
+                      style={{
+                        color: getColorByPositionType(player.positionType),
+                      }}
+                    >
+                      {player.position1}
+                    </span>
+                    <span>{player.playerName}</span>
+                  </div>
+                );
+              })}
+          </div>
+          {/* Refresh button */}
+          <div
+            className="text-center items-center ml-auto mr-2 cursor-pointer text-green-900 p-2 rounded-full border hover:bg-gray-200"
+            title="Click to refresh player list"
             onClick={() => {
               getPlayerList().then();
             }}
           >
-            <IconRefresh style={{ color: 'black' }} />
-          </Button>
-        </>
+            <RefreshIcon classname="h-6 w-6" />
+          </div>
+        </div>
       )}
     </div>
   );

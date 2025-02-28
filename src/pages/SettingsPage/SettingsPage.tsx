@@ -51,8 +51,8 @@ function SettingsPage(): React.ReactElement {
         <Space
           vertical
           style={{
-            width: '50vw',
-            minWidth: '600px',
+            width: '60vw',
+            minWidth: '700px',
             padding: '20px',
           }}
           align={'start'}
@@ -159,8 +159,11 @@ function SettingsPage(): React.ReactElement {
           {/* Account Setting ---- END */}
 
           {/* Do logout ---- START */}
-          <h3 style={{ marginTop: '20px' }}>{localeData?.Logout}</h3>
-          <Button
+          <div className={'font-bold text-xl mt-6 mb-2'}>
+            {localeData?.Logout}
+          </div>
+          <button
+            className="flex whitespace-nowrap border border-[#d1d9e0] mt-1 rounded-md px-4 py-1 bg-[#f6f8fa] hover:bg-[#f0f2f5]"
             onClick={() => {
               UserApis.doLogout().then((result) => {
                 if (result) {
@@ -182,7 +185,7 @@ function SettingsPage(): React.ReactElement {
             }}
           >
             {localeData?.ClickToLogout}
-          </Button>
+          </button>
           {/* Do logout ---- END */}
         </Space>
       )}

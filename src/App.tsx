@@ -70,25 +70,18 @@ function WebsiteLogoComponent() {
   return (
     <LocaleConsumer componentName={'WebsiteLogoComponent'}>
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
-        <Space
-          style={{
-            padding: '1rem',
-            backgroundColor: '#151616',
-            color: '#FFFFFF',
-          }}
-        >
-          <p>{getLogoByVersion(defaultGameVersion)}</p>
-          <p
+        <Space className="p-4 bg-[#151616] text-white">
+          <div>{getLogoByVersion(defaultGameVersion)}</div>
+          <div
             style={{
-              fontSize: '1.7rem',
+              fontSize: '2rem',
               fontWeight: 'bold',
               fontStyle: 'italic',
               fontFamily: 'Bebas Neue, Arial, sans-serif',
             }}
           >
             {localeData.title}
-          </p>
-
+          </div>
           <Dropdown
             trigger={'click'}
             position={'bottom'}
@@ -98,48 +91,30 @@ function WebsiteLogoComponent() {
                   {localeData.switchVersion}
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item
-                  onClick={async () => {
-                    // console.log('Switch to FC 24');
-                    removeDefaultGameVersion();
-                    await UserApis.updateUserSetting({
-                      category: 'default_game_version',
-                      value: 24,
-                    });
-                    // Refresh the page to apply the new version
-                    window.location.reload();
-                  }}
-                >
-                  FC 24
-                  <span>
-                    <b>
-                      {defaultGameVersion === 24
-                        ? ` (${localeData.current})`
-                        : ''}
-                    </b>
-                  </span>
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={async () => {
-                    // console.log('FC 25');
-                    removeDefaultGameVersion();
-                    await UserApis.updateUserSetting({
-                      category: 'default_game_version',
-                      value: 25,
-                    });
-                    // Refresh the page to apply the new version
-                    window.location.reload();
-                  }}
-                >
-                  FC 25
-                  <span>
-                    <b>
-                      {defaultGameVersion === 25
-                        ? ` (${localeData.current})`
-                        : ''}
-                    </b>
-                  </span>
-                </Dropdown.Item>
+                {[
+                  { name: 'FC 24', version: 24 },
+                  { name: 'FC 25', version: 25 },
+                ].map((value, index) => (
+                  <Dropdown.Item
+                    key={index}
+                    onClick={async () => {
+                      removeDefaultGameVersion();
+                      await UserApis.updateUserSetting({
+                        category: 'default_game_version',
+                        value: value.version,
+                      });
+                      window.location.reload();
+                    }}
+                  >
+                    <div className="hover:bg-gray-200">
+                      {value.name}
+                      <span className="font-bold ml-2">
+                        {defaultGameVersion === value.version &&
+                          `(${localeData.current})`}
+                      </span>
+                    </div>
+                  </Dropdown.Item>
+                ))}
               </Dropdown.Menu>
             }
           >

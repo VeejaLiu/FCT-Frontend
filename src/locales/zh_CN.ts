@@ -145,8 +145,18 @@ export default {
     PlayerWeakFootUpdate: '球员 逆足 能力更新',
 
     AccountInfo: '账户信息',
+    AccountUnverifiedWarningBanner:
+      '您的电子邮件地址尚未验证。请点击下方按钮验证您的电子邮件地址，以便我们确认您的身份。',
     AccountUsername: '用户名',
     AccountEmail: '邮箱',
+    AccountEmailVerified: '已验证',
+    AccountEmailUnverified: '未验证',
+    AccountEmailUnverifiedTooltip:
+      '邮箱未验证，点击发送验证邮件。我们将发送一封验证邮件，其中包含验证您电子邮件地址的链接。',
+    AccountEmailSendTooFrequently: '邮件发送太频繁，请等待 {waitSeconds} 秒',
+    AccountEmailSendToast: '验证邮件已发送，请检查您的邮箱。',
+    AccountChangeEmail: '修改',
+
     AccountChangePassword: '修改密码',
     AccountClickToChange: '点击修改',
 
@@ -155,8 +165,45 @@ export default {
     ConfirmNewPassword: '确认新密码',
     ChangePassword: '保存',
 
+    ChangePasswordNotification: {
+      ErrorTitle: '错误',
+      INVALID_PASSWORD: '请填写所有字段',
+      PASSWORD_MISMATCH: '新密码与确认密码不匹配',
+      INCORRECT_OLD_PASSWORD: '旧密码不正确',
+      USER_NOT_FOUND: '用户不存在',
+
+      PASSWORD_SAME_AS_OLD: '新密码与旧密码相同，请尝试另一个密码。',
+
+      SUCCESS: '成功',
+      SUCCESS_MESSAGE: '密码修改成功',
+
+      UnknownErrorTitle: '未知错误',
+      UnknownErrorDescription:
+        '修改密码失败，请重试。如果问题仍然存在，请联系我们。',
+    },
+
     Logout: '登出',
     ClickToLogout: '点击登出',
+
+    NewEmailInputPlaceholder: '输入你的新邮箱地址',
+    ChangeEmail: '修改邮箱',
+    NeedVerifyEmail: '在更新完你的邮箱之后，你需要重新验证你的邮箱地址。',
+    ChangeEmailNotification: {
+      ErrorTitle: '错误',
+      INVALID_EMAIL: '请输入有效的电子邮件地址。',
+
+      SUCCESS: '成功',
+      SUCCESS_MESSAGE: '邮箱地址已成功更改, 请验证您的邮箱。',
+
+      EMAIL_DUPLICATE:
+        '新邮箱地址已被使用, 请重新输入。如果这个邮箱地址是您的，请联系我们。',
+
+      EMAIL_SAME_AS_OLD: '新邮箱地址与旧邮箱地址相同, 请重新输入。',
+
+      UnknownErrorTitle: '未知错误',
+      UnknownErrorDescription:
+        '更改邮箱失败，请重试。如果问题仍然存在，请联系我们。',
+    },
   },
   GetStartedPage: {
     GET_STARTED_TEXT: `

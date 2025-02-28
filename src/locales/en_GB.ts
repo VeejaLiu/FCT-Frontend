@@ -74,7 +74,7 @@ export default {
     BasicInfo: {
       PlayerID: 'ID',
       Age: 'Age',
-      Skills: 'Skills',
+      Skills: 'Skill moves',
       WeakFoot: 'Weak Foot',
       Foot: 'Foot',
       Height: 'Height',
@@ -154,18 +154,68 @@ export default {
     PlayerWeakFootUpdate: 'Player Weak Foot Update',
 
     AccountInfo: 'Account Info',
+    AccountUnverifiedWarningBanner:
+      'Your email address is not verified. Please click the button below to verify your email address so we can confirm your identity.',
     AccountUsername: 'Username',
     AccountEmail: 'Email',
+    AccountEmailVerified: 'Verified',
+    AccountEmailUnverified: 'Unverified',
+    AccountEmailUnverifiedTooltip:
+      'Email is not verified, Click to send an email. We will send you a verification email including a link to verify your email address.',
+    AccountEmailSendTooFrequently:
+      'Email sent too frequently, please wait {waitSeconds} seconds',
+    AccountEmailSendToast: 'Verification email sent, please check your email.',
+    AccountChangeEmail: 'Change',
+
     AccountChangePassword: 'Change Password',
     AccountClickToChange: 'Click to change',
 
     OldPassword: 'Old Password',
     NewPassword: 'New Password',
     ConfirmNewPassword: 'Confirm New Password',
+    ChangePassword: 'Save',
+    ChangePasswordNotification: {
+      ErrorTitle: 'Error',
+      INVALID_PASSWORD: 'Please fill in all fields',
+      PASSWORD_MISMATCH: 'New password and confirm password do not match',
+      INCORRECT_OLD_PASSWORD: 'The old password is incorrect',
+      USER_NOT_FOUND: 'User not found',
+
+      PASSWORD_SAME_AS_OLD:
+        'The new password is the same as the old one. Please try another one.',
+
+      SUCCESS: 'Success',
+      SUCCESS_MESSAGE: 'Password changed successfully',
+
+      UnknownErrorTitle: 'Unknown Error',
+      UnknownErrorDescription:
+        'Failed to change password. Please try again. If the problem persists, please contact us.',
+    },
 
     Logout: 'Logout',
     ClickToLogout: 'Click here to logout',
-    ChangePassword: 'Save',
+
+    NewEmailInputPlaceholder: 'Enter your new email',
+    ChangeEmail: 'Change Email',
+    NeedVerifyEmail:
+      'You need to verify your new email address after changing it.',
+    ChangeEmailNotification: {
+      ErrorTitle: 'Error',
+      INVALID_EMAIL: 'Please enter a valid email address.',
+
+      SUCCESS: 'Success',
+      SUCCESS_MESSAGE: 'Email changed successfully. Please verify your email.',
+
+      EMAIL_DUPLICATE:
+        'The new email address is already in use. Please try another one. If the email belongs to you, please contact us.',
+
+      EMAIL_SAME_AS_OLD:
+        'The new email address is the same as the old one. Please try another one.',
+
+      UnknownErrorTitle: 'Unknown Error',
+      UnknownErrorDescription:
+        'Failed to change email. Please try again. If the problem persists, please contact us.',
+    },
   },
 
   GetStartedPage: {
