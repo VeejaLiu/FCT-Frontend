@@ -141,9 +141,11 @@ function PlayerTrendsPage(): React.ReactElement {
             return null;
           }
           return (
-            <div style={{ padding: '10px' }}>
-              <h2 style={{ color: item.color }}>{item.text}</h2>
-              <Space wrap align={'start'}>
+            <div className="p-2">
+              <span className="text-xl font-bold" style={{ color: item.color }}>
+                {item.text}
+              </span>
+              <Space className={'mt-2'} wrap align={'start'}>
                 {thisPositionPlayers.map((player) => {
                   return (
                     <Space
