@@ -101,12 +101,7 @@ function PlayerTrendsPage(): React.ReactElement {
   }, []);
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-      }}
-    >
+    <div className="w-full px-2 h-full">
       {isLoading ? (
         <LoadingComponent />
       ) : data.length === 0 ? (
@@ -149,6 +144,7 @@ function PlayerTrendsPage(): React.ReactElement {
                 {thisPositionPlayers.map((player) => {
                   return (
                     <Space
+                      className={''}
                       key={player.playerID}
                       style={{
                         borderRadius: '3px',
