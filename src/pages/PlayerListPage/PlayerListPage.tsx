@@ -45,7 +45,7 @@ const PlayerListColumn = (
     render: (text: string, record: PlayerOverall, index: number) => {
       return (
         <div className="flex items-center">
-          <div className={'w-12 h-12 mr-2'}>
+          <div className={'w-12 h-12 mr-2 flex-shrink-0'}>
             <img
               className={'w-12 h-12'}
               src={record.imageUrl}
@@ -59,7 +59,7 @@ const PlayerListColumn = (
             />
           </div>
           <div
-            className="cursor-pointer hover:underline"
+            className="cursor-pointer hover:underline min-w-0"
             onClick={() => {
               navigate(`/players-detail?id=${record.playerID}`);
             }}
