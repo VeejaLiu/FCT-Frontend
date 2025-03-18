@@ -1,15 +1,12 @@
 import { IconGithubLogo, IconMailStroked1 } from '@douyinfe/semi-icons';
-import { Typography } from '@douyinfe/semi-ui';
-import styles from './ContactUsComponent.module.css';
-
-const { Text } = Typography;
+import { IconDiscord, IconTecentQQ } from '../../common/icons.tsx';
 
 const contactLinks = [
   {
     label: 'Discord',
     href: 'https://discord.gg/aKfWAtbJ8F',
     text: 'https://discord.gg/aKfWAtbJ8F',
-    icon: null,
+    icon: <IconDiscord classname="text-black" />,
   },
   {
     label: 'GitHub',
@@ -20,28 +17,39 @@ const contactLinks = [
   {
     label: 'Email',
     href: 'mailto:support@fccareer.top',
-    text: 'support@fccareer.com',
+    text: 'support@fccareer.top',
     icon: <IconMailStroked1 />,
+  },
+  {
+    label: 'QQ',
+    href: null,
+    text: '974553280',
+    icon: <IconTecentQQ />,
   },
 ];
 
 export function ContactUsComponent() {
   return (
-    <div className={styles.contactContainer}>
+    <div className="mt-12 flex flex-col gap-3">
       {contactLinks.map((link, index) => (
-        <div key={index} className={styles.contactItem}>
-          <span className={styles.contactLabel}>{link.label}</span>
-          <Text
-            icon={link.icon}
-            link={{
-              href: link.href,
-              target: '_blank',
-            }}
-            underline={true}
-            className={styles.contactLink}
-          >
-            {link.text}
-          </Text>
+        <div key={index} className="flex items-center gap-2">
+          <span className="font-bold min-w-20 inline-block mr-2.5">
+            {link.label}
+          </span>
+          <div className="flex items-center gap-2">
+            {link.icon && (
+              <span className="w-6 h-6 flex items-center justify-center">
+                {link.icon}
+              </span>
+            )}
+            {link.href ? (
+              <a href={link.href} target="_blank" rel="noopener noreferrer">
+                {link.text}
+              </a>
+            ) : (
+              <span>{link.text}</span>
+            )}
+          </div>
         </div>
       ))}
     </div>
