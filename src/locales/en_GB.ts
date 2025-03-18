@@ -1,5 +1,6 @@
 export default {
   LoginComponent: {
+    VideoTutorial: 'How to use this app? Learn more through the video!',
     welcome: 'Welcome to back',
     usernameEmail: 'Username / Email',
     usernameEmailPlaceholder: 'your username or email',

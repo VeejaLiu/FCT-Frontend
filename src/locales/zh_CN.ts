@@ -1,5 +1,6 @@
 export default {
   LoginComponent: {
+    VideoTutorial: '如何使用这个应用?通过视频了解更多！',
     welcome: '欢迎回来',
     usernameEmail: '用户名 / 邮箱',
     usernameEmailPlaceholder: '您的用户名或邮箱',
