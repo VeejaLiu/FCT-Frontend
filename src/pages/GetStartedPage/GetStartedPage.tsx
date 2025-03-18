@@ -163,6 +163,23 @@ function SettingsPage(): React.ReactElement {
               }
             />
           </Steps>
+
+          <div className={'mt-20'}>
+            <h1 className={'text-3xl font-bold mb-3'}>
+              {localeData?.VIDEO_TUTORIAL_TITLE}
+            </h1>
+            <h1 className={'mb-3'}>{localeData?.VIDEO_TUTORIAL_DESCRIPTION}</h1>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/MELZu08Gzfw?si=46TTH44UdnOceDqj&amp;start=402"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
         </Space>
       )}
     </LocaleConsumer>
