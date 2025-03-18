@@ -86,8 +86,8 @@ const PlayerListColumn = (
     title: localeData.position,
     dataIndex: 'position1',
     defaultSortOrder: 'ascend',
-    // 按照 positionType 排序, 优先级: GK > DEF > MID > FOR
-    // 其次按照 position1 排序， 按字典序
+    // Sort by positionType first, GK > DEF > MID > FOR
+    // then by position1, in dictionary order
     sorter: (a: PlayerOverall, b: PlayerOverall) => {
       const positionTypeMap = {
         GK: 1,
@@ -329,8 +329,8 @@ function PlayerListPage(): React.ReactElement {
                 navigate,
                 searchValue,
                 setSearchValue,
-              )} // 传递 searchValue 和 setSearchValue
-              dataSource={filteredData} // 使用过滤后的数据
+              )}
+              dataSource={filteredData}
               pagination={false}
               size="small"
             />
