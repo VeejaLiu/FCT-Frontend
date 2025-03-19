@@ -106,7 +106,7 @@ function WebsiteLogoComponent() {
                       window.location.reload();
                     }}
                   >
-                    <div className="hover:bg-gray-200">
+                    <div>
                       {value.name}
                       <span className="font-bold ml-2">
                         {defaultGameVersion === value.version &&
@@ -118,10 +118,13 @@ function WebsiteLogoComponent() {
               </Dropdown.Menu>
             }
           >
-            <IconBranch
-              size={'extra-large'}
-              style={{ cursor: 'pointer', color: '#94f17a' }}
-            />
+            <div className="flex items-center cursor-pointer bg-gray-600 hover:bg-gray-500 rounded-full px-4 py-1 transition duration-300 ease-in-out transform hover:scale-105">
+              <IconBranch
+                size={'large'}
+                style={{ cursor: 'pointer', color: '#94f17a' }}
+              />
+              <span className="ml-2 font-bold">{localeData.switchVersion}</span>
+            </div>
           </Dropdown>
         </Space>
       )}
