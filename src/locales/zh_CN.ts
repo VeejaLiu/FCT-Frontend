@@ -51,9 +51,9 @@ export default {
     Logout: '退出登录',
   },
   NoDataComponent: {
-    prefix: '这里没有数据。请转到',
-    getStartedPage: '快速开始页面',
-    suffix: ', 开始您的旅程！',
+    prefix: '暂无数据哦。请前往',
+    getStartedPage: '快速开始',
+    suffix: '开启您的精彩旅程',
   },
   PlayerListTable: {
     name: '名字',

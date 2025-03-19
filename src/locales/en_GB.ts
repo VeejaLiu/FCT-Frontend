@@ -53,9 +53,9 @@ export default {
     Logout: 'Sign out',
   },
   NoDataComponent: {
-    prefix: 'No data here. Please go to the',
-    getStartedPage: 'Get Started Page',
-    suffix: 'to start your journey!',
+    prefix: 'Nothing to display yet. Visit our',
+    getStartedPage: 'Get Started',
+    suffix: 'to begin your journey.',
   },
   PlayerListTable: {
     name: 'Name',

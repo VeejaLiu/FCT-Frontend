@@ -1,6 +1,5 @@
-import { LocaleConsumer, Spin, Typography } from '@douyinfe/semi-ui';
-
-const { Text } = Typography;
+import { LocaleConsumer, Spin } from '@douyinfe/semi-ui';
+import { IconEmpty } from '@douyinfe/semi-icons-lab';
 
 /**
  * No data component
@@ -9,28 +8,24 @@ const { Text } = Typography;
  */
 export function NoDataComponent() {
   return (
-    <LocaleConsumer componentName={'NoDataComponent'}>
+    <LocaleConsumer componentName="NoDataComponent">
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%',
-            width: '100%',
-          }}
-        >
-          {localeData.prefix}
-          <Text
-            link={{ href: '/get-started' }}
-            style={{
-              padding: '5px',
-            }}
-            underline
-          >
-            {localeData.getStartedPage}
-          </Text>
-          {localeData.suffix}
+        <div className="flex items-center justify-center w-full h-full text-gray-500">
+          <div className="items-center justify-center flex flex-col">
+            <IconEmpty className="mb-2" size={'extra-large'} />
+            <div className="mt-2">
+              {localeData.prefix}
+              <span className="mx-0.5">
+                <a
+                  className="text-blue-500 hover:text-blue-700 hover:underline"
+                  href="/get-started"
+                >
+                  {localeData.getStartedPage}
+                </a>
+              </span>
+              {localeData.suffix}
+            </div>
+          </div>
         </div>
       )}
     </LocaleConsumer>
@@ -39,15 +34,7 @@ export function NoDataComponent() {
 
 export function LoadingComponent() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%',
-      }}
-    >
+    <div className="flex items-center justify-center w-full h-full">
       <Spin size="large" />
     </div>
   );
