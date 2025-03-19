@@ -105,7 +105,7 @@ const PlayerListColumn = (
       const color = getColorByPositionType(record.positionType);
       return (
         <div className="h-full w-full">
-          <div style={{ color }} className="text-2xl font-bold">
+          <div style={{ color }} className="text-2xl">
             {record.position1}
           </div>
           <div>
@@ -134,25 +134,31 @@ const PlayerListColumn = (
       const weakFoot = record?.weakFootAbilityTypeCode || 0;
       return (
         <div>
-          <div className={'flex items-center'}>
+          <div
+            className={'flex items-center'}
+            title={localeData.SkillMovesTooltip}
+          >
             <span
               className={`font-bold w-3 text-xl text-right text-yellow-400`}
             >
               {skillMoves}
             </span>
             <StarIcon classname={'text-yellow-400 h-6'} />
-            <span className={'text-gray-400  text-sm'}>
+            <span className={'text-gray-400 text-sm ml-1'}>
               {localeData.SkillMoves}
             </span>
           </div>
-          <div className={'flex items-center'}>
+          <div
+            className={'flex items-center'}
+            title={localeData.WeakFootTooltip}
+          >
             <span
               className={`font-bold w-3 text-xl text-right text-yellow-400`}
             >
               {weakFoot}
             </span>
             <StarIcon classname="text-yellow-400 h-6" />
-            <span className={'text-gray-400 text-sm'}>
+            <span className={'text-gray-400 text-sm ml-1'}>
               {localeData.WeakFoot}
             </span>
           </div>

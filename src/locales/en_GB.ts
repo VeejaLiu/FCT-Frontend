@@ -63,8 +63,10 @@ export default {
     position: 'Pos',
     overall: 'Ovr',
     SkillMovesAndWeakFoot: 'SM / WF',
-    SkillMoves: 'Skill moves',
-    WeakFoot: 'Weak foot',
+    SkillMoves: 'SM',
+    SkillMovesTooltip: 'Skill Moves',
+    WeakFoot: 'WF',
+    WeakFootTooltip: 'Weak Foot',
     potential: 'Pot',
     overallRankingTips:
       'The player ranks {ranking} in overall for his position({position}).',
