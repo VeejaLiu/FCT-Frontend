@@ -14,6 +14,7 @@ import { luaScript_FC24 } from '../../constant/user-script.ts';
 import { luaScript_FC25 } from '../../constant/user-script.ts';
 import { getDefaultGameVersion } from '../../common/common.ts';
 import { IconCopy } from '@douyinfe/semi-icons';
+import { useNavigate } from 'react-router-dom';
 
 const PostPlayerURL =
   import.meta.env.VITE_POST_PLAYER_URL || 'http://localhost:8888';
@@ -21,6 +22,7 @@ const PostPlayerURL =
 function SettingsPage(): React.ReactElement {
   const [codeStr, setCodeStr] = React.useState(luaScript_FC24);
   const [isSecretLoading, setIsSecretLoading] = React.useState(true);
+  const navigate = useNavigate();
 
   async function getLuaCode() {
     const key = await UserApis.getSecretKey();
@@ -70,12 +72,18 @@ function SettingsPage(): React.ReactElement {
           <Banner
             className="w-full mb-4"
             type="danger"
+            closeIcon={null}
             description={
               <div>
                 {localeData.EMAIL_UNVERIFIED.Prefix}{' '}
-                <a className={'hover:underline'}>
-                  {localeData.EMAIL_UNVERIFIED.SettingsPage}{' '}
-                </a>
+                <a
+                  className={'hover:underline'}
+                  onClick={() => {
+                    navigate(`/settings`);
+                  }}
+                >
+                  {localeData.EMAIL_UNVERIFIED.SettingsPage}
+                </a>{' '}
                 {localeData.EMAIL_UNVERIFIED.Suffix}
               </div>
             }
