@@ -67,6 +67,20 @@ function SettingsPage(): React.ReactElement {
     <LocaleConsumer componentName={'GetStartedPage'}>
       {(localeData: any, localeCode: string, dateFnsLocale: any) => (
         <Space className={'p-6'} vertical align={'start'}>
+          <Banner
+            className="w-full mb-4"
+            type="danger"
+            description={
+              <div>
+                {localeData.EMAIL_UNVERIFIED.Prefix}{' '}
+                <a className={'hover:underline'}>
+                  {localeData.EMAIL_UNVERIFIED.SettingsPage}{' '}
+                </a>
+                {localeData.EMAIL_UNVERIFIED.Suffix}
+              </div>
+            }
+          />
+
           <h1 className={'text-3xl font-bold mb-3'}>{localeData?.Title}</h1>
 
           <Steps direction="vertical" type="basic" current={3}>

@@ -224,6 +224,12 @@ export default {
   },
 
   GetStartedPage: {
+    EMAIL_UNVERIFIED: {
+      Prefix: 'You have not verified your email address. Please go to',
+      SettingsPage: 'Settings Page',
+      Suffix: 'to verify your email address first.',
+    },
+
     Title: 'Quick Start',
     STEP_1: {
       Title: '1. Open the FC24/FC25 with Live Editor.',
