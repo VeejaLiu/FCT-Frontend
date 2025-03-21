@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import {
-  Button,
-  LocaleConsumer,
-  Notification,
-  Space,
-  Switch,
-} from '@douyinfe/semi-ui';
+import { LocaleConsumer, Notification, Space, Switch } from '@douyinfe/semi-ui';
 import { UserApis } from '../../service/UserApis.ts';
 import ApiSecretKeyComponent from './ApiSecretKeyComponent.tsx';
 import AccountSettingComponent from './AccountSettingComponent.tsx';
@@ -51,8 +45,8 @@ function SettingsPage(): React.ReactElement {
         <Space
           vertical
           style={{
-            width: '50vw',
-            minWidth: '600px',
+            width: '60vw',
+            minWidth: '700px',
             padding: '20px',
           }}
           align={'start'}
@@ -66,7 +60,7 @@ function SettingsPage(): React.ReactElement {
             <div className="font-bold mb-2">{localeData?.Notifications}</div>
 
             {/* Enable Notifications */}
-            <div className="flex items-center m-1">
+            <div className="flex items-center mt-3 p-1 hover:bg-[#f0f2f5]">
               <div className="w-[300px]">{localeData?.EnableNotifications}</div>
               <Switch
                 checked={userSetting?.enableNotification}
@@ -85,7 +79,7 @@ function SettingsPage(): React.ReactElement {
             {/* Notification Itemss */}
 
             {/* Overall Rating and Potential */}
-            <div className="flex items-center m-1">
+            <div className="flex items-center p-1 hover:bg-[#f0f2f5]">
               <div className="w-[300px]">
                 {localeData?.PlayerOverallPotentialUpdate}
               </div>
@@ -108,7 +102,7 @@ function SettingsPage(): React.ReactElement {
             </div>
 
             {/* Skill Move */}
-            <div className="flex items-center m-1">
+            <div className="flex items-center p-1 hover:bg-[#f0f2f5]">
               <div className="w-[300px]">
                 {localeData?.PlayerSkillMoveUpdate}
               </div>
@@ -131,7 +125,7 @@ function SettingsPage(): React.ReactElement {
             </div>
 
             {/* Weak Foot */}
-            <div className="flex items-center m-1">
+            <div className="flex items-center p-1 hover:bg-[#f0f2f5]">
               <div className="w-[300px]">
                 {localeData?.PlayerWeakFootUpdate}
               </div>
@@ -159,8 +153,11 @@ function SettingsPage(): React.ReactElement {
           {/* Account Setting ---- END */}
 
           {/* Do logout ---- START */}
-          <h3 style={{ marginTop: '20px' }}>{localeData?.Logout}</h3>
-          <Button
+          <div className={'font-bold text-xl mt-6 mb-2'}>
+            {localeData?.Logout}
+          </div>
+          <button
+            className="flex whitespace-nowrap border border-[#d1d9e0] mt-1 rounded-md px-4 py-1 bg-[#f6f8fa] hover:bg-[#f0f2f5]"
             onClick={() => {
               UserApis.doLogout().then((result) => {
                 if (result) {
@@ -182,7 +179,7 @@ function SettingsPage(): React.ReactElement {
             }}
           >
             {localeData?.ClickToLogout}
-          </Button>
+          </button>
           {/* Do logout ---- END */}
         </Space>
       )}

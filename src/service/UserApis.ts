@@ -310,6 +310,8 @@ export class UserApis {
     userID: string;
     username: string;
     email: string;
+    isEmailVerified: boolean;
+    lastSendEmailTime: number;
   } | null> {
     try {
       const token = getToken();
@@ -332,6 +334,33 @@ export class UserApis {
     } catch (e) {
       console.log(e);
       return null;
+    }
+  }
+
+  static async sendVerificationEmail() {
+    try {
+      const token = getToken();
+      // console.log(`[getPlayerList] token: ${token}`);
+      const response = await axios.post(
+        `${BACKEND_URL}/api/v1/user/email/verify`,
+        {},
+        {
+          headers: {
+            Accept: '*/*',
+            token: token,
+          },
+        },
+      );
+      console.log(
+        `[sendVerificationEmail] response: ${JSON.stringify(response)}`,
+      );
+      return response.data;
+    } catch (e) {
+      console.log(`[sendVerificationEmail] error: ${e}`);
+      return {
+        success: false,
+        message: 'Failed to send verification email',
+      };
     }
   }
 
@@ -368,6 +397,36 @@ export class UserApis {
       return {
         success: false,
         message: 'Failed to change password',
+      };
+    }
+  }
+
+  /**
+   * Change email
+   *
+   * @param newEmail new email
+   */
+  static async changeEmail({ newEmail }: { newEmail: string }) {
+    try {
+      const token = getToken();
+      // console.log(`[getPlayerList] token: ${token}`);
+      const response = await axios.post(
+        `${BACKEND_URL}/api/v1/user/email/change`,
+        { newEmail: newEmail },
+        {
+          headers: {
+            Accept: '*/*',
+            token: token,
+          },
+        },
+      );
+      console.log(`[changeEmail] response: ${JSON.stringify(response)}`);
+      return response.data;
+    } catch (e) {
+      console.log(`[changeEmail] error: ${e}`);
+      return {
+        success: false,
+        message: 'Failed to change email',
       };
     }
   }

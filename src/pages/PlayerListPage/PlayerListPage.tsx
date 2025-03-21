@@ -45,7 +45,7 @@ const PlayerListColumn = (
     render: (text: string, record: PlayerOverall, index: number) => {
       return (
         <div className="flex items-center">
-          <div className={'w-12 h-12 mr-2'}>
+          <div className={'w-12 h-12 mr-2 flex-shrink-0'}>
             <img
               className={'w-12 h-12'}
               src={record.imageUrl}
@@ -59,7 +59,7 @@ const PlayerListColumn = (
             />
           </div>
           <div
-            className="cursor-pointer hover:underline"
+            className="cursor-pointer hover:underline min-w-0"
             onClick={() => {
               navigate(`/players-detail?id=${record.playerID}`);
             }}
@@ -86,8 +86,8 @@ const PlayerListColumn = (
     title: localeData.position,
     dataIndex: 'position1',
     defaultSortOrder: 'ascend',
-    // 按照 positionType 排序, 优先级: GK > DEF > MID > FOR
-    // 其次按照 position1 排序， 按字典序
+    // Sort by positionType first, GK > DEF > MID > FOR
+    // then by position1, in dictionary order
     sorter: (a: PlayerOverall, b: PlayerOverall) => {
       const positionTypeMap = {
         GK: 1,
@@ -105,7 +105,7 @@ const PlayerListColumn = (
       const color = getColorByPositionType(record.positionType);
       return (
         <div className="h-full w-full">
-          <div style={{ color }} className="text-2xl font-bold">
+          <div style={{ color }} className="text-2xl">
             {record.position1}
           </div>
           <div>
@@ -134,25 +134,31 @@ const PlayerListColumn = (
       const weakFoot = record?.weakFootAbilityTypeCode || 0;
       return (
         <div>
-          <div className={'flex items-center'}>
+          <div
+            className={'flex items-center'}
+            title={localeData.SkillMovesTooltip}
+          >
             <span
               className={`font-bold w-3 text-xl text-right text-yellow-400`}
             >
               {skillMoves}
             </span>
             <StarIcon classname={'text-yellow-400 h-6'} />
-            <span className={'text-gray-400  text-sm'}>
+            <span className={'text-gray-400 text-sm ml-1'}>
               {localeData.SkillMoves}
             </span>
           </div>
-          <div className={'flex items-center'}>
+          <div
+            className={'flex items-center'}
+            title={localeData.WeakFootTooltip}
+          >
             <span
               className={`font-bold w-3 text-xl text-right text-yellow-400`}
             >
               {weakFoot}
             </span>
             <StarIcon classname="text-yellow-400 h-6" />
-            <span className={'text-gray-400 text-sm'}>
+            <span className={'text-gray-400 text-sm ml-1'}>
               {localeData.WeakFoot}
             </span>
           </div>
@@ -329,8 +335,8 @@ function PlayerListPage(): React.ReactElement {
                 navigate,
                 searchValue,
                 setSearchValue,
-              )} // 传递 searchValue 和 setSearchValue
-              dataSource={filteredData} // 使用过滤后的数据
+              )}
+              dataSource={filteredData}
               pagination={false}
               size="small"
             />

@@ -1,5 +1,6 @@
 export default {
   LoginComponent: {
+    VideoTutorial: '如何使用这个应用?通过视频了解更多！',
     welcome: '欢迎回来',
     usernameEmail: '用户名 / 邮箱',
     usernameEmailPlaceholder: '您的用户名或邮箱',
@@ -50,9 +51,9 @@ export default {
     Logout: '退出登录',
   },
   NoDataComponent: {
-    prefix: '这里没有数据。请转到',
-    getStartedPage: '快速开始页面',
-    suffix: ', 开始您的旅程！',
+    prefix: '暂无数据哦。请前往',
+    getStartedPage: '快速开始',
+    suffix: '开启您的精彩旅程',
   },
   PlayerListTable: {
     name: '名字',
@@ -60,7 +61,9 @@ export default {
     position: '位置',
     SkillMovesAndWeakFoot: '花式/逆足',
     SkillMoves: '花式',
+    SkillMovesTooltip: '花式能力 SM',
     WeakFoot: '逆足',
+    WeakFootTooltip: '逆足能力 WF',
     overall: '总评',
     potential: '潜力',
     overallRankingTips: '该球员在同位置({position})的总评排名为第 {ranking}。',
@@ -133,7 +136,9 @@ export default {
 
     APISecretKey: 'API 秘钥',
     ClickToCopy: '点击复制你的API秘钥',
+    Copy: '复制',
     ClickToRefresh: '点击刷新你的API秘钥，这将会使你的旧秘钥失效',
+    Refresh: '刷新',
     CopySuccessMessage: '秘钥已复制到剪贴板',
     FailedToCopyMessage: '无法复制秘钥到剪贴板，请重试',
     DoNotShareSecretKey: '警告: 不要与任何人分享您的秘钥！',
@@ -145,8 +150,18 @@ export default {
     PlayerWeakFootUpdate: '球员 逆足 能力更新',
 
     AccountInfo: '账户信息',
+    AccountUnverifiedWarningBanner:
+      '您的电子邮件地址尚未验证。请点击下方按钮验证您的电子邮件地址，以便我们确认您的身份。',
     AccountUsername: '用户名',
     AccountEmail: '邮箱',
+    AccountEmailVerified: '已验证',
+    AccountEmailUnverified: '未验证',
+    AccountEmailUnverifiedTooltip:
+      '邮箱未验证，点击发送验证邮件。我们将发送一封验证邮件，其中包含验证您电子邮件地址的链接。',
+    AccountEmailSendTooFrequently: '邮件发送太频繁，请等待 {waitSeconds} 秒',
+    AccountEmailSendToast: '验证邮件已发送，请检查您的邮箱。',
+    AccountChangeEmail: '修改',
+
     AccountChangePassword: '修改密码',
     AccountClickToChange: '点击修改',
 
@@ -155,10 +170,66 @@ export default {
     ConfirmNewPassword: '确认新密码',
     ChangePassword: '保存',
 
+    ChangePasswordNotification: {
+      ErrorTitle: '错误',
+      INVALID_PASSWORD: '请填写所有字段',
+      PASSWORD_MISMATCH: '新密码与确认密码不匹配',
+      INCORRECT_OLD_PASSWORD: '旧密码不正确',
+      USER_NOT_FOUND: '用户不存在',
+
+      PASSWORD_SAME_AS_OLD: '新密码与旧密码相同，请尝试另一个密码。',
+
+      SUCCESS: '成功',
+      SUCCESS_MESSAGE: '密码修改成功',
+
+      UnknownErrorTitle: '未知错误',
+      UnknownErrorDescription:
+        '修改密码失败，请重试。如果问题仍然存在，请联系我们。',
+    },
+
     Logout: '登出',
     ClickToLogout: '点击登出',
+
+    NewEmailInputPlaceholder: '输入你的新邮箱地址',
+    ChangeEmail: '修改邮箱',
+    NeedVerifyEmail: '在更新完你的邮箱之后，你需要重新验证你的邮箱地址。',
+    ChangeEmailNotification: {
+      ErrorTitle: '错误',
+      INVALID_EMAIL: '请输入有效的电子邮件地址。',
+
+      SUCCESS: '成功',
+      SUCCESS_MESSAGE: '邮箱地址已成功更改, 请验证您的邮箱。',
+
+      EMAIL_DUPLICATE:
+        '新邮箱地址已被使用, 请重新输入。如果这个邮箱地址是您的，请联系我们。',
+
+      EMAIL_SAME_AS_OLD: '新邮箱地址与旧邮箱地址相同, 请重新输入。',
+
+      UnknownErrorTitle: '未知错误',
+      UnknownErrorDescription:
+        '更改邮箱失败，请重试。如果问题仍然存在，请联系我们。',
+    },
   },
   GetStartedPage: {
+    Title: '快速开始',
+    STEP_1: {
+      Title: '1. 使用 Live Editor 打开 FC24/FC25',
+      DownloadLink: '下载链接:',
+    },
+    STEP_2: {
+      Title: '2. 进入职业模式',
+      Description: '请先进入 FC24/FC25 职业模式。',
+    },
+    STEP_3: {
+      Title: '3. 打开 Lua 脚本',
+      Description: '在职业模式中唤醒 Live Editor 并进入 Lua 脚本功能。',
+    },
+    STEP_4: {
+      Title: '4. 粘贴以下代码片段',
+      Description:
+        '复制下面的代码，将其粘贴到 LIVE Editor 的 Lua 脚本中，然后点击执行按钮。',
+    },
+
     GET_STARTED_TEXT: `
 # 开始
 ## 1. 依赖
@@ -178,7 +249,7 @@ export default {
     HIDE_ALL_CODE: '隐藏所有代码',
     SHOW_ALL_CODE: '显示所有代码',
     CODE_NOT_SHARE_WARNING:
-      '警告：这些代码包含您的秘密密钥。请勿与他人分享这些代码。',
+      '这些代码包含您的秘钥。请不要与任何人分享这些代码哦~',
     IMPORTANT_TIPS: `
 # 重要提示 
 
@@ -210,6 +281,8 @@ export default {
 让我解释一下为什么这个脚本需要文件系统权限。正如我们之前提到的，我们使用命令行直接执行 curl 命令来发送您的球员数据。但是，由于众多球员属性，JSON 数据字符串可能会变得非常长，导致无法在单行的 curl 中连接所有这些数据，因为超出了命令行的允许长度。
 
 因此，我的做法是先将这些数据写入文件，然后在命令中连接文件的路径。基于此，请确保您拥有管理员权限和文件夹的写入权限。通常，我们将写入 EA FC 游戏的根目录，如果写入失败，将显示错误：“权限被拒绝。”`,
+    VIDEO_TUTORIAL_TITLE: `视频教程`,
+    VIDEO_TUTORIAL_DESCRIPTION: `您也可以通过视频教程了解如何使用此应用程序。`,
   },
   NotificationPopover: {
     Title: '通知',

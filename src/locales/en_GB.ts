@@ -1,5 +1,6 @@
 export default {
   LoginComponent: {
+    VideoTutorial: 'How to use this app? Learn more through the video!',
     welcome: 'Welcome to back',
     usernameEmail: 'Username / Email',
     usernameEmailPlaceholder: 'your username or email',
@@ -52,9 +53,9 @@ export default {
     Logout: 'Sign out',
   },
   NoDataComponent: {
-    prefix: 'No data here. Please go to the',
-    getStartedPage: 'Get Started Page',
-    suffix: 'to start your journey!',
+    prefix: 'Nothing to display yet. Visit our',
+    getStartedPage: 'Get Started',
+    suffix: 'to begin your journey.',
   },
   PlayerListTable: {
     name: 'Name',
@@ -62,8 +63,10 @@ export default {
     position: 'Pos',
     overall: 'Ovr',
     SkillMovesAndWeakFoot: 'SM / WF',
-    SkillMoves: 'Skill moves',
-    WeakFoot: 'Weak foot',
+    SkillMoves: 'SM',
+    SkillMovesTooltip: 'Skill Moves',
+    WeakFoot: 'WF',
+    WeakFootTooltip: 'Weak Foot',
     potential: 'Pot',
     overallRankingTips:
       'The player ranks {ranking} in overall for his position({position}).',
@@ -74,7 +77,7 @@ export default {
     BasicInfo: {
       PlayerID: 'ID',
       Age: 'Age',
-      Skills: 'Skills',
+      Skills: 'Skill moves',
       WeakFoot: 'Weak Foot',
       Foot: 'Foot',
       Height: 'Height',
@@ -140,8 +143,10 @@ export default {
 
     APISecretKey: 'API Secret Key',
     ClickToCopy: 'Click to copy your API secret key',
+    Copy: 'Copy',
     ClickToRefresh:
       'Click to refresh your API secret key, this will invalidate your old key',
+    Refresh: 'Refresh',
     CopySuccessMessage: 'Secret key copied to clipboard',
     FailedToCopyMessage:
       'Failed to copy secret key to clipboard, please try again',
@@ -154,32 +159,96 @@ export default {
     PlayerWeakFootUpdate: 'Player Weak Foot Update',
 
     AccountInfo: 'Account Info',
+    AccountUnverifiedWarningBanner:
+      'Your email address is not verified. Please click the button below to verify your email address so we can confirm your identity.',
     AccountUsername: 'Username',
     AccountEmail: 'Email',
+    AccountEmailVerified: 'Verified',
+    AccountEmailUnverified: 'Unverified',
+    AccountEmailUnverifiedTooltip:
+      'Email is not verified, Click to send an email. We will send you a verification email including a link to verify your email address.',
+    AccountEmailSendTooFrequently:
+      'Email sent too frequently, please wait {waitSeconds} seconds',
+    AccountEmailSendToast: 'Verification email sent, please check your email.',
+    AccountChangeEmail: 'Change',
+
     AccountChangePassword: 'Change Password',
     AccountClickToChange: 'Click to change',
 
     OldPassword: 'Old Password',
     NewPassword: 'New Password',
     ConfirmNewPassword: 'Confirm New Password',
+    ChangePassword: 'Save',
+    ChangePasswordNotification: {
+      ErrorTitle: 'Error',
+      INVALID_PASSWORD: 'Please fill in all fields',
+      PASSWORD_MISMATCH: 'New password and confirm password do not match',
+      INCORRECT_OLD_PASSWORD: 'The old password is incorrect',
+      USER_NOT_FOUND: 'User not found',
+
+      PASSWORD_SAME_AS_OLD:
+        'The new password is the same as the old one. Please try another one.',
+
+      SUCCESS: 'Success',
+      SUCCESS_MESSAGE: 'Password changed successfully',
+
+      UnknownErrorTitle: 'Unknown Error',
+      UnknownErrorDescription:
+        'Failed to change password. Please try again. If the problem persists, please contact us.',
+    },
 
     Logout: 'Logout',
     ClickToLogout: 'Click here to logout',
-    ChangePassword: 'Save',
+
+    NewEmailInputPlaceholder: 'Enter your new email',
+    ChangeEmail: 'Change Email',
+    NeedVerifyEmail:
+      'You need to verify your new email address after changing it.',
+    ChangeEmailNotification: {
+      ErrorTitle: 'Error',
+      INVALID_EMAIL: 'Please enter a valid email address.',
+
+      SUCCESS: 'Success',
+      SUCCESS_MESSAGE: 'Email changed successfully. Please verify your email.',
+
+      EMAIL_DUPLICATE:
+        'The new email address is already in use. Please try another one. If the email belongs to you, please contact us.',
+
+      EMAIL_SAME_AS_OLD:
+        'The new email address is the same as the old one. Please try another one.',
+
+      UnknownErrorTitle: 'Unknown Error',
+      UnknownErrorDescription:
+        'Failed to change email. Please try again. If the problem persists, please contact us.',
+    },
   },
 
   GetStartedPage: {
+    Title: 'Quick Start',
+    STEP_1: {
+      Title: '1. Open the FC24/FC25 with Live Editor.',
+      DownloadLink: 'Download link:',
+    },
+    STEP_2: {
+      Title: '2. Enter career mode.',
+      Description: 'Please enter FC24/FC25 career mode first.',
+    },
+    STEP_3: {
+      Title: '3. Open Lua script',
+      Description:
+        'Wake up the Live editor in career mode and enter the Lua script function.',
+    },
+    STEP_4: {
+      Title: '4. Paste the code snippet below',
+      Description:
+        'Copy the code below, paste it into the Lua script of the LIVE Editor, and click the execute button.',
+    },
+
     GET_STARTED_TEXT: `
 # Get Started
 ## 1. Dependencies
 - Latest **[xAranaktu/FC-24-Live-Editor](https://www.patreon.com/collection/96422?view=expanded)** or **[xArnatu/FC-25-Live-Editor](https://www.patreon.com/collection/779838?view=expanded)**.
 - **Secret API key**. (You can manage it from [Setting Page](/settings), BUT you don't really need it because I have put it in the code snippet below for you)
-      
-## 2. Installation
-1. Open the FC24/FC25 with Live Editor.
-2. Enter career mode.
-3. Go to the \`Lua script\` tab in the live editor.
-4. Paste the code snippet below.
       `,
     SUCCESS: 'Success',
     SUCCESS_MESSAGE: 'Copied to clipboard',
@@ -221,6 +290,8 @@ During the closed beta, we’re only supporting one save slot. This is because o
 Let me explain why this script requires file system permissions. As we mentioned earlier, we use the command line to directly execute a curl command to send your player data. However, due to the numerous player attributes, the JSON data string can get very long, making it impossible to concatenate all this data in a single line of curl, as it exceeds the command line's allowed length. 
 
 Therefore, what I do is write this data to a file first and then concatenate the file's path in the command. Based on this, please ensure you have administrative privileges and write permissions for the folder. Generally, we will write to the root directory of the EA FC game, and if writing fails, an error will be displayed: "Permission denied."`,
+    VIDEO_TUTORIAL_TITLE: `Video Tutorial`,
+    VIDEO_TUTORIAL_DESCRIPTION: `You can also learn how to use this app through the video tutorial.`,
   },
   NotificationPopover: {
     Title: 'Notifications',

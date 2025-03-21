@@ -34,9 +34,7 @@ function PlayerDetailPage(): React.ReactElement {
 
   const getPlayerDetail = async () => {
     setIsLoading(true);
-    const data = await PlayerApis.getPlayerDetail({
-      playerID: playerID,
-    });
+    const data = await PlayerApis.getPlayerDetail({ playerID: playerID });
     if (data) {
       setPlayerDetail(data);
     }
@@ -244,6 +242,7 @@ function PlayerDetailPage(): React.ReactElement {
                   </Row>
                 </div>
               </div>
+
               {/* Trends */}
               <Space
                 style={{
