@@ -211,6 +211,11 @@ export default {
     },
   },
   GetStartedPage: {
+    EMAIL_UNVERIFIED: {
+      Prefix: '您尚未验证您的电子邮件地址。请前往',
+      SettingsPage: '设置页面',
+      Suffix: '验证您的电子邮件地址，以便我们确认您的身份。',
+    },
     Title: '快速开始',
     STEP_1: {
       Title: '1. 使用 Live Editor 打开 FC24/FC25',
