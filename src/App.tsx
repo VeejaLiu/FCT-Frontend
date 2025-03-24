@@ -118,7 +118,7 @@ function WebsiteLogoComponent() {
               </Dropdown.Menu>
             }
           >
-            <div className="flex items-center cursor-pointer bg-gray-600 hover:bg-gray-500 rounded-full px-4 py-1 transition duration-300 ease-in-out transform hover:scale-105">
+            <div className="flex items-center cursor-pointer bg-gray-600 hover:bg-gray-500 rounded-full px-4 py-1 transition duration-300 ease-in-out transform hover:scale-105 whitespace-nowrap">
               <IconBranch
                 size={'large'}
                 style={{ cursor: 'pointer', color: '#94f17a' }}
