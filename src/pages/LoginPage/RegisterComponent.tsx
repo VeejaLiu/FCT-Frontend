@@ -4,11 +4,13 @@ import {
   LocaleConsumer,
   Notification,
   Space,
+  Tooltip,
 } from '@douyinfe/semi-ui';
 import { UserApis } from '../../service/UserApis.ts';
 import { useState } from 'react';
 import styles from './LoginOrRegisterPage.module.scss';
 import logo from '../../assets/image/logo.svg';
+import { IconHelpCircleStroked } from '@douyinfe/semi-icons';
 
 export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   const [registerUsername, setRegisterUsername] = useState('');
@@ -109,7 +111,14 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                 }}
               />
               <Form.Input
-                label={{ text: localeData.email }}
+                label={
+                  <div className={'flex items-center'}>
+                    <span className={'mr-1'}>{localeData.email}</span>
+                    <Tooltip content={localeData.emailTooltip}>
+                      <IconHelpCircleStroked />
+                    </Tooltip>
+                  </div>
+                }
                 field="register.email"
                 placeholder={localeData.emailPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}
@@ -123,9 +132,17 @@ export const RegisterComponent = ({ setIsLogin }: { setIsLogin: any }) => {
                   }
                 }}
               />
+
               <Form.Input
                 mode={'password'}
-                label={{ text: localeData.password }}
+                label={
+                  <div className={'flex items-center'}>
+                    <span className={'mr-1'}>{localeData.password}</span>
+                    <Tooltip content={localeData.passwordTooltip}>
+                      <IconHelpCircleStroked />
+                    </Tooltip>
+                  </div>
+                }
                 field="password"
                 placeholder={localeData.passwordPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}

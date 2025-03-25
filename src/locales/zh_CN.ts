@@ -15,8 +15,11 @@ export default {
     username: '用户名',
     usernamePlaceholder: '您的用户名',
     email: '电子邮件',
+    emailTooltip: '请输入有效的电子邮件地址。注册后需要验证您的电子邮件地址。',
     emailPlaceholder: '您的电子邮件',
     password: '密码',
+    passwordTooltip:
+      '密码必须包含大小写字母、数字或特殊符号中的三种，并且不少于6位。',
     passwordPlaceholder: '您的密码',
     confirmPassword: '确认密码',
     confirmPasswordPlaceholder: '确认您的密码',
