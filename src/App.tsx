@@ -92,10 +92,6 @@ function WebsiteLogoComponent() {
             position={'bottom'}
             render={
               <Dropdown.Menu>
-                <Dropdown.Item disabled={true}>
-                  {localeData.switchVersion}
-                </Dropdown.Item>
-                <Dropdown.Divider />
                 {[
                   { name: 'FC 24', version: 24 },
                   { name: 'FC 25', version: 25 },
