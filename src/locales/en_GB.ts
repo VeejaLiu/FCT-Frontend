@@ -15,8 +15,12 @@ export default {
     username: 'Username',
     usernamePlaceholder: 'your username',
     email: 'Email',
+    emailTooltip:
+      'Please enter a valid email address. You need to verify your email address after registration.',
     emailPlaceholder: 'your email',
     password: 'Password',
+    passwordTooltip:
+      'Password must contain at least three of the following: uppercase letters, lowercase letters, numbers, or special characters, and must be at least 6 characters long.',
     passwordPlaceholder: 'your password',
     confirmPassword: 'Confirm Password',
     confirmPasswordPlaceholder: 'confirm your password',

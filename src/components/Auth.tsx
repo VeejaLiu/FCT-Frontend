@@ -6,9 +6,15 @@ import LoginOrRegisterPage from '../pages/LoginPage/LoginOrRegisterPage.tsx';
 
 import zh_CN from '@douyinfe/semi-ui/lib/es/locale/source/zh_CN';
 import en_GB from '@douyinfe/semi-ui/lib/es/locale/source/en_GB';
+import fr from '@douyinfe/semi-ui/lib/es/locale/source/fr';
+import de from '@douyinfe/semi-ui/lib/es/locale/source/de';
+import ja_JP from '@douyinfe/semi-ui/lib/es/locale/source/ja_JP';
 
-import customzh_CN from '../locales/zh_CN.ts';
-import customen_GB from '../locales/en_GB.ts';
+import custom_zh_CN from '../locales/zh_CN.ts';
+import custom_en_GB from '../locales/en_GB.ts';
+import custom_fr_FR from '../locales/fr_FR.ts';
+import custom_de_DE from '../locales/de_DE.ts';
+import custom_ja_JP from '../locales/ja_JP.ts';
 
 export const LANGUAGE_LOCAL_STORAGE_KEY = 'fcd-ui-default-language';
 
@@ -17,15 +23,35 @@ export const LANGUAGE_LOCAL_STORAGE_KEY = 'fcd-ui-default-language';
 //     "en",
 //     "en-GB",
 //     "en-US",
-//     "zh"
+//     "zh",
+//     "fr",
+//     "fr-FR",
+//     "de",
+//     "de-DE",
+//     "ja",
+//     "ja-JP",
+//     "ja-JP",
 // ]
 const SUPPORTED_LANGUAGES: any = {
-  en: { ...en_GB, ...customen_GB },
-  en_GB: { ...en_GB, ...customen_GB },
-  en_US: { ...en_GB, ...customen_GB },
+  // English
+  en: { ...en_GB, ...custom_en_GB },
+  en_GB: { ...en_GB, ...custom_en_GB },
+  en_US: { ...en_GB, ...custom_en_GB },
 
-  zh: { ...zh_CN, ...customzh_CN },
-  zh_CN: { ...zh_CN, ...customzh_CN },
+  // Chinese
+  zh: { ...zh_CN, ...custom_zh_CN },
+  zh_CN: { ...zh_CN, ...custom_zh_CN },
+
+  // French
+  fr: { ...fr, ...custom_fr_FR },
+  fr_FR: { ...fr, ...custom_fr_FR },
+  // German
+  de: { ...de, ...custom_de_DE },
+  de_DE: { ...de, ...custom_de_DE },
+
+  // Japanese
+  ja: { ...ja_JP, ...custom_ja_JP },
+  ja_JP: { ...ja_JP, ...custom_ja_JP },
 };
 
 export const Auth = () => {

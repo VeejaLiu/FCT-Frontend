@@ -26,7 +26,6 @@ import {
   IconGithubLogo,
   IconHistogram,
   IconIdCard,
-  IconLanguage,
   IconSetting,
   IconUser,
 } from '@douyinfe/semi-icons';
@@ -43,6 +42,12 @@ import {
 import { LANGUAGE_LOCAL_STORAGE_KEY } from './components/Auth.tsx';
 import { NotificationPopover } from './components/NotificationPopover.tsx';
 import { NotificationApis } from './service/NotificationApis.ts';
+
+import icon_english from './assets/image/language/english.png';
+import icon_chinese from './assets/image/language/chinese.png';
+import icon_france from './assets/image/language/france.png';
+import icon_german from './assets/image/language/german.png';
+import icon_japanese from './assets/image/language/japanese.png';
 
 function getLogoByVersion(defaultVersion: number) {
   switch (defaultVersion) {
@@ -132,11 +137,20 @@ function WebsiteLogoComponent() {
   );
 }
 
+const languageOptions = [
+  { key: 'en', label: 'English(US)', icon: icon_english },
+  { key: 'zh', label: '简体中文', icon: icon_chinese },
+  { key: 'fr', label: 'Français', icon: icon_france },
+  { key: 'de', label: 'Deutsch', icon: icon_german },
+  { key: 'ja', label: '日本語', icon: icon_japanese },
+];
+
 export default function App() {
   const navigate = useNavigate();
   const [playerCount, setPlayerCount] = useState(0);
   const [userInfo, setUserInfo] = useState<any>(null);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const fetchPlayerCount = async () => {
     const count = await PlayerApis.getPlayerCount();
@@ -151,6 +165,12 @@ export default function App() {
   const fetchUsername = async () => {
     const userInfo = await UserApis.getUserInfo();
     setUserInfo(userInfo);
+  };
+
+  // 定义处理语言切换的函数
+  const handleLanguageChange = (lang: string) => {
+    localStorage.setItem(LANGUAGE_LOCAL_STORAGE_KEY, lang);
+    window.location.reload();
   };
 
   const doLogout = async () => {
@@ -177,6 +197,19 @@ export default function App() {
     fetchPlayerCount().then();
     fetchUsername().then();
     fetchUnreadNotificationCount().then();
+    const language = localStorage.getItem(LANGUAGE_LOCAL_STORAGE_KEY);
+    if (language) {
+      setCurrentLanguage(language);
+    } else {
+      const browserLanguage = navigator.language.split('-')[0];
+      const matchedLanguage = languageOptions.find(
+        (option) => option.key === browserLanguage,
+      );
+      if (matchedLanguage) {
+        setCurrentLanguage(matchedLanguage.key);
+        localStorage.setItem(LANGUAGE_LOCAL_STORAGE_KEY, matchedLanguage.key);
+      }
+    }
   }, []);
 
   return (
@@ -266,53 +299,59 @@ export default function App() {
                             }}
                           />
                         </Tooltip>
-                        <Tooltip
-                          content={localeData.SwitchLanguage}
+
+                        <Dropdown
                           position={'bottom'}
+                          render={
+                            <Dropdown.Menu>
+                              {languageOptions.map((option) => (
+                                <Dropdown.Item
+                                  key={option.key}
+                                  onClick={() =>
+                                    handleLanguageChange(option.key)
+                                  }
+                                >
+                                  <div className="flex items-center">
+                                    <img
+                                      src={option.icon}
+                                      alt={option.label}
+                                      width={20}
+                                    />
+                                    <span className="ml-2">{option.label}</span>
+                                  </div>
+                                </Dropdown.Item>
+                              ))}
+                            </Dropdown.Menu>
+                          }
                         >
-                          <Button
-                            theme="borderless"
-                            icon={<IconLanguage size="extra-large" />}
-                            style={{
-                              color: 'var(--semi-color-text-2)',
-                              marginRight: '12px',
-                            }}
-                            onClick={() => {
-                              // localStorage.setItem('locale', 'zh_CN');
-                              // const SUPPORTED_LANGUAGES: any = {
-                              //   en: { ...en_GB, ...customen_GB },
-                              //   en_GB: { ...en_GB, ...customen_GB },
-                              //   en_US: { ...en_GB, ...customen_GB },
-                              //
-                              //   zh: { ...zh_CN, ...customzh_CN },
-                              //   zh_CN: { ...zh_CN, ...customzh_CN },
-                              // };
-                              const currentLuaguage = localStorage.getItem(
-                                LANGUAGE_LOCAL_STORAGE_KEY,
-                              );
-                              switch (currentLuaguage) {
-                                case 'en':
-                                case 'en_GB':
-                                case 'en_US':
-                                  localStorage.setItem(
-                                    LANGUAGE_LOCAL_STORAGE_KEY,
-                                    'zh',
-                                  );
-                                  break;
-                                case 'zh':
-                                case 'zh_CN':
-                                  localStorage.setItem(
-                                    LANGUAGE_LOCAL_STORAGE_KEY,
-                                    'en',
-                                  );
-                                  break;
-                                default:
-                                  break;
+                          <div
+                            className={
+                              'flex items-center bg-gray-200 px-4 p-1 rounded-full font-bold'
+                            }
+                          >
+                            <img
+                              src={
+                                languageOptions?.find((o) => {
+                                  return o.key === currentLanguage;
+                                })?.icon
                               }
-                              window.location.reload();
-                            }}
-                          />
-                        </Tooltip>
+                              alt={
+                                languageOptions?.find((o) => {
+                                  return o.key === currentLanguage;
+                                })?.label
+                              }
+                              width={20}
+                            />
+                            <span className="ml-4">
+                              {
+                                languageOptions?.find((o) => {
+                                  return o.key === currentLanguage;
+                                })?.label
+                              }
+                            </span>
+                          </div>
+                        </Dropdown>
+
                         <Popover
                           style={{
                             width: '440px',
