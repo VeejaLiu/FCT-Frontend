@@ -290,7 +290,7 @@ export default function App() {
                             icon={
                               <IconDiscord
                                 classname={
-                                  'fill-white bg-[#5a65e9] rounded-full p-1'
+                                  'fill-white bg-[#5a65e9] rounded-full p-1 hover:bg-[#4b5ae0] transition duration-300 ease-in-out transform hover:scale-110 hover:rotate-45'
                                 }
                               />
                             }
