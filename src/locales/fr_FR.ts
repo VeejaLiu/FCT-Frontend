@@ -53,6 +53,8 @@ export default {
     Settings: 'Paramètres',
     GetStarted: 'Commencer',
     VisitGithub: 'Visiter Github',
+    JoinDiscord:
+      "Rejoignez notre serveur Discord pour obtenir de l'aide / des retours / signaler des bugs / suggestions, ou juste discuter avec nous !",
     SwitchLanguage: 'Switch to English',
     Hello: 'Bonjour, ',
     Logout: 'Déconnexion',

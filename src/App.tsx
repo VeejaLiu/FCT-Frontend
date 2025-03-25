@@ -23,7 +23,6 @@ import {
   IconBell,
   IconBranch,
   IconExit,
-  IconGithubLogo,
   IconHistogram,
   IconIdCard,
   IconSetting,
@@ -48,6 +47,7 @@ import icon_chinese from './assets/image/language/chinese.png';
 import icon_france from './assets/image/language/france.png';
 import icon_german from './assets/image/language/german.png';
 import icon_japanese from './assets/image/language/japanese.png';
+import { IconDiscord } from './common/icons.tsx';
 
 function getLogoByVersion(defaultVersion: number) {
   switch (defaultVersion) {
@@ -282,20 +282,24 @@ export default function App() {
                         }}
                       >
                         <Tooltip
-                          content={localeData.VisitGithub}
+                          content={localeData.JoinDiscord}
                           position={'bottom'}
                         >
                           <Button
                             theme="borderless"
-                            icon={<IconGithubLogo size="extra-large" />}
+                            icon={
+                              <IconDiscord
+                                classname={
+                                  'fill-white bg-[#5a65e9] rounded-full p-1'
+                                }
+                              />
+                            }
                             style={{
                               color: 'var(--semi-color-text-2)',
-                              marginRight: '12px',
+                              // marginRight: '12px',
                             }}
                             onClick={() => {
-                              window.open(
-                                'https://github.com/VeejaLiu/FIFA-Career-Dashboard-Frontend',
-                              );
+                              window.open('https://discord.gg/aKfWAtbJ8F');
                             }}
                           />
                         </Tooltip>

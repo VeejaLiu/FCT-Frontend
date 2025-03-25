@@ -52,6 +52,8 @@ export default {
     Settings: 'Settings',
     GetStarted: 'Get Started',
     VisitGithub: 'Visit Github',
+    JoinDiscord:
+      'Join Our Discord Server to Get Help / Feedback / Report Bugs / Suggestions, or Just Chat with Us!',
     SwitchLanguage: '切换为中文',
     Hello: 'Hi, ',
     Logout: 'Sign out',

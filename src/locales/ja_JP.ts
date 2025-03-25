@@ -51,6 +51,8 @@ export default {
     Settings: '設定',
     GetStarted: '始める',
     VisitGithub: 'Githubを訪問',
+    JoinDiscord:
+      '私たちのDiscordサーバーに参加して、ヘルプ/フィードバック/バグ報告/提案を受けたり、ただおしゃべりしたりしましょう！',
     SwitchLanguage: 'English に切り替え',
     Hello: 'こんにちは、',
     Logout: 'ログアウト',

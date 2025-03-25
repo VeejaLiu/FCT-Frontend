@@ -49,6 +49,8 @@ export default {
     Settings: '设置',
     GetStarted: '快速开始',
     VisitGithub: '访问 Github',
+    JoinDiscord:
+      '加入我们的 Discord 服务器以获取帮助/反馈/报告错误/建议，或与我们聊天！',
     SwitchLanguage: 'Switch to English',
     Hello: '你好， ',
     Logout: '退出登录',
