@@ -1,6 +1,10 @@
-# FIFA-Career-Dashboard-Frontend
+# FIFA-Career-Top-Frontend
 
-FC24 Career Dashboard:
+A fully functional web application that allows you to track the progress of your players in FIFA 24/25 Career Mode.
+
+This application is designed to work with the **xAranaktu/Live-Editor** to implement automatic updates of player data.
+
+It provides a user-friendly interface to view and analyze player statistics, including overall rating, potential, and trends over time.
 
 ## Table of Contents
 
@@ -8,7 +12,6 @@ FC24 Career Dashboard:
 - [Installation](#installation)
     - [Dependencies](#dependencies)
     - [Usage](#usage)
-- [Change log](#change-log)
 - [Important Note && Tips](#important-note--tips)
 
 ## Features
@@ -20,8 +23,24 @@ FC24 Career Dashboard:
 - Notification when a player's overall rating or potential changes
 - Notification when a player's weak foot or skill moves changes
 - Golden player, which shows the top 3 players(overall, potential) on same position.
+- multiple language support (English, Chinese, French, Dutch, Japanese)
 
 And more features are coming soon.
+
+**List page:**
+<img src="doc-images/2025-03-26/screencapture-localhost-3000-players-2025-03-26-17_26_04.jpeg" alt="list" style="width: 600px;">
+
+**Trend page:**
+<img src="doc-images/2025-03-26/Snipaste_2025-03-26_17-18-36.jpg" alt="list" style="width: 600px;">
+
+**Detail page:**
+<img src="doc-images/2025-03-26/screencapture-localhost-3000-players-detail-2025-03-26-17_25_30.jpeg" alt="list" style="width: 600px;">
+
+**Get started page:**
+<img src="doc-images/2025-03-26/screencapture-localhost-3000-get-started-2025-03-26-17_26_45.jpeg" alt="list" style="width: 600px;">
+
+**Settings page:**
+<img src="doc-images/2025-03-26/screencapture-localhost-3000-settings-2025-03-26-17_22_14.jpeg" alt="list" style="width: 600px;">
 
 ## Installation
 
@@ -36,126 +55,9 @@ And more features are coming soon.
 - Go to the Lua script tab in the live editor.
 - Paste the code snippet in GetStarted page and run the script.
 
-# Change log
-
-## Latest version 1.3.0:
-
-- Golden player, which shows the top 3 players(overall, potential) on same position.
-- Save all player change history(overall, potential, skill moves, weak foot), in notification page.
-
-**Player List:**
-
-<img src="doc-images/2024-12-11/list.webp" alt="list" style="width: 800px;">
-
-**Trends:**
-
-<img src="doc-images/2024-12-11/trends.webp" alt="trends" style="width: 800px;">
-
-**Notification:**
-
-<img src="doc-images/2024-12-11/notification.webp" alt="notification" style="width: 800px;">
-
-**Detail:**
-
-<img src="doc-images/2024-12-11/detail.webp" alt="detail" style="width: 800px;">
-
-**Setting:**
-
-<img src="doc-images/2024-12-11/setting.webp" alt="setting" style="width: 800px;">
-
-**Get Started:**
-
-<img src="doc-images/2024-12-11/get-started.webp" alt="get-started" style="width: 800px;">
-
-
-## Older versions:
-
-<details>
-<summary>expand to view</summary>
-
-### Old version 1.2.0:
-
-- New player details page
-- Notification when a player's overall rating or potential changes
-- New login page
-
-Player trends:
-
-![img_6.png](doc-images/img_6.png)
-
-Player details:
-
-![img_9.png](doc-images/img_9.png)
-
-Notification when a player's overall rating or potential changes:
-
-![img_10.png](doc-images/img_10.png)
-
-Player list:
-
-![img_8.png](doc-images/img_8.png)
-
-Login page:
-
-![img_7.png](doc-images/img_7.png)
-
-### OLD Version 1.1.0:
-
-- Add Login page
-- Add settings page(Secret key Management, Logout)
-- Add get started page(How to use)
-
-![img_1.png](doc-images/img_1.png)
-
-![img_2.png](doc-images/img_2.png)
-
-![img_3.png](doc-images/img_3.png)
-
-![img_4.png](doc-images/img_4.png)
-
-![img_5.png](doc-images/img_5.png)
-
-### OLD Version 1.0.1:
-
-- Change the player trends chart style.
-
-![img_1.png](doc-images/img_1.png)
-
-![img_2.png](doc-images/img_2.png)
-
-### OLD Version 1.0.0:
-
-Player list:
-![img.png](doc-images/img.png)
-
-Player trends:
-![img.png](doc-images/img2.png)
-
-</details>
-
 ## Important Note && Tips
 
-### 1. In-game Date Might Not Be Perfectly Accurate!
-
-You might have noticed that we’re tracking player stat growth as the in-game
-time changes.
-BUT here’s a little secret: it’s tricky for us to get the exact in-game date!
-We used to pull that data from the “career_table” you can find in the Live
-Editor under the Table tab. But after a certain game update, the data in that
-table isn’t accurate anymore. Interestingly, I found a pattern: the table is
-accurate when you first enter Career Mode or after you play a match. So,
-based on that, we had to create a manual time calculation method by listening
-to the DAY_PASSED event in the game and cross-referencing it with the data we
-can still get. It’s a bit clunky, and I had to add a bunch of redundant code
-to make it work. But for now, that’s our only option. So, when using this
-script, don’t rely too heavily on the in-game date, as it might not be
-spot-on.
-And please, run this script immediately after entering Career Mode to get the
-most accurate data possible. Otherwise, the data will only become accurate
-after you play a match.
-**Our Tip: Run this script right after entering Career Mode!**
-
-### 2. The Annoying Black Window! It might steal your focus.
+### 1. The Annoying Black Window! It might steal your focus.
 
 Let me explain how this works. Our application relies on the functions
 provided by Live Editor. Whenever the WEEK_PASSED event is triggered in the
@@ -176,7 +78,7 @@ keeping track of your players’ progress, right? Rest assured, I’m on the
 lookout for a better solution, and I’ll update the application as soon as we
 find one. Thanks for your understanding!
 
-### 3. Only One Save Slot Supported!
+### 2. Only One Save Slot Supported!
 
 During the closed beta, we’re only supporting one save slot. This is because
 our server resources are limited, and we can’t provide a separate save for
@@ -184,7 +86,7 @@ every single user. Plus, I doubt anyone is switching save files back and
 forth that often, so I think this limitation is fair. In the future, we might
 offer more save slots, but who knows? The future is full of surprises!
 
-### 4. Issues Caused by Insufficient File System Permissions
+### 3. Issues Caused by Insufficient File System Permissions
 
 Let me explain why this script requires file system permissions. As we
 mentioned earlier, we use the command line to directly execute a curl command

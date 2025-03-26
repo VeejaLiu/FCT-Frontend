@@ -51,6 +51,8 @@ export default {
     Settings: '設定',
     GetStarted: '始める',
     VisitGithub: 'Githubを訪問',
+    JoinDiscord:
+      '私たちのDiscordサーバーに参加して、ヘルプ/フィードバック/バグ報告/提案を受けたり、ただおしゃべりしたりしましょう！',
     SwitchLanguage: 'English に切り替え',
     Hello: 'こんにちは、',
     Logout: 'ログアウト',
@@ -173,7 +175,7 @@ export default {
     AccountEmailSendTooFrequently:
       'メールの送信が頻繁すぎます、{waitSeconds}秒お待ちください',
     AccountEmailSendToast:
-      '確認メールを送信しました、メールを確認してください。',
+      '確認メールが送信されました、メールを確認してください。メールが届かない場合は、迷惑メールフォルダを確認するか、お問い合わせください。',
     AccountChangeEmail: '変更',
 
     AccountChangePassword: 'パスワードの変更',

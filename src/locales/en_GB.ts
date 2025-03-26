@@ -52,6 +52,8 @@ export default {
     Settings: 'Settings',
     GetStarted: 'Get Started',
     VisitGithub: 'Visit Github',
+    JoinDiscord:
+      'Join Our Discord Server to Get Help / Feedback / Report Bugs / Suggestions, or Just Chat with Us!',
     SwitchLanguage: '切换为中文',
     Hello: 'Hi, ',
     Logout: 'Sign out',
@@ -173,7 +175,8 @@ export default {
       'Email is not verified, Click to send an email. We will send you a verification email including a link to verify your email address.',
     AccountEmailSendTooFrequently:
       'Email sent too frequently, please wait {waitSeconds} seconds',
-    AccountEmailSendToast: 'Verification email sent, please check your email.',
+    AccountEmailSendToast:
+      'Verification email sent, please check your email. If you do not receive the email, please check your spam folder or contact us.',
     AccountChangeEmail: 'Change',
 
     AccountChangePassword: 'Change Password',

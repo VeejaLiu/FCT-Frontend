@@ -52,6 +52,8 @@ export default {
     Settings: 'Einstellungen',
     GetStarted: 'Loslegen',
     VisitGithub: 'Github besuchen',
+    JoinDiscord:
+      'Tritt unserem Discord-Server bei, um Hilfe zu erhalten, Feedback zu geben, Fehler zu melden, Vorschläge zu machen oder einfach nur mit uns zu plaudern!',
     SwitchLanguage: 'Switch to English',
     Hello: 'Hallo, ',
     Logout: 'Abmelden',
@@ -174,7 +176,7 @@ export default {
     AccountEmailSendTooFrequently:
       'E-Mail wurde zu häufig gesendet, bitte warte {waitSeconds} Sekunden',
     AccountEmailSendToast:
-      'Bestätigungs-E-Mail gesendet, bitte überprüfe deine E-Mail.',
+      'Bestätigungs-E-Mail gesendet, bitte überprüfe deine E-Mail. Wenn du die E-Mail nicht erhältst, überprüfe bitte deinen Spam-Ordner oder kontaktiere uns.',
     AccountChangeEmail: 'Ändern',
 
     AccountChangePassword: 'Passwort ändern',

@@ -53,6 +53,8 @@ export default {
     Settings: 'Paramètres',
     GetStarted: 'Commencer',
     VisitGithub: 'Visiter Github',
+    JoinDiscord:
+      "Rejoignez notre serveur Discord pour obtenir de l'aide / des retours / signaler des bugs / suggestions, ou juste discuter avec nous !",
     SwitchLanguage: 'Switch to English',
     Hello: 'Bonjour, ',
     Logout: 'Déconnexion',
@@ -176,7 +178,7 @@ export default {
     AccountEmailSendTooFrequently:
       'Email envoyé trop fréquemment, veuillez attendre {waitSeconds} secondes',
     AccountEmailSendToast:
-      'Email de vérification envoyé, veuillez vérifier votre boîte de réception.',
+      "Email de vérification envoyé, veuillez vérifier votre email. Si vous ne recevez pas l'email, veuillez vérifier votre dossier spam ou nous contacter.",
     AccountChangeEmail: 'Modifier',
 
     AccountChangePassword: 'Changer de mot de passe',

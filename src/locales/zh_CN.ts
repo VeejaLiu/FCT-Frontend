@@ -49,6 +49,8 @@ export default {
     Settings: '设置',
     GetStarted: '快速开始',
     VisitGithub: '访问 Github',
+    JoinDiscord:
+      '加入我们的 Discord 服务器以获取帮助/反馈/报告错误/建议，或与我们聊天！',
     SwitchLanguage: 'Switch to English',
     Hello: '你好， ',
     Logout: '退出登录',
@@ -162,7 +164,8 @@ export default {
     AccountEmailUnverifiedTooltip:
       '邮箱未验证，点击发送验证邮件。我们将发送一封验证邮件，其中包含验证您电子邮件地址的链接。',
     AccountEmailSendTooFrequently: '邮件发送太频繁，请等待 {waitSeconds} 秒',
-    AccountEmailSendToast: '验证邮件已发送，请检查您的邮箱。',
+    AccountEmailSendToast:
+      '验证邮件已发送，请检查您的邮箱。如果您没有收到邮件，请检查您的垃圾邮件文件夹或联系我们。',
     AccountChangeEmail: '修改',
 
     AccountChangePassword: '修改密码',
