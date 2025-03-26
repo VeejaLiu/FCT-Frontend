@@ -176,7 +176,7 @@ export default {
     AccountEmailSendTooFrequently:
       'E-Mail wurde zu häufig gesendet, bitte warte {waitSeconds} Sekunden',
     AccountEmailSendToast:
-      'Bestätigungs-E-Mail gesendet, bitte überprüfe deine E-Mail.',
+      'Bestätigungs-E-Mail gesendet, bitte überprüfe deine E-Mail. Wenn du die E-Mail nicht erhältst, überprüfe bitte deinen Spam-Ordner oder kontaktiere uns.',
     AccountChangeEmail: 'Ändern',
 
     AccountChangePassword: 'Passwort ändern',

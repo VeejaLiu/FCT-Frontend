@@ -175,7 +175,8 @@ export default {
       'Email is not verified, Click to send an email. We will send you a verification email including a link to verify your email address.',
     AccountEmailSendTooFrequently:
       'Email sent too frequently, please wait {waitSeconds} seconds',
-    AccountEmailSendToast: 'Verification email sent, please check your email.',
+    AccountEmailSendToast:
+      'Verification email sent, please check your email. If you do not receive the email, please check your spam folder or contact us.',
     AccountChangeEmail: 'Change',
 
     AccountChangePassword: 'Change Password',

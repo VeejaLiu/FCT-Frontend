@@ -175,7 +175,7 @@ export default {
     AccountEmailSendTooFrequently:
       'メールの送信が頻繁すぎます、{waitSeconds}秒お待ちください',
     AccountEmailSendToast:
-      '確認メールを送信しました、メールを確認してください。',
+      '確認メールが送信されました、メールを確認してください。メールが届かない場合は、迷惑メールフォルダを確認するか、お問い合わせください。',
     AccountChangeEmail: '変更',
 
     AccountChangePassword: 'パスワードの変更',

@@ -178,7 +178,7 @@ export default {
     AccountEmailSendTooFrequently:
       'Email envoyé trop fréquemment, veuillez attendre {waitSeconds} secondes',
     AccountEmailSendToast:
-      'Email de vérification envoyé, veuillez vérifier votre boîte de réception.',
+      "Email de vérification envoyé, veuillez vérifier votre email. Si vous ne recevez pas l'email, veuillez vérifier votre dossier spam ou nous contacter.",
     AccountChangeEmail: 'Modifier',
 
     AccountChangePassword: 'Changer de mot de passe',
