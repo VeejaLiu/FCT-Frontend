@@ -28,18 +28,23 @@ It provides a user-friendly interface to view and analyze player statistics, inc
 And more features are coming soon.
 
 **List page:**
+
 <img src="doc-images/2025-03-26/screencapture-localhost-3000-players-2025-03-26-17_26_04.jpeg" alt="list" style="width: 600px;">
 
 **Trend page:**
+
 <img src="doc-images/2025-03-26/Snipaste_2025-03-26_17-18-36.jpg" alt="list" style="width: 600px;">
 
 **Detail page:**
+
 <img src="doc-images/2025-03-26/screencapture-localhost-3000-players-detail-2025-03-26-17_25_30.jpeg" alt="list" style="width: 600px;">
 
 **Get started page:**
+
 <img src="doc-images/2025-03-26/screencapture-localhost-3000-get-started-2025-03-26-17_26_45.jpeg" alt="list" style="width: 600px;">
 
 **Settings page:**
+
 <img src="doc-images/2025-03-26/screencapture-localhost-3000-settings-2025-03-26-17_22_14.jpeg" alt="list" style="width: 600px;">
 
 ## Installation
