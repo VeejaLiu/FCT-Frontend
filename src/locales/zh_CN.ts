@@ -5,6 +5,8 @@ export default {
     usernameEmail: '用户名 / 邮箱',
     usernameEmailPlaceholder: '您的用户名或邮箱',
     password: '密码',
+    ForgetPasswordTooltip:
+      '如果您忘记了密码，可以通过下面的任何方法联系我们以重置密码。',
     passwordPlaceholder: '您的密码',
     login: '登录',
     registerPrompt: '没有账号？注册',

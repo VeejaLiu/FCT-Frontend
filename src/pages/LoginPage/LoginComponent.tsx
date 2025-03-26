@@ -4,12 +4,14 @@ import {
   LocaleConsumer,
   Notification,
   Space,
+  Tooltip,
 } from '@douyinfe/semi-ui';
 import { UserApis } from '../../service/UserApis.ts';
 import { setToken } from '../../common/common.ts';
 import styles from './LoginOrRegisterPage.module.scss';
 import { useState } from 'react';
 import logo from '../../assets/image/logo.svg';
+import { IconHelpCircleStroked } from '@douyinfe/semi-icons';
 
 export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
   const [loginUsername, setLoginUsername] = useState('');
@@ -82,7 +84,15 @@ export const LoginComponent = ({ setIsLogin }: { setIsLogin: any }) => {
               />
               <Form.Input
                 mode={'password'}
-                label={{ text: localeData.password }}
+                label={
+                  // { text: localeData.password }
+                  <div className={'flex items-center'}>
+                    <span className={'mr-1'}>{localeData.password}</span>
+                    <Tooltip content={localeData.ForgetPasswordTooltip}>
+                      <IconHelpCircleStroked />
+                    </Tooltip>
+                  </div>
+                }
                 field="password"
                 placeholder={localeData.passwordPlaceholder}
                 fieldStyle={{ alignSelf: 'stretch', padding: 0 }}

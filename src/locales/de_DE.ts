@@ -5,6 +5,8 @@ export default {
     usernameEmail: 'Benutzername / E-Mail',
     usernameEmailPlaceholder: 'dein Benutzername oder E-Mail',
     password: 'Passwort',
+    ForgetPasswordTooltip:
+      'Wenn Sie Ihr Passwort vergessen haben, können Sie uns über eine der folgenden Methoden kontaktieren, um Ihr Passwort zurückzusetzen.',
     passwordPlaceholder: 'dein Passwort',
     login: 'Anmelden',
     registerPrompt: 'Noch kein Konto? Registrieren',
